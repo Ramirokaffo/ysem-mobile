@@ -1,0 +1,1301 @@
+{
+  "@@locale": "fr",
+  "appTitle": "YSEM",
+  "bienvenue": "Bienvenue à YSEM",
+  "choisirEspace": "Choisissez votre espace pour continuer.",
+  "espaceEtudiant": "Espace étudiant",
+  "espaceEtudiantDescription": "Emploi du temps, notes, finances et documents.",
+  "espaceEnseignant": "Espace enseignant",
+  "espaceEnseignantDescription": "Cours, séances, notes et vacations.",
+  "bientotDisponible": "Bientôt disponible",
+  "connexion": "Connexion",
+  "seConnecter": "Se connecter",
+  "deconnexion": "Se déconnecter",
+  "deconnexionConfirmation": "Vous devrez saisir à nouveau votre matricule et votre mot de passe pour revenir.",
+  "connexionEtudiantConsigne": "Connectez-vous avec votre matricule et le mot de passe du portail étudiant.",
+  "connexionAide": "Mot de passe oublié ou accès non configuré ? Rapprochez-vous de la scolarité.",
+  "matricule": "Matricule",
+  "motDePasse": "Mot de passe",
+  "afficher": "Afficher",
+  "masquer": "Masquer",
+  "champObligatoire": "Ce champ est obligatoire.",
+  "verificationTitre": "Vérification",
+  "verificationConsigne": "Saisissez le code à six chiffres reçu par e-mail.",
+  "verificationConsigneAdresse": "Saisissez le code à six chiffres envoyé à {adresse}.",
+  "@verificationConsigneAdresse": {
+    "placeholders": {
+      "adresse": {
+        "type": "String"
+      }
+    }
+  },
+  "verificationAide": "Pensez à vérifier vos courriers indésirables.",
+  "codeVerification": "Code de vérification",
+  "codeExpireDans": "Le code expire dans {duree}",
+  "@codeExpireDans": {
+    "placeholders": {
+      "duree": {
+        "type": "String"
+      }
+    }
+  },
+  "codeExpire": "Le code a expiré : demandez-en un nouveau.",
+  "verifier": "Vérifier",
+  "renvoyerCode": "Renvoyer le code",
+  "tentativesRestantes": "{nombre, plural, =1{Encore 1 essai.} other{Encore {nombre} essais.}}",
+  "@tentativesRestantes": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "changerMotDePasse": "Changer le mot de passe",
+  "motDePasseImposeConsigne": "Pour votre sécurité, choisissez un nouveau mot de passe avant de continuer.",
+  "motDePasseVolontaireConsigne": "Le nouveau mot de passe vaut aussi pour le portail web.",
+  "motDePasseActuel": "Mot de passe actuel",
+  "nouveauMotDePasse": "Nouveau mot de passe",
+  "confirmationMotDePasse": "Confirmer le nouveau mot de passe",
+  "confirmationDifferente": "Les deux mots de passe ne correspondent pas.",
+  "enregistrer": "Enregistrer",
+  "annuler": "Annuler",
+  "confirmer": "Confirmer",
+  "ongletAccueil": "Accueil",
+  "ongletServices": "Services",
+  "ongletNotifications": "Notifications",
+  "ongletProfil": "Profil",
+  "bonjour": "Bonjour, {nom}",
+  "@bonjour": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "situationFinanciere": "Situation financière",
+  "montantPaye": "Payé",
+  "resteAPayer": "Reste à payer",
+  "montantEchu": "Échu",
+  "prochainesSeances": "Prochaines séances",
+  "aucuneSeance": "Aucune séance à venir cette semaine.",
+  "datesAVenir": "Dates à venir",
+  "aucuneDate": "Aucune date annoncée au calendrier.",
+  "documentsRecents": "Documents récents",
+  "aucunDocument": "Aucun document pour le moment.",
+  "toutVoir": "Tout voir",
+  "seanceAnnulee": "Annulée",
+  "seanceChomee": "Jour chômé",
+  "seanceRattrapage": "Rattrapage",
+  "seanceTroncCommun": "Tronc commun",
+  "notificationsNonLues": "{nombre, plural, =1{1 notification non lue} other{{nombre} notifications non lues}}",
+  "@notificationsNonLues": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "informations": "Informations",
+  "aucuneInformation": "Aucune information au dossier.",
+  "email": "Adresse e-mail",
+  "telephone": "Téléphone",
+  "dateNaissance": "Date de naissance",
+  "genre": "Genre",
+  "residence": "Résidence",
+  "statut": "Statut",
+  "securite": "Sécurité du compte",
+  "doubleAuthentification": "Double authentification",
+  "doubleAuthentificationAide": "Un code envoyé par e-mail est demandé à chaque connexion.",
+  "activerDoubleAuthentification": "Activer la double authentification",
+  "desactiverDoubleAuthentification": "Désactiver la double authentification",
+  "confirmerParMotDePasse": "Confirmez avec votre mot de passe.",
+  "langue": "Langue",
+  "langueAide": "Votre choix vaut aussi pour le portail web.",
+  "connexionsRecentes": "Connexions récentes",
+  "aImplementer": "Bientôt dans l'application",
+  "aImplementerDetail": "En attendant, cette rubrique reste disponible sur le portail web.",
+  "chargement": "Chargement…",
+  "reessayer": "Réessayer",
+  "erreurInattendue": "Une erreur inattendue est survenue.",
+  "notificationsToutes": "Toutes",
+  "notificationsFiltreNonLues": "Non lues",
+  "toutMarquerLu": "Tout marquer comme lu",
+  "aucuneNotification": "Aucune notification pour l'instant.",
+  "aucuneNotificationNonLue": "Vous avez tout lu.",
+  "marquerLue": "Marquer comme lue",
+  "marquerNonLue": "Marquer comme non lue",
+  "supprimer": "Supprimer",
+  "notificationSupprimee": "Notification supprimée.",
+  "ouvrir": "Ouvrir",
+  "fermer": "Fermer",
+  "emploiDuTemps": "Emploi du temps",
+  "calendrier": "Calendrier",
+  "parcours": "Parcours",
+  "semainePrecedente": "Semaine précédente",
+  "semaineSuivante": "Semaine suivante",
+  "cetteSemaine": "Cette semaine",
+  "semaineDuAu": "Du {debut} au {fin}",
+  "@semaineDuAu": {
+    "placeholders": {
+      "debut": {
+        "type": "String"
+      },
+      "fin": {
+        "type": "String"
+      }
+    }
+  },
+  "seancesDeLaSemaine": "{count, plural, =0{Aucune séance} =1{1 séance} other{{count} séances}}",
+  "@seancesDeLaSemaine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aucuneSeanceSemaine": "Aucune séance prévue cette semaine.",
+  "datesPassees": "Dates passées",
+  "aucunEvenement": "Aucune date publiée au calendrier.",
+  "aucunParcours": "Aucune inscription enregistrée.",
+  "inscriptionCourante": "En cours",
+  "inscriptionNonFinalisee": "Inscription non finalisée",
+  "notesEnAttenteJury": "En attente du jury",
+  "aucuneNote": "Aucune note publiée pour cette année.",
+  "moyenne": "Moyenne",
+  "credits": "Crédits",
+  "creditsDuCours": "{count, plural, =1{1 crédit} other{{count} crédits}}",
+  "@creditsDuCours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rang": "Rang",
+  "resultatAnnuel": "Résultat de l'année",
+  "resultatSession": "Résultat · {session}",
+  "@resultatSession": {
+    "placeholders": {
+      "session": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionNormale": "Session normale",
+  "sessionRattrapage": "Rattrapage",
+  "coursARepasser": "Cours à repasser",
+  "relevesDeNotes": "Relevés de notes",
+  "releveNumero": "Relevé n° {numero}",
+  "@releveNumero": {
+    "placeholders": {
+      "numero": {
+        "type": "String"
+      }
+    }
+  },
+  "releveEmisLe": "Version {version} · émis le {date}",
+  "@releveEmisLe": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "relevesAuGuichet": "Les relevés se retirent auprès de la scolarité.",
+  "notesAvantJury": "Les notes de cours s'affichent une fois les résultats du jury publiés. En attendant, seules les épreuves validées par le service sont visibles.",
+  "anneeAcademique": "Année académique",
+  "totalDu": "Total dû",
+  "echeancier": "Échéancier",
+  "aucuneTranche": "Aucune échéance définie pour cette année.",
+  "echeanceLe": "Échéance le {date}",
+  "@echeanceLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "payeSur": "{paye} payés sur {montant}",
+  "@payeSur": {
+    "placeholders": {
+      "paye": {
+        "type": "String"
+      },
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "couverteParMoratoire": "Couverte par un moratoire",
+  "paiements": "Paiements",
+  "aucunPaiement": "Aucun paiement enregistré pour cette année.",
+  "moratoiresAccordes": "Moratoires accordés",
+  "demandeMoratoireEnCours": "Demande de moratoire en cours d'examen",
+  "telechargerRecu": "Télécharger le reçu",
+  "telechargerReleve": "Télécharger le relevé de compte",
+  "telechargementEnCours": "Téléchargement…",
+  "ouvertureImpossible": "Aucune application ne permet d'ouvrir ce document.",
+  "aucuneSituation": "Aucune situation financière pour cette année.",
+  "sectionScolarite": "Ma scolarité",
+  "sectionNotes": "Mes notes",
+  "sectionFinances": "Ma situation financière",
+  "sectionDocuments": "Mes documents",
+  "sectionExamens": "Planning des examens",
+  "sectionSupports": "Mes supports de cours",
+  "sectionDiscipline": "Ma discipline",
+  "aucunDocumentDossier": "Aucun document officiel dans votre dossier.",
+  "documentsAuGuichet": "Les autres documents se retirent auprès de la scolarité.",
+  "documentEtabliLe": "Établi le {date}",
+  "@documentEtabliLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "documentRetireLe": "Retiré le {date}",
+  "@documentRetireLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "telechargerCertificat": "Télécharger le certificat",
+  "certificatIndisponible": "Téléchargement indisponible",
+  "aucunPlanning": "Aucun planning d'examens publié pour votre classe.",
+  "planningEnCours": "En cours",
+  "planningTermine": "Terminé",
+  "planningAVenir": "À venir",
+  "nbEpreuves": "{count, plural, =0{Aucune épreuve} =1{1 épreuve} other{{count} épreuves}}",
+  "@nbEpreuves": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "telechargerPlanning": "Télécharger le planning (PDF)",
+  "pause": "Pause",
+  "epreuveConcernee": "Vous composez",
+  "aucunSupport": "Aucun plan ni support de cours publié pour l'instant.",
+  "supportsATelecharger": "{count, plural, =0{Tout est téléchargé} =1{1 document à télécharger} other{{count} documents à télécharger}}",
+  "@supportsATelecharger": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nouvelleVersion": "Nouvelle version",
+  "telecharge": "Téléchargé",
+  "telechargeLe": "Téléchargé le {date}",
+  "@telechargeLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "aTelecharger": "À télécharger",
+  "nbFichiers": "{count, plural, =1{1 fichier} other{{count} fichiers}}",
+  "@nbFichiers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "publieLe": "Publié le {date}",
+  "@publieLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "misAJourLe": "Mis à jour le {date}",
+  "@misAJourLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "telecharger": "Télécharger",
+  "aucunDossierDiscipline": "Aucun suivi d'assiduité pour cette année.",
+  "tauxPresence": "Taux de présence",
+  "seancesPrevuesNombre": "{count, plural, =0{Aucune séance prévue à ce jour} =1{1 séance prévue à ce jour} other{{count} séances prévues à ce jour}}",
+  "@seancesPrevuesNombre": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "seuilExamens": "Seuil d'accès aux examens : {seuil}",
+  "@seuilExamens": {
+    "placeholders": {
+      "seuil": {
+        "type": "String"
+      }
+    }
+  },
+  "absences": "Absences",
+  "retards": "Retards",
+  "absencesNonJustifiees": "{count, plural, =0{toutes justifiées} =1{dont 1 non justifiée} other{dont {count} non justifiées}}",
+  "@absencesNonJustifiees": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "retardsNonJustifies": "{count, plural, =0{tous justifiés} =1{dont 1 non justifié} other{dont {count} non justifiés}}",
+  "@retardsNonJustifies": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "assiduiteParException": "Une partie de vos séances a été relevée par exception (seuls les manquements sont saisis) : le taux se lit avec prudence.",
+  "assiduiteParCours": "Assiduité par cours",
+  "absencesSurSeances": "{absences, plural, =0{Aucune absence} =1{1 absence} other{{absences} absences}} sur {seances}",
+  "@absencesSurSeances": {
+    "placeholders": {
+      "absences": {
+        "type": "int"
+      },
+      "seances": {
+        "type": "int"
+      }
+    }
+  },
+  "absencesEtRetards": "Absences et retards",
+  "aucunManquement": "Aucune absence ni aucun retard relevé cette année.",
+  "minutesDeRetard": "{count, plural, =1{1 minute de retard} other{{count} minutes de retard}}",
+  "@minutesDeRetard": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "justificatifAvant": "Justificatif à produire avant le {date}",
+  "@justificatifAvant": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "sanctions": "Sanctions",
+  "aCompterDu": "À compter du {date}",
+  "@aCompterDu": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "tenueVestimentaire": "Tenue vestimentaire",
+  "aRegulariserAvant": "À régulariser avant le {date}",
+  "@aRegulariserAvant": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "sectionMoratoires": "Mes moratoires",
+  "sectionPermissions": "Mes permissions",
+  "mesDemandes": "Mes demandes",
+  "nouvelleDemande": "Nouvelle demande",
+  "demandeMoratoire": "Demande de moratoire",
+  "nouvelleDemandeMoratoire": "Demander un moratoire",
+  "aucuneDemandeMoratoire": "Vous n'avez déposé aucune demande de moratoire.",
+  "montantDemandable": "Montant qui peut encore être couvert",
+  "moratoireExplication": "Un moratoire repousse le règlement d'une partie de ce que vous devez. Votre demande ne change rien à votre situation tant que la scolarité ne l'a pas acceptée.",
+  "moratoireAttendreDecision": "La demande {reference} est en cours d'examen : attendez la décision de la scolarité avant d'en déposer une autre.",
+  "@moratoireAttendreDecision": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "moratoireRienACouvrir": "Votre situation ne laisse aucun montant à couvrir : une demande de moratoire est sans objet pour cette année.",
+  "moratoireSansAnnee": "Aucune année académique n'est ouverte : rapprochez-vous de la scolarité.",
+  "montantSollicite": "Montant sollicité",
+  "auPlus": "Au plus {montant}",
+  "@auPlus": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "tout": "Tout",
+  "montantInvalide": "Indiquez un montant supérieur à zéro.",
+  "dateReglementSouhaitee": "Date de règlement souhaitée",
+  "dateRequise": "Choisissez une date.",
+  "reglementSouhaiteLe": "Règlement souhaité le {date}",
+  "@reglementSouhaiteLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "motifDeLaDemande": "Motif de la demande",
+  "motifMoratoireAide": "Expliquez votre situation (retard de bourse, difficulté familiale…)",
+  "motifRequis": "Expliquez votre demande.",
+  "pieceJustificativeFacultative": "Pièce justificative (facultative)",
+  "pieceJustificativeObligatoire": "Pièce justificative (obligatoire pour une absence)",
+  "formatsPieces": "PDF ou photo (JPG, PNG), 5 Mo au plus.",
+  "choisirFichier": "Choisir un fichier",
+  "remplacerFichier": "Remplacer",
+  "retirerFichier": "Retirer le fichier",
+  "pieceTropLourde": "Ce fichier dépasse 5 Mo : choisissez-en un plus léger.",
+  "pieceJointeFournie": "Pièce justificative jointe",
+  "envoyerDemande": "Envoyer la demande",
+  "envoyerDemandeSeances": "{n, plural, =1{Envoyer la demande (1 séance)} other{Envoyer la demande ({n} séances)}}",
+  "@envoyerDemandeSeances": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "deposeeLe": "Déposée le {date}",
+  "@deposeeLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reponseDuService": "Réponse du service",
+  "reponseDuServiceLe": "Réponse du service, le {date}",
+  "@reponseDuServiceLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "retirerDemande": "Retirer la demande",
+  "retirer": "Retirer",
+  "retirerMoratoireConfirmation": "La demande {reference} sera retirée : la scolarité ne l'examinera pas. Vous pourrez en déposer une autre.",
+  "@retirerMoratoireConfirmation": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "retirerPermissionConfirmation": "La demande sera retirée : le service ne l'examinera pas. Vous pourrez en déposer une autre.",
+  "demanderPermission": "Demander une permission",
+  "depotPermissionsFerme": "Le dépôt des demandes de permission est fermé par le service.",
+  "permissionExplication": "Annoncez ici une absence ou un retard, séance par séance. Votre demande ne vous décharge de rien tant que le service ne l'a pas accordée.",
+  "aucuneDemandePermission": "Vous n'avez déposé aucune demande de permission.",
+  "nbEnAttente": "{n, plural, =1{1 en attente} other{{n} en attente}}",
+  "@nbEnAttente": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "permissionDe": "Permission : {type}",
+  "@permissionDe": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "saisieAuBureau": "Saisie au bureau du service",
+  "arriveeAnnoncee": "Arrivée annoncée à {heure}",
+  "@arriveeAnnoncee": {
+    "placeholders": {
+      "heure": {
+        "type": "String"
+      }
+    }
+  },
+  "objetDeLaDemande": "Objet de la demande",
+  "absence": "Absence",
+  "retard": "Retard",
+  "seancesConcernees": "Séances concernées",
+  "jourChome": "Jour sans cours",
+  "dejaAccordee": "Déjà accordée",
+  "preavisPermission": "{n, plural, =1{Déposez votre demande au moins 1 heure avant la séance. Une demande tardive reste possible : le service le verra.} other{Déposez votre demande au moins {n} heures avant la séance. Une demande tardive reste possible : le service le verra.}}",
+  "@preavisPermission": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "heureArriveeAnnoncee": "Heure d'arrivée annoncée",
+  "heureArriveeRequise": "Annoncez l'heure à laquelle vous comptez arriver.",
+  "motif": "Motif",
+  "motifNonListe": "— Motif non listé —",
+  "explication": "Explication",
+  "explicationPermissionAide": "Dites en quelques lignes ce qui vous empêche d'être là.",
+  "explicationRequise": "Expliquez votre demande : c'est sur cette explication que le service se prononce.",
+  "demandesDeMoratoire": "Demandes de moratoire",
+  "sectionMessages": "Mes messages",
+  "sectionSuggestions": "Boîte à suggestions",
+  "repondre": "Répondre",
+  "jaime": "J'aime",
+  "jaimePas": "Je n'aime pas",
+  "retirerJaime": "Retirer « J'aime »",
+  "retirerJaimePas": "Retirer « Je n'aime pas »",
+  "copier": "Copier le texte",
+  "serviceEnLigne": "Un agent est en ligne",
+  "serviceHorsLigne": "Aucun agent en ligne",
+  "filVide": "Écrivez à la scolarité : votre question arrive au guichet, et l'agent qui la prend vous répond ici.",
+  "messagesPlusAnciens": "Messages plus anciens",
+  "envoye": "Envoyé",
+  "luParLeService": "Lu par le service",
+  "reponseA": "En réponse à {auteur}",
+  "@reponseA": {
+    "placeholders": {
+      "auteur": {
+        "type": "String"
+      }
+    }
+  },
+  "joindreFichier": "Joindre un fichier",
+  "ecrireMessage": "Votre message…",
+  "envoyer": "Envoyer",
+  "ajouterFichiers": "Ajouter des fichiers",
+  "piecesAuPlus": "{n, plural, =1{Un fichier au plus.} other{{n} fichiers au plus.}}",
+  "@piecesAuPlus": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "nouvelleSuggestion": "Nouvelle suggestion",
+  "mesSuggestions": "Mes suggestions",
+  "aucuneSuggestion": "Vous n'avez déposé aucune suggestion.",
+  "suggestionAnonyme": "Anonyme pour le service",
+  "suggestionExplication": "Vous suivez ici l'état de vos suggestions ; la suite donnée reste interne au service.",
+  "solutionProposee": "Solution proposée",
+  "nbPreuves": "{n, plural, =1{1 preuve jointe} other{{n} preuves jointes}}",
+  "@nbPreuves": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "votreSuggestion": "Votre suggestion",
+  "votreSuggestionAide": "Ce que vous proposez d'améliorer, et pourquoi.",
+  "suggestionRequise": "Écrivez votre suggestion.",
+  "solutionProposeeAide": "Comment y remédier concrètement, selon vous.",
+  "solutionRequise": "Indiquez la solution que vous proposez.",
+  "preuvesFacultatives": "Preuves (facultatives)",
+  "deposerSuggestion": "Déposer la suggestion",
+  "sectionReinscription": "Ma réinscription",
+  "inscriptionPrononcee": "Inscription prononcée",
+  "reinscriptionAFaire": "Réinscription à demander",
+  "reinscriptionIndisponible": "Réinscription en ligne indisponible",
+  "programme": "Programme",
+  "niveauEtSpecialite": "Niveau et spécialité",
+  "demandeeLe": "Demandée le {date}",
+  "@demandeeLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "parDemandeur": "par {nom}",
+  "@parDemandeur": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "reinscriptionAttentePaiement": "Votre réinscription sera prononcée dès que la première tranche sera soldée (ou couverte par un moratoire accordé).",
+  "choisirSpecialite": "Choisissez votre spécialité.",
+  "modifierMaDemande": "Modifier ma demande",
+  "demanderReinscription": "Demander ma réinscription",
+  "niveauSelonJury": "Votre niveau est fixé par la décision du jury.",
+  "niveauSelonDecision": "Décision du jury : {decision}. Votre niveau en découle.",
+  "@niveauSelonDecision": {
+    "placeholders": {
+      "decision": {
+        "type": "String"
+      }
+    }
+  },
+  "niveau": "Niveau",
+  "specialite": "Spécialité",
+  "reinscriptionModifiable": "Niveau et spécialité restent modifiables tant qu'aucun versement n'est déclaré ni enregistré.",
+  "enregistrerModification": "Enregistrer la modification",
+  "premiereTranche": "Première tranche",
+  "trancheCouverte": "Couverte",
+  "trancheNonConfiguree": "L'échéancier de votre niveau n'est pas encore publié : rapprochez-vous de la caisse.",
+  "montantDu": "Montant",
+  "dejaPaye": "Déjà payé",
+  "declarerUnVersement": "Déclarer un versement",
+  "trancheACaisse": "La déclaration en ligne n'est pas ouverte : la tranche se règle à la caisse, et la réinscription est prononcée à l'encaissement.",
+  "versementsDeclares": "Versements déclarés",
+  "versementsFermes": "La déclaration des versements en ligne n'est pas ouverte.",
+  "versementExplication": "Versez à la banque sur l'un des comptes ci-dessous, puis déclarez le versement avec le reçu. Il ne compte qu'une fois vérifié par le service des paiements sur le relevé de la banque.",
+  "mesDeclarations": "Mes déclarations",
+  "aucuneDeclaration": "Aucun versement déclaré pour cette année.",
+  "resteADeclarer": "Reste à déclarer",
+  "enVerification": "En vérification",
+  "copierNumero": "Copier le numéro de compte",
+  "numeroCopie": "Numéro de compte copié.",
+  "retirerDeclaration": "Retirer la déclaration",
+  "retirerDeclarationConfirmation": "La déclaration {reference} sera retirée : le service ne la vérifiera pas.",
+  "@retirerDeclarationConfirmation": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "montantRetenu": "Montant retenu au relevé : {montant}",
+  "@montantRetenu": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "verseLe": "Versé le {date}",
+  "@verseLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "trancheVisee": "Tranche : {tranche}",
+  "@trancheVisee": {
+    "placeholders": {
+      "tranche": {
+        "type": "String"
+      }
+    }
+  },
+  "declarePar": "Déclaré par {nom} ({espace})",
+  "@declarePar": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      },
+      "espace": {
+        "type": "String"
+      }
+    }
+  },
+  "motifDuRejet": "Motif du rejet",
+  "recuDeLaBanque": "Reçu de la banque",
+  "recuDePaiement": "Reçu de paiement",
+  "compteCredite": "Compte crédité",
+  "choisirCompte": "Choisissez le compte sur lequel vous avez versé.",
+  "trancheReglee": "Tranche réglée",
+  "repartirSurTranches": "Répartir sur les tranches dans leur ordre",
+  "trancheReste": "{tranche} — reste {reste}",
+  "@trancheReste": {
+    "placeholders": {
+      "tranche": {
+        "type": "String"
+      },
+      "reste": {
+        "type": "String"
+      }
+    }
+  },
+  "montantVerse": "Montant versé",
+  "laTranche": "La tranche",
+  "dateDuVersement": "Date du versement",
+  "referenceOperation": "Référence de l'opération",
+  "referenceOperationAide": "N° de bordereau ou référence du virement",
+  "referenceRequise": "Indiquez la référence portée sur le reçu.",
+  "recuRequis": "Joignez le reçu de la banque.",
+  "formatsRecu": "PDF ou photo (JPG, PNG, WEBP, HEIC), 5 Mo au plus.",
+  "commentaireFacultatif": "Commentaire (facultatif)",
+  "declarerLeVersement": "Déclarer le versement",
+  "couverteParMoratoireRef": "Couverte par le moratoire {reference}",
+  "@couverteParMoratoireRef": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "sectionDiscussions": "Discussions de classe",
+  "discussionVide": "Aucun message dans cette discussion. Le premier lance le groupe de la classe.",
+  "discussionLectureSeule": "Discussion passée : vous ne faites plus partie de cette classe. Elle se relit, elle ne s'écrit plus.",
+  "enseignantEnLigne": "enseignant en ligne",
+  "enseignantHorsLigne": "enseignant hors ligne",
+  "rechercherClasse": "Rechercher un cours, une classe…",
+  "aucuneDiscussion": "Aucune classe ne vous est rattachée pour l'instant : les discussions s'ouvrent avec les emplois du temps publiés.",
+  "discussionsPassees": "Discussions passées",
+  "discussionsPasseesAide": "Classes que vous avez quittées : en lecture seule.",
+  "aucunMessagePourLInstant": "Aucun message pour l'instant",
+  "sectionBibliotheque": "Bibliothèque universitaire",
+  "rechercherBibliotheque": "Titre, auteur, sujet…",
+  "effacer": "Effacer",
+  "nbResultats": "{n, plural, =0{Aucun résultat} =1{1 résultat} other{{n} résultats}}",
+  "@nbResultats": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "aucunResultat": "Aucun document ne correspond à votre recherche.",
+  "dossierVide": "Ce dossier est vide.",
+  "afficherPlus": "Afficher plus",
+  "nbDossiers": "{n, plural, =1{1 dossier} other{{n} dossiers}}",
+  "@nbDossiers": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ajouteLe": "ajouté le {date}",
+  "@ajouteLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "sectionArchives": "Archives",
+  "anciennesEpreuves": "Anciennes épreuves",
+  "supportsPasses": "Supports passés",
+  "toutesLesAnnees": "Toutes les années",
+  "aucuneAnnale": "Aucune ancienne épreuve publiée pour votre classe.",
+  "aucunSupportArchive": "Aucun support des années passées pour votre classe.",
+  "annalesExplication": "Le sujet seul est remis, jamais le corrigé.",
+  "dureeMinutes": "{n} min",
+  "@dureeMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "telechargerSujet": "Télécharger le sujet",
+  "nonPublie": "Non publié",
+  "sectionPromotion": "Ma promotion",
+  "aucunePromotion": "Aucun résultat arrêté pour votre promotion pour l'instant.",
+  "majorsDeLAnnee": "Majors de l'année",
+  "majorsDesAnneesPassees": "Majors des années passées",
+  "effectifInsuffisant": "Effectif insuffisant",
+  "plancherEffectif": "{n, plural, =1{Une moyenne de classe n’est montrée qu’à partir de 1 étudiant.} other{Une moyenne de classe n’est montrée qu’à partir de {n} étudiants, pour ne désigner personne.}}",
+  "@plancherEffectif": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "nbEtudiants": "{n, plural, =1{1 étudiant} other{{n} étudiants}}",
+  "@nbEtudiants": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "premierePlacePartagee": "Première place partagée.",
+  "sectionAssociation": "Association des étudiants",
+  "sectionAssociationHistorique": "Listes élues",
+  "aucuneCampagne": "Aucune campagne électorale n'est ouverte.",
+  "resultats": "Résultats",
+  "depouillement": "Dépouillement",
+  "enDirect": "En direct",
+  "participation": "Participation : {taux} % ({votants} votants sur {inscrits} inscrits)",
+  "@participation": {
+    "placeholders": {
+      "taux": {
+        "type": "String"
+      },
+      "votants": {
+        "type": "int"
+      },
+      "inscrits": {
+        "type": "int"
+      }
+    }
+  },
+  "elu": "Élue",
+  "nbVoix": "{n, plural, =0{0 voix} =1{1 voix} other{{n} voix}}",
+  "@nbVoix": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ballottage": "Égalité en tête : aucune liste n'est élue. C'est à l'établissement de trancher.",
+  "aucunSuffrage": "Aucun suffrage pour le moment.",
+  "candidat": "Candidat : {nom}",
+  "@candidat": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "lireLeProgramme": "Lire le programme",
+  "programmeDeLaListe": "Programme",
+  "programmeNonRedige": "Le programme de cette liste n'a pas été rédigé.",
+  "equipe": "Équipe",
+  "scrutinAnnule": "Scrutin annulé",
+  "urnesOuvertes": "Urnes ouvertes",
+  "voteTermine": "Vote terminé",
+  "urnesAVenir": "Vote à venir",
+  "vousAvezVote": "Vous avez voté",
+  "voteAnonyme": "Le vote est anonyme : le système sait que vous avez voté, jamais pour qui.",
+  "listesCandidates": "Listes candidates",
+  "votreBulletin": "Votre bulletin",
+  "confirmerVote": "Confirmer votre vote",
+  "confirmerVoteTexte": "Vous votez pour « {liste} ». Un vote ne se reprend pas.",
+  "@confirmerVoteTexte": {
+    "placeholders": {
+      "liste": {
+        "type": "String"
+      }
+    }
+  },
+  "voter": "Voter",
+  "validerMonVote": "Valider mon vote",
+  "aucunScrutinPasse": "Aucun scrutin n'est encore terminé.",
+  "presidentElu": "Président élu : {nom}",
+  "@presidentElu": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "sectionDelegation": "Ma délégation",
+  "aucuneSeanceCeJour": "Aucune séance de votre classe ce jour-là.",
+  "circuitService": "validé par le service",
+  "circuitEnseignant": "signé par l'enseignant",
+  "circuitEnseignantService": "signé par l'enseignant puis validé par le service",
+  "circuitAutomatique": "validé d’office",
+  "circuitDeLAppel": "Appel : {circuit}.",
+  "@circuitDeLAppel": {
+    "placeholders": {
+      "circuit": {
+        "type": "String"
+      }
+    }
+  },
+  "circuitDuCahier": "Cahier de texte : {circuit}.",
+  "@circuitDuCahier": {
+    "placeholders": {
+      "circuit": {
+        "type": "String"
+      }
+    }
+  },
+  "appelNonAutorise": "L'appel ne vous est pas ouvert : votre délégué principal ou le service peut l'ouvrir.",
+  "positionExigee": "L'établissement exige votre position au moment d'enregistrer : faites-le depuis la salle.",
+  "jourPrecedent": "Jour précédent",
+  "jourSuivant": "Jour suivant",
+  "aujourdhui": "Aujourd'hui",
+  "aFaire": "À faire",
+  "renvoyeAuDelegue": "À corriger",
+  "signeParEnseignant": "Signé par l'enseignant",
+  "valideParService": "Validé par le service",
+  "fenetreAVenir": "Pas encore ouvert",
+  "fenetreFermee": "Fenêtre fermée",
+  "coursNonTenu": "Cours relevé non tenu",
+  "horsPlanning": "Hors planning",
+  "fenetreDeA": "Ouvert de {debut} à {fin}",
+  "@fenetreDeA": {
+    "placeholders": {
+      "debut": {
+        "type": "String"
+      },
+      "fin": {
+        "type": "String"
+      }
+    }
+  },
+  "faire": "Faire",
+  "corriger": "Corriger",
+  "rouvertParLeService": "Rouvert par le service",
+  "motifDuRenvoi": "Motif du renvoi",
+  "appel": "Appel",
+  "cahierDeTexte": "Cahier de texte",
+  "seancesRouvertes": "Séances rouvertes par le service",
+  "jusquAu": "jusqu'au {date}",
+  "@jusquAu": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "mesAssistants": "Mes assistants",
+  "assistantsAide": "Vous décidez lesquels de vos assistants peuvent faire l'appel à votre place.",
+  "releveDePosition": "Relevé de votre position…",
+  "positionIndisponible": "Position indisponible",
+  "positionServiceDesactive": "La localisation du téléphone est désactivée : activez-la, puis réessayez.",
+  "positionRefusee": "L'application n'a pas l'autorisation de lire votre position : acceptez la demande, puis réessayez.",
+  "positionRefuseeReglages": "L'accès à la position est refusé : autorisez-le pour YSEM dans les réglages du téléphone.",
+  "positionDelai": "La position n'a pas pu être relevée à temps : placez-vous près d'une fenêtre et réessayez.",
+  "compris": "Compris",
+  "enregistrerLAppel": "Enregistrer l'appel",
+  "confirmerAppel": "{absents, plural, =0{Aucun absent sur {effectif} étudiants.} =1{1 absent sur {effectif} étudiants.} other{{absents} absents sur {effectif} étudiants.}} Confirmer ?",
+  "@confirmerAppel": {
+    "placeholders": {
+      "absents": {
+        "type": "int"
+      },
+      "effectif": {
+        "type": "int"
+      }
+    }
+  },
+  "appelDeLaSeance": "Appel de la séance",
+  "appelExplication": "Cochez seulement les absents : les autres sont comptés présents. Une ligne verrouillée est couverte par une permission accordée.",
+  "couvertParPermission": "Permission accordée ({type})",
+  "@couvertParPermission": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "nbAbsentsSur": "{absents, plural, =0{0 absent} =1{1 absent} other{{absents} absents}} / {effectif}",
+  "@nbAbsentsSur": {
+    "placeholders": {
+      "absents": {
+        "type": "int"
+      },
+      "effectif": {
+        "type": "int"
+      }
+    }
+  },
+  "contenuPrevu": "Contenu prévu au plan",
+  "aucunPlanDeCours": "Aucun plan de cours n'est rattaché à cette séance.",
+  "contenuFait": "Contenu fait",
+  "blocN": "Bloc {n}",
+  "@blocN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "seanceNumero": "Séance {n}",
+  "@seanceNumero": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ajouterUneSeanceFaite": "Ajouter une séance faite",
+  "blocsAide": "Une séance double couvre souvent deux séances du plan : ajoutez un bloc par séance faite.",
+  "activitesPedagogiques": "Activités pédagogiques",
+  "nonRenseigne": "Non renseigné",
+  "enregistrerLeCahier": "Enregistrer le cahier de texte",
+  "connexionEnseignantConsigne": "Connectez-vous avec l'adresse e-mail et le mot de passe du portail enseignant.",
+  "connexionEnseignantAide": "Pas encore de compte ou compte non activé ? L'inscription et l'activation se font sur le portail enseignant web.",
+  "emailInvalide": "Adresse e-mail invalide.",
+  "motDePasseOublie": "Mot de passe oublié ?",
+  "motDePasseOublieConsigne": "Saisissez l'adresse de votre compte : un lien vous sera envoyé pour choisir un nouveau mot de passe sur le portail web.",
+  "envoyerLeLien": "Envoyer le lien",
+  "maCandidature": "Ma candidature",
+  "candidatureSoumise": "Soumise",
+  "candidatureEtape": "Étape {etape} sur {etapes}",
+  "@candidatureEtape": {
+    "placeholders": {
+      "etape": {
+        "type": "int"
+      },
+      "etapes": {
+        "type": "int"
+      }
+    }
+  },
+  "candidatureSoumiseLe": "Candidature soumise le {date}. L'établissement l'examine.",
+  "@candidatureSoumiseLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "candidatureAPoursuivre": "Votre dossier de candidature est à poursuivre à l'étape {etape}.",
+  "@candidatureAPoursuivre": {
+    "placeholders": {
+      "etape": {
+        "type": "int"
+      }
+    }
+  },
+  "candidatureSurLeWeb": "Le dossier de candidature se remplit sur le portail enseignant web.",
+  "candidatureAcceptee": "Candidature acceptée",
+  "candidatureAccepteeTexte": "Bienvenue dans le corps enseignant ! Vos services sont désormais ouverts dans l'application.",
+  "motifDuRefus": "Motif du refus",
+  "rienEnAttente": "Rien n'attend votre intervention pour l'instant.",
+  "fichesASignerNombre": "{nombre, plural, =1{1 fiche du délégué à signer} other{{nombre} fiches du délégué à signer}}",
+  "@fichesASignerNombre": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "rattrapagesOuvertsNombre": "{nombre, plural, =1{1 rattrapage dû} other{{nombre} rattrapages dus}}",
+  "@rattrapagesOuvertsNombre": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "fichesATransmettreNombre": "{nombre, plural, =1{1 fiche d'émargement à transmettre} other{{nombre} fiches d'émargement à transmettre}}",
+  "@fichesATransmettreNombre": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "messagesNonLusNombre": "{nombre, plural, =1{1 message non lu dans vos classes} other{{nombre} messages non lus dans vos classes}}",
+  "@messagesNonLusNombre": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "monDossier": "Mon dossier",
+  "monDossierAide": "État civil, cursus, expériences et validations du service.",
+  "profilProfessionnel": "Profil",
+  "dernierDiplome": "Dernier diplôme obtenu",
+  "dateRecrutement": "Date de recrutement",
+  "permanent": "Permanent",
+  "vacataire": "Vacataire",
+  "dossierIncomplet": "Votre dossier est incomplet",
+  "dossierModifierSurLeWeb": "Pour modifier votre dossier, utilisez « Mon dossier » sur le portail enseignant web. Le grade, les domaines et les cours sont fixés par le service.",
+  "etatCivil": "État civil",
+  "nationalite": "Nationalité",
+  "regionOrigine": "Région d'origine",
+  "situationMatrimoniale": "Situation matrimoniale",
+  "enfantsACharge": "{nombre, plural, =1{1 enfant à charge} other{{nombre} enfants à charge}}",
+  "@enfantsACharge": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "cni": "Carte nationale d'identité",
+  "niu": "Numéro d'identifiant unique (NIU)",
+  "universiteRattachement": "Université de rattachement",
+  "cv": "Curriculum vitæ",
+  "depose": "Déposé",
+  "nonDepose": "Non déposé",
+  "coordonnees": "Coordonnées",
+  "adresse": "Adresse",
+  "contactUrgence": "Contact d'urgence",
+  "cursusEtCertifications": "Cursus et certifications",
+  "aucunDiplome": "Aucun diplôme renseigné.",
+  "justificatifDepose": "Justificatif déposé",
+  "certifications": "Certifications",
+  "experiencesEnseignement": "Expériences dans l'enseignement",
+  "experiencesEntreprise": "Expériences en entreprise",
+  "aucuneExperience": "Aucune expérience renseignée.",
+  "nombreAnnees": "{nombre, plural, =1{1 an} other{{nombre} ans}}",
+  "@nombreAnnees": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "nombreMois": "{nombre, plural, other{{nombre} mois}}",
+  "@nombreMois": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "domainesEnseignement": "Domaines d'enseignement",
+  "coursProposes": "Cours proposés",
+  "aucunElement": "Aucun élément.",
+  "sectionFichesASigner": "Fiches à signer",
+  "sectionRattrapages": "Mes rattrapages",
+  "sectionClasses": "Mes classes",
+  "fichesASignerExplication": "Les appels et cahiers de texte saisis par les délégués attendent votre signature. Signer vaut validation ; renvoyez au délégué ce qui est à corriger, en disant pourquoi.",
+  "aucuneFicheASigner": "Aucune fiche n'attend votre signature.",
+  "signerToutesLesFiches": "{nombre, plural, =1{Signer la fiche} other{Signer les {nombre} fiches}}",
+  "@signerToutesLesFiches": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "signerToutConfirmation": "Chaque fiche signée est validée, ou part à la validation du service selon le circuit de l'année.",
+  "signer": "Signer",
+  "renvoyer": "Renvoyer",
+  "renvoyerAuDelegue": "Renvoyer au délégué",
+  "renvoyerAuDelegueAide": "Dites au délégué ce qu'il doit corriger : il en est informé et peut reprendre sa fiche.",
+  "dernieresFiches": "Dernières fiches traitées",
+  "ficheAppel": "Appel du délégué",
+  "ficheCahierDeTexte": "Cahier de texte",
+  "saisiPar": "Saisi par {nom}",
+  "@saisiPar": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "enAttenteValidationService": "Signée — en attente de la validation du service.",
+  "nbAbsents": "{nombre, plural, =0{Aucun absent} =1{1 absent} other{{nombre} absents}}",
+  "@nbAbsents": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "cahierSansContenu": "Aucun contenu consigné.",
+  "rattrapagesExplication": "Proposez une date pour une séance à rattraper : elle n'est annoncée aux étudiants qu'une fois approuvée par le service. Une séance déjà programmée se déplace par le service.",
+  "aucunRattrapage": "Aucune séance à rattraper.",
+  "rattrapagesClos": "Rattrapages clos",
+  "seanceDuJour": "Séance du {date}",
+  "@seanceDuJour": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "aRattraperAvant": "À rattraper avant le {date}",
+  "@aRattraperAvant": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dateEnAttenteArbitrage": "Date proposée, en attente de l'approbation du service.",
+  "rattrapeLe": "Rattrapé le {date}",
+  "@rattrapeLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dateRefusee": "Date refusée",
+  "proposerUneDate": "Proposer une date",
+  "propositionAide": "La date reste une proposition tant que le service ne l'a pas approuvée.",
+  "dateProposee": "Date proposée",
+  "creneau": "Créneau",
+  "salleFacultative": "Salle (facultative)",
+  "aucuneSalle": "Aucune salle précise",
+  "transmettreAuService": "Transmettre au service",
+  "aucuneClasse": "Aucune classe ne vous est attribuée dans les emplois du temps publiés.",
+  "nbClasses": "{nombre, plural, =1{1 classe} other{{nombre} classes}}",
+  "@nbClasses": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "nbCours": "{nombre, plural, =1{1 cours} other{{nombre} cours}}",
+  "@nbCours": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "nbSansDelegue": "{nombre, plural, =1{1 classe sans délégué} other{{nombre} classes sans délégué}}",
+  "@nbSansDelegue": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "sansDeleguePrincipal": "Pas de délégué principal",
+  "deleguePrincipal": "Délégué : {noms}",
+  "@deleguePrincipal": {
+    "placeholders": {
+      "noms": {
+        "type": "String"
+      }
+    }
+  },
+  "exporterLaListe": "Exporter la liste (Excel)",
+  "listeDesInscrits": "Liste des inscrits",
+  "rechercherEtudiant": "Nom ou matricule",
+  "aucunInscrit": "Aucun inscrit dans cette classe.",
+  "aucunEtudiantTrouve": "Aucun étudiant ne correspond à votre recherche.",
+  "inscrits": "Inscrits",
+  "femmesHommes": "Femmes / hommes",
+  "seancesRelevees": "Séances relevées",
+  "etudiantsAbsents": "Avec absence",
+  "planDeCoursStatut": "Plan de cours : {statut}",
+  "@planDeCoursStatut": {
+    "placeholders": {
+      "statut": {
+        "type": "String"
+      }
+    }
+  },
+  "deleguesDeLaClasse": "Délégués de la classe",
+  "aucunDelegue": "Aucun délégué nommé pour cette classe.",
+  "nbAbsences": "{nombre, plural, =1{1 absence} other{{nombre} absences}}",
+  "@nbAbsences": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "nbRetards": "{nombre, plural, =1{1 retard} other{{nombre} retards}}",
+  "@nbRetards": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "nbNonJustifiees": "{nombre, plural, =1{1 non justifiée} other{{nombre} non justifiées}}",
+  "@nbNonJustifiees": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "delegue": "Délégué"
+}
