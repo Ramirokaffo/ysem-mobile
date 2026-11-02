@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../app/charte/charte.dart';
-import '../../../../core/format/formats.dart';
-import '../../../../core/providers.dart';
-import '../../../../l10n/app_localizations.dart';
-import '../../../commun/langue.dart';
-import '../../application/lectures.dart';
-import '../../application/messagerie.dart';
-import '../../domain/discussions.dart';
-import '../messagerie/messagerie_page.dart';
+import '../../../app/charte/charte.dart';
+import '../../../core/auth/espace.dart';
+import '../../../core/format/formats.dart';
+import '../../../core/models/discussions.dart';
+import '../../../l10n/app_localizations.dart';
+import '../espace/menu.dart';
+import '../langue.dart';
+import 'fil.dart';
+import 'fil_page.dart';
 
-final _discussionsProvider = FutureProvider.autoDispose<Discussions>(
-  (ref) => ref.watch(etudiantRepositoryProvider).discussions(),
+final _discussionsProvider =
+    FutureProvider.autoDispose.family<Discussions, Espace>(
+  (ref, espace) => ref.watch(depotDiscussionsProvider(espace)).discussions(),
 );
 
 /// « Discussions de classe » : un groupe par classe (un cours × une cohorte),
@@ -21,8 +22,9 @@ final _discussionsProvider = FutureProvider.autoDispose<Discussions>(
 /// Les membres ne se choisissent pas : ils se lisent dans les emplois du
 /// temps. Les discussions passées se relisent sans s'écrire.
 class DiscussionsPage extends ConsumerStatefulWidget {
-  const DiscussionsPage({super.key, this.titre});
+  const DiscussionsPage({super.key, required this.espace, this.titre});
 
+  final Espace espace;
   final String? titre;
 
   @override
@@ -35,12 +37,13 @@ class _DiscussionsPageState extends ConsumerState<DiscussionsPage> {
   Future<void> _ouvrir(ClasseDiscussion classe) async {
     await Navigator.of(context).push(MaterialPageRoute(
       builder: (_) => FilPage(
-          source: SourceFil.classe(classe.cle), titre: classe.coursIntitule),
+          source: SourceFil.classeDe(widget.espace, classe.cle),
+          titre: classe.coursIntitule),
     ));
     if (!mounted) return;
     // Le fil a été lu : compteurs de la liste et pastille du menu.
-    ref.invalidate(_discussionsProvider);
-    ref.invalidate(navigationProvider);
+    ref.invalidate(_discussionsProvider(widget.espace));
+    ref.invalidate(menuProvider(widget.espace));
   }
 
   bool _correspond(ClasseDiscussion c) {
@@ -57,8 +60,8 @@ class _DiscussionsPageState extends ConsumerState<DiscussionsPage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.titre ?? t.sectionDiscussions)),
       body: VueAsynchrone<Discussions>(
-        valeur: ref.watch(_discussionsProvider),
-        surRafraichir: () => ref.refresh(_discussionsProvider.future),
+        valeur: ref.watch(_discussionsProvider(widget.espace)),
+        surRafraichir: () => ref.refresh(_discussionsProvider(widget.espace).future),
         constructeur: (etat) {
           final classes = etat.classes.where(_correspond).toList();
           final passees = etat.passees.where(_correspond).toList();
@@ -195,8 +198,9 @@ class _TuileClasse extends StatelessWidget {
                     if (classe.cohorte.isNotEmpty) classe.cohorte,
                     if (classe.enseignants.isNotEmpty)
                       classe.enseignants.map((e) => e.nom).join(', '),
+                    if (classe.effectif != null) t.nbEtudiants(classe.effectif!),
                   ].join(' · '),
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: secondaire,
                 ),

@@ -1,6 +1,5 @@
 import '../../../core/models/json.dart';
 import 'modeles.dart';
-import 'notes.dart';
 
 /// Modèles de `discipline/` : l'assiduité **exactement** telle que le service
 /// la voit (même dénominateur, même seuil, même éligibilité aux examens).

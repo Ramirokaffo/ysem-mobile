@@ -25,36 +25,6 @@ class SemestreRef {
         );
 }
 
-class CoursRef {
-  const CoursRef({
-    this.code = '',
-    this.codeAffiche = '',
-    this.intitule = '',
-    this.intituleEn = '',
-    this.credits,
-  });
-
-  /// Identifiant interne : ne s'affiche pas.
-  final String code;
-  final String codeAffiche;
-  final String intitule;
-  final String intituleEn;
-  final int? credits;
-
-  String libelle(String langue) =>
-      langue == 'en' && intituleEn.isNotEmpty ? intituleEn : intitule;
-
-  factory CoursRef.depuisJson(Json? json) => json == null
-      ? const CoursRef()
-      : CoursRef(
-          code: json.texte('code'),
-          codeAffiche: json.texte('code_affiche'),
-          intitule: json.texte('intitule'),
-          intituleEn: json.texte('intitule_en'),
-          credits: json.entier('credits'),
-        );
-}
-
 class NoteControle {
   const NoteControle({
     this.libelle = '',

@@ -1,6 +1,5 @@
 import '../../../core/models/json.dart';
 import 'modeles.dart';
-import 'notes.dart';
 
 /// Modèles de `permissions/` : les séances demandables d'une semaine et les
 /// demandes déjà déposées. Une permission porte sur des **séances**, jamais

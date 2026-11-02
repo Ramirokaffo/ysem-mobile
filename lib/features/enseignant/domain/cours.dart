@@ -1,3 +1,4 @@
+import '../../../core/models/agenda.dart';
 import '../../../core/models/json.dart';
 
 /// Un délégué de la classe, point de contact de l'enseignant.
@@ -345,5 +346,167 @@ class FichesASigner {
   factory FichesASigner.depuisJson(Json json) => FichesASigner(
         fiches: json.liste('fiches', FicheDeSeance.depuisJson),
         historique: json.liste('historique', FicheDeSeance.depuisJson),
+      );
+}
+
+/// L'avancement d'un cours : les chiffres du service, jamais recalculés
+/// (`Teaching.services.get_suivi_enseignant`).
+class LigneAvancement {
+  const LigneAvancement({
+    this.cours = const CoursRef(),
+    this.niveau = '',
+    this.classe = '',
+    this.semestre = '',
+    this.seancesFaites = 0,
+    this.seancesPrevues = 0,
+    this.sourceSeancesPrevues = '',
+    this.seancesNonSuivies = 0,
+    this.chapitresFaits = 0,
+    this.chapitresPrevus = 0,
+    this.tauxSeances,
+    this.tauxChapitres,
+    this.interpretationLibelle = '',
+    this.tonalite = '',
+    this.derniereSeance,
+  });
+
+  final CoursRef cours;
+  final String niveau;
+  final String classe;
+  final String semestre;
+  final int seancesFaites;
+  final int seancesPrevues;
+
+  /// D'où vient le total prévu (plan, emploi du temps, réglage de l'année).
+  final String sourceSeancesPrevues;
+  final int seancesNonSuivies;
+  final int chapitresFaits;
+  final int chapitresPrevus;
+
+  /// De 0 à 1, au-delà en cas d'avance ; `null` faute de prévu.
+  final double? tauxSeances;
+  final double? tauxChapitres;
+  final String interpretationLibelle;
+
+  /// `success`, `warning`, `danger`, `info` ou `secondary`.
+  final String tonalite;
+  final DateTime? derniereSeance;
+
+  factory LigneAvancement.depuisJson(Json json) => LigneAvancement(
+        cours: CoursRef.depuisJson(json.objet('cours')),
+        niveau: json.objet('niveau')?.texte('nom') ?? '',
+        classe: json.texte('classe'),
+        semestre: json.objet('semestre')?.texte('nom') ?? '',
+        seancesFaites: json.entier('seances_faites') ?? 0,
+        seancesPrevues: json.entier('seances_prevues') ?? 0,
+        sourceSeancesPrevues: json.texte('source_seances_prevues_libelle'),
+        seancesNonSuivies: json.entier('seances_non_suivies') ?? 0,
+        chapitresFaits: json.entier('chapitres_faits') ?? 0,
+        chapitresPrevus: json.entier('chapitres_prevus') ?? 0,
+        tauxSeances: json.nombre('taux_seances'),
+        tauxChapitres: json.nombre('taux_chapitres'),
+        interpretationLibelle: json.texte('interpretation_libelle'),
+        tonalite: json.texte('tonalite'),
+        derniereSeance: json.date('derniere_seance'),
+      );
+}
+
+/// Une séance observée en salle par le service.
+class SeanceObservee {
+  const SeanceObservee({
+    this.date,
+    this.cours = const CoursRef(),
+    this.niveau = '',
+    this.debut,
+    this.fin,
+    this.salle = '',
+    this.statut = '',
+    this.statutLibelle = '',
+    this.constatLibelle = '',
+    this.resolutionLibelle = '',
+    this.chapitreAtteint,
+    this.observation = '',
+    this.clotureeAutomatiquement = false,
+  });
+
+  final DateTime? date;
+  final CoursRef cours;
+  final String niveau;
+  final String? debut;
+  final String? fin;
+  final String salle;
+  final String statut;
+  final String statutLibelle;
+  final String constatLibelle;
+  final String resolutionLibelle;
+  final int? chapitreAtteint;
+  final String observation;
+
+  /// Constat posé d'office à minuit, que personne n'a observé.
+  final bool clotureeAutomatiquement;
+
+  factory SeanceObservee.depuisJson(Json json) {
+    final creneau = json.objet('creneau');
+    return SeanceObservee(
+      date: json.date('date'),
+      cours: CoursRef.depuisJson(json.objet('cours')),
+      niveau: json.objet('niveau')?.texte('nom') ?? '',
+      debut: creneau?.texteOuNul('debut'),
+      fin: creneau?.texteOuNul('fin'),
+      salle: json.objet('salle')?.texte('nom') ?? '',
+      statut: json.texte('statut'),
+      statutLibelle: json.texte('statut_libelle'),
+      constatLibelle: json.texte('constat_libelle'),
+      resolutionLibelle: json.texte('resolution_libelle'),
+      chapitreAtteint: json.entier('chapitre_atteint'),
+      observation: json.texte('observation'),
+      clotureeAutomatiquement: json.booleen('cloturee_automatiquement'),
+    );
+  }
+}
+
+/// Une suite que le service a choisi de partager : jamais un verbatim brut.
+class RetourPartage {
+  const RetourPartage({this.cours = '', this.constat = '', this.actionMenee = ''});
+
+  final String cours;
+  final String constat;
+  final String actionMenee;
+
+  factory RetourPartage.depuisJson(Json json) => RetourPartage(
+        cours: json.texte('cours'),
+        constat: json.texte('constat'),
+        actionMenee: json.texte('action_menee'),
+      );
+}
+
+/// Réponse de `enseignements/`.
+class Enseignements {
+  const Enseignements({
+    this.avancement = const [],
+    this.nbSeances = 0,
+    this.nbAbsences = 0,
+    this.seances = const [],
+    this.rattrapagesOuverts = 0,
+    this.retours = const [],
+  });
+
+  final List<LigneAvancement> avancement;
+  final int nbSeances;
+  final int nbAbsences;
+  final List<SeanceObservee> seances;
+  final int rattrapagesOuverts;
+  final List<RetourPartage> retours;
+
+  factory Enseignements.depuisJson(Json json) => Enseignements(
+        avancement: json.liste('avancement', LigneAvancement.depuisJson),
+        nbSeances: json.entier('nb_seances') ?? 0,
+        nbAbsences: json.entier('nb_absences') ?? 0,
+        seances: json.liste('seances', SeanceObservee.depuisJson),
+        rattrapagesOuverts: json
+            .liste('rattrapages', (j) => j.booleen('ouverte'))
+            .where((ouverte) => ouverte)
+            .length,
+        retours: json.liste('retours_partages', RetourPartage.depuisJson),
       );
 }

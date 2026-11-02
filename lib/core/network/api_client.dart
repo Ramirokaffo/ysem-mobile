@@ -76,10 +76,18 @@ class ApiClient {
 
   /// `donnees` : un `Map` (envoyé en JSON) ou un [FormData] (multipart, pour
   /// les envois avec pièce jointe : moratoire, permission, message…).
+  ///
+  /// `delai` remplace le délai de réception pour un traitement long, comme
+  /// la lecture d'un document par l'assistant d'IA.
   Future<T> post<T>(String chemin,
-          {Object? donnees, Map<String, dynamic>? query, bool public = false}) =>
+          {Object? donnees,
+          Map<String, dynamic>? query,
+          bool public = false,
+          Duration? delai}) =>
       _executer(() => dio.post(chemin,
-          data: donnees, queryParameters: query, options: _opts(public)));
+          data: donnees,
+          queryParameters: query,
+          options: (_opts(public) ?? Options()).copyWith(receiveTimeout: delai)));
 
   Future<T> delete<T>(String chemin) =>
       _executer(() => dio.delete(chemin));

@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/charte/charte.dart';
 import '../../../../core/providers.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../commun/fil/fil.dart';
+import '../../../commun/fil/fil_page.dart';
 import '../../../commun/telechargement.dart';
 import '../../application/lectures.dart';
 import '../../domain/cours.dart';
@@ -61,7 +63,21 @@ class _ClassePageState extends ConsumerState<ClassePage> {
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
             children: [
               _EnTete(detail: detail),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
+              if (detail.cleDiscussion.isNotEmpty) ...[
+                OutlinedButton.icon(
+                  onPressed: () =>
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                    builder: (_) => FilPage(
+                      source: SourceFil.classeEnseignant(detail.cleDiscussion),
+                      titre: widget.titre,
+                    ),
+                  )),
+                  icon: const Icon(Icons.forum_outlined),
+                  label: Text(t.discussionDeLaClasse),
+                ),
+                const SizedBox(height: 16),
+              ],
               _Delegues(delegues: detail.classe.delegues),
               const SizedBox(height: 16),
               Text(t.listeDesInscrits,

@@ -7,6 +7,7 @@ import '../../../core/models/json.dart';
 import '../../../core/network/api_client.dart';
 import '../../../core/network/endpoints.dart';
 import '../../commun/espace/depot_espace.dart';
+import '../../commun/fil/fil.dart';
 import '../../commun/piece_jointe.dart';
 import '../../commun/position.dart';
 import '../domain/archives.dart';
@@ -32,7 +33,7 @@ import '../domain/supports.dart';
 
 /// Lectures de l'espace étudiant : accueil, menu, profil, sections et
 /// centre de notifications.
-class EtudiantRepository implements DepotEspace {
+class EtudiantRepository implements DepotEspace, DepotDiscussions {
   EtudiantRepository(this._client);
 
   final ApiClient _client;
@@ -413,6 +414,7 @@ class EtudiantRepository implements DepotEspace {
 
   // --- Discussions de classe ------------------------------------------
 
+  @override
   Future<Discussions> discussions({String? recherche}) async =>
       Discussions.depuisJson(await _client.get<Map<String, dynamic>>(
         RoutesEtudiant.discussions,
@@ -420,12 +422,14 @@ class EtudiantRepository implements DepotEspace {
       ));
 
   /// Le fil d'une classe ; le lire avance le curseur de lecture.
+  @override
   Future<FilMessages> messagesDiscussion(String cle, {int? avant}) async =>
       FilMessages.depuisDiscussion(await _client.get<Map<String, dynamic>>(
         RoutesEtudiant.discussionMessages(cle),
         query: avant == null ? null : {'avant': '$avant'},
       ));
 
+  @override
   Future<MessageFil> envoyerDiscussion(
     String cle, {
     required String corps,
@@ -439,6 +443,7 @@ class EtudiantRepository implements DepotEspace {
         Map<String, dynamic>.from(json['message'] as Map? ?? const {}));
   }
 
+  @override
   Future<Map<String, ResumeReaction>> reagirDiscussion(
       int id, String valeur) async {
     final json = await _client.post<Map<String, dynamic>>(
@@ -447,6 +452,7 @@ class EtudiantRepository implements DepotEspace {
     return lireReactions(json['reactions']);
   }
 
+  @override
   Future<File> pieceDiscussion(PieceMessage piece) => _client.telecharger(
       RoutesEtudiant.discussionPiece(piece.id),
       query: {'telecharger': '1'},

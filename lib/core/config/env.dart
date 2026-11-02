@@ -3,7 +3,9 @@
 /// L'adresse du backend se passe par `--dart-define` :
 ///
 /// ```bash
-/// flutter run --dart-define=API_BASE_URL=https://ysem.example.cm
+/// flutter run --dart-define=API_BASE_URL=https://si.ysem.education
+/// flutter build apk --dart-define=API_BASE_URL=https://test.ysem.education
+///
 /// ```
 ///
 /// Le défaut vise un `runserver` local vu depuis l'émulateur Android

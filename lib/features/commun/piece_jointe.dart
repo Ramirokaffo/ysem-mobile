@@ -40,6 +40,8 @@ Future<List<PieceAJoindre>> choisirPieces(
   BuildContext context, {
   List<String> extensions = extensionsPieces,
   int restant = 1,
+  int tailleMax = tailleMaxPiece,
+  String? messageTropLourd,
 }) async {
   if (restant <= 0) return const [];
   final t = AppLocalizations.of(context);
@@ -55,14 +57,14 @@ Future<List<PieceAJoindre>> choisirPieces(
   var tropLourdes = 0;
   for (final fichier in fichiers.take(restant)) {
     final octets = await fichier.xFile.readAsBytes();
-    if (octets.length > tailleMaxPiece) {
+    if (octets.length > tailleMax) {
       tropLourdes++;
     } else {
       pieces.add(PieceAJoindre(nom: fichier.name, octets: octets));
     }
   }
   if (tropLourdes > 0) {
-    messager.showSnackBar(SnackBar(content: Text(t.pieceTropLourde)));
+    messager.showSnackBar(SnackBar(content: Text(messageTropLourd ?? t.pieceTropLourde)));
   } else if (fichiers.length > restant) {
     messager.showSnackBar(SnackBar(content: Text(t.piecesAuPlus(restant))));
   }

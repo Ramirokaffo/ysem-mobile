@@ -3553,6 +3553,1476 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Délégué'**
   String get delegue;
+
+  /// No description provided for @sectionDisponibilites.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes disponibilités'**
+  String get sectionDisponibilites;
+
+  /// No description provided for @sectionPonctualite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ma ponctualité'**
+  String get sectionPonctualite;
+
+  /// No description provided for @sectionVacations.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes vacations'**
+  String get sectionVacations;
+
+  /// No description provided for @modifier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier'**
+  String get modifier;
+
+  /// No description provided for @disponibilitesExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dites à la planification les créneaux où vous êtes disponible, ceux que vous préférez et ceux où vous ne l\'êtes pas. Elle en est prévenue et compose les emplois du temps avec.'**
+  String get disponibilitesExplication;
+
+  /// No description provided for @aucuneDisponibilite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous n\'avez déclaré aucune disponibilité pour cette année.'**
+  String get aucuneDisponibilite;
+
+  /// No description provided for @declarerDisponibilite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déclarer une disponibilité'**
+  String get declarerDisponibilite;
+
+  /// No description provided for @modifierDisponibilite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier la disponibilité'**
+  String get modifierDisponibilite;
+
+  /// No description provided for @retirerDisponibilite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer la disponibilité'**
+  String get retirerDisponibilite;
+
+  /// No description provided for @retirerDisponibiliteConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer votre déclaration pour « {creneau} » ? La planification en sera prévenue.'**
+  String retirerDisponibiliteConfirmation(String creneau);
+
+  /// No description provided for @touteLAnnee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toute l\'année'**
+  String get touteLAnnee;
+
+  /// No description provided for @aucunPlanningEnseignant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun planning d\'examens publié ne vous attend pour l\'instant.'**
+  String get aucunPlanningEnseignant;
+
+  /// No description provided for @votreEpreuve.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre épreuve'**
+  String get votreEpreuve;
+
+  /// No description provided for @reglesPonctualite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arrivée attendue {avance} min avant le début du cours ; le retard compte au-delà de {tolerance} min de tolérance.'**
+  String reglesPonctualite(int avance, int tolerance);
+
+  /// No description provided for @aucuneSeanceRelevee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune séance n\'a encore été relevée en salle.'**
+  String get aucuneSeanceRelevee;
+
+  /// No description provided for @heuresDispensees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Temps dispensé'**
+  String get heuresDispensees;
+
+  /// No description provided for @heuresPerdues.
+  ///
+  /// In fr, this message translates to:
+  /// **'Temps perdu'**
+  String get heuresPerdues;
+
+  /// No description provided for @tempsRetenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Temps retenu'**
+  String get tempsRetenu;
+
+  /// No description provided for @arriveeA.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arrivée à {heure}'**
+  String arriveeA(String heure);
+
+  /// No description provided for @finA.
+  ///
+  /// In fr, this message translates to:
+  /// **'fin à {heure}'**
+  String finA(String heure);
+
+  /// No description provided for @retardDe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retard de {duree}'**
+  String retardDe(String duree);
+
+  /// No description provided for @retenue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retenue de {duree}'**
+  String retenue(String duree);
+
+  /// No description provided for @finConstateeDOffice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure de fin posée d\'office à minuit : elle n\'a pas été relevée.'**
+  String get finConstateeDOffice;
+
+  /// No description provided for @fichesEmargement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Émargement'**
+  String get fichesEmargement;
+
+  /// No description provided for @fichesEmargementExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos séances relevées en salle s\'y reportent d\'elles-mêmes. Transmettez chaque fiche à la fin du mois : seules les fiches validées par le service entrent dans la paie.'**
+  String get fichesEmargementExplication;
+
+  /// No description provided for @aucuneFicheEmargement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune fiche d\'émargement pour cette année.'**
+  String get aucuneFicheEmargement;
+
+  /// No description provided for @detailDesSeances.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détail des séances'**
+  String get detailDesSeances;
+
+  /// No description provided for @transmettre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmettre'**
+  String get transmettre;
+
+  /// No description provided for @transmettreLaFiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmettre la fiche'**
+  String get transmettreLaFiche;
+
+  /// No description provided for @transmettreFicheConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmettre au service la fiche de « {cours} » pour {mois} ? Elle ne sera plus modifiable tant qu\'il ne vous l\'aura pas renvoyée.'**
+  String transmettreFicheConfirmation(String cours, String mois);
+
+  /// No description provided for @aucunEtatPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun état de paiement arrêté pour cette année.'**
+  String get aucunEtatPaiement;
+
+  /// No description provided for @heuresEffectuees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heures effectuées'**
+  String get heuresEffectuees;
+
+  /// No description provided for @heuresDeRattrapage.
+  ///
+  /// In fr, this message translates to:
+  /// **'dont rattrapage'**
+  String get heuresDeRattrapage;
+
+  /// No description provided for @heuresRetenues.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heures retenues'**
+  String get heuresRetenues;
+
+  /// No description provided for @montantBrut.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant brut'**
+  String get montantBrut;
+
+  /// No description provided for @montantNet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Net à payer'**
+  String get montantNet;
+
+  /// No description provided for @precompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Précompte'**
+  String get precompte;
+
+  /// No description provided for @precompteAuTaux.
+  ///
+  /// In fr, this message translates to:
+  /// **'Précompte ({taux} %)'**
+  String precompteAuTaux(String taux);
+
+  /// No description provided for @precompteExonere.
+  ///
+  /// In fr, this message translates to:
+  /// **'Précompte (exonéré)'**
+  String get precompteExonere;
+
+  /// No description provided for @payeLe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payé le {date}'**
+  String payeLe(String date);
+
+  /// No description provided for @paiementBloque.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement bloqué'**
+  String get paiementBloque;
+
+  /// No description provided for @reservesDuMois.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réserves du mois'**
+  String get reservesDuMois;
+
+  /// No description provided for @vacationsExamen.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vacations d\'examen'**
+  String get vacationsExamen;
+
+  /// No description provided for @commissions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commissions'**
+  String get commissions;
+
+  /// No description provided for @surveillance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Surveillance'**
+  String get surveillance;
+
+  /// No description provided for @sectionEnseignements.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes enseignements'**
+  String get sectionEnseignements;
+
+  /// No description provided for @avancementDeMesCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avancement de mes cours'**
+  String get avancementDeMesCours;
+
+  /// No description provided for @aucunCoursAffecte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun cours ne vous est affecté pour cette année académique.'**
+  String get aucunCoursAffecte;
+
+  /// No description provided for @seancesObservees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séances observées'**
+  String get seancesObservees;
+
+  /// No description provided for @seancesObserveesAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce que le service a relevé lors de ses passages en salle.'**
+  String get seancesObserveesAide;
+
+  /// No description provided for @aucuneSeanceObservee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune séance observée pour le moment.'**
+  String get aucuneSeanceObservee;
+
+  /// No description provided for @absencesConstatees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Absences constatées'**
+  String get absencesConstatees;
+
+  /// No description provided for @rattrapagesOuverts.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rattrapages ouverts'**
+  String get rattrapagesOuverts;
+
+  /// No description provided for @chapitres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chapitres'**
+  String get chapitres;
+
+  /// No description provided for @seances.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séances'**
+  String get seances;
+
+  /// No description provided for @seancesNonSuivies.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{1 séance prévue non relevée} other{{nombre} séances prévues non relevées}}'**
+  String seancesNonSuivies(int nombre);
+
+  /// No description provided for @derniereSeance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dernière séance : {date}'**
+  String derniereSeance(String date);
+
+  /// No description provided for @retoursEtudiants.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retours des étudiants'**
+  String get retoursEtudiants;
+
+  /// No description provided for @retoursEtudiantsAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Synthèses que le service a choisi de partager avec vous.'**
+  String get retoursEtudiantsAide;
+
+  /// No description provided for @chapitreAtteint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chapitre atteint : {numero}'**
+  String chapitreAtteint(int numero);
+
+  /// No description provided for @suiteADonner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suite à donner : {suite}'**
+  String suiteADonner(String suite);
+
+  /// No description provided for @seanceCertifieeDOffice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Constat posé d\'office à la clôture de la journée : personne n\'a relevé cette séance.'**
+  String get seanceCertifieeDOffice;
+
+  /// No description provided for @discussionDeLaClasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Discussion de la classe'**
+  String get discussionDeLaClasse;
+
+  /// No description provided for @sectionFeuillesDeNotes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes feuilles de notes'**
+  String get sectionFeuillesDeNotes;
+
+  /// No description provided for @aucuneFeuilleDeNotes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune feuille de notes ne vous est attribuée pour le moment.'**
+  String get aucuneFeuilleDeNotes;
+
+  /// No description provided for @feuilleDeliberee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Délibérée — plus modifiable'**
+  String get feuilleDeliberee;
+
+  /// No description provided for @feuilleVerrouillee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette feuille a été délibérée : ses notes ne se modifient plus.'**
+  String get feuilleVerrouillee;
+
+  /// No description provided for @caseVideTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une case vide n\'est pas un zéro'**
+  String get caseVideTitre;
+
+  /// No description provided for @caseVideExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Si l\'épreuve n\'a pas eu lieu pour un étudiant, choisissez le statut qui l\'explique : une absence justifiée ou une dispense retire l\'épreuve du calcul et redistribue son poids, tandis qu\'une absence non justifiée compte pour zéro.'**
+  String get caseVideExplication;
+
+  /// No description provided for @controleContinu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Contrôle continu'**
+  String get controleContinu;
+
+  /// No description provided for @controleContinuExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déclarez chaque contrôle quand vous le tenez. Vos contrôles d\'un même type sont moyennés entre eux, puis chaque type pèse de la pondération fixée par le service. Rendez-le au service quand vous avez terminé : vous ne pourrez plus ajouter ni modifier de contrôle, mais le service peut vous le renvoyer si besoin.'**
+  String get controleContinuExplication;
+
+  /// No description provided for @controleContinuRenduLecture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le contrôle continu a été rendu au service : ses notes ne se modifient plus d\'ici.'**
+  String get controleContinuRenduLecture;
+
+  /// No description provided for @aucunControle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun contrôle déclaré pour le moment.'**
+  String get aucunControle;
+
+  /// No description provided for @nouveauControle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau contrôle'**
+  String get nouveauControle;
+
+  /// No description provided for @ajouterLeControle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter le contrôle'**
+  String get ajouterLeControle;
+
+  /// No description provided for @typeDeControle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de contrôle'**
+  String get typeDeControle;
+
+  /// No description provided for @date.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @supprimerControle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer ce contrôle'**
+  String get supprimerControle;
+
+  /// No description provided for @supprimerControleConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer « {libelle} » et ses notes ?'**
+  String supprimerControleConfirmation(String libelle);
+
+  /// No description provided for @rendreControleContinu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendre le contrôle continu'**
+  String get rendreControleContinu;
+
+  /// No description provided for @rendreCcConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une fois rendu, vous ne pouvez plus ajouter ni modifier de contrôle — le service peut vous le renvoyer si besoin.'**
+  String get rendreCcConfirmation;
+
+  /// No description provided for @rendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendre'**
+  String get rendre;
+
+  /// No description provided for @rendreLesNotes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendre les notes ({epreuve})'**
+  String rendreLesNotes(String epreuve);
+
+  /// No description provided for @rendreEpreuveConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une fois rendue, l\'épreuve passe au service et vous ne pouvez plus la modifier — il peut vous la renvoyer si besoin.'**
+  String get rendreEpreuveConfirmation;
+
+  /// No description provided for @epreuveAVenir.
+  ///
+  /// In fr, this message translates to:
+  /// **'À venir'**
+  String get epreuveAVenir;
+
+  /// No description provided for @epreuveAVenirExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'La saisie s\'ouvre après la composition, une fois les copies anonymées.'**
+  String get epreuveAVenirExplication;
+
+  /// No description provided for @epreuveValidee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Validée par le service'**
+  String get epreuveValidee;
+
+  /// No description provided for @epreuveRendue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendue, en attente de validation'**
+  String get epreuveRendue;
+
+  /// No description provided for @controlesARendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =0{Aucun contrôle — à rendre quand vous avez terminé} =1{1 contrôle — à rendre quand vous avez terminé} other{{nombre} contrôles — à rendre quand vous avez terminé}}'**
+  String controlesARendre(int nombre);
+
+  /// No description provided for @notesASaisirSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'{manquantes, plural, =1{1 note encore à saisir sur {total}} other{{manquantes} notes encore à saisir sur {total}}}'**
+  String notesASaisirSur(int manquantes, int total);
+
+  /// No description provided for @saisieCompleteARendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisie complète — reste à rendre'**
+  String get saisieCompleteARendre;
+
+  /// No description provided for @saisieComplete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisie complète'**
+  String get saisieComplete;
+
+  /// No description provided for @notesEncoreAttendues.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{1 note encore attendue} other{{nombre} notes encore attendues}}'**
+  String notesEncoreAttendues(int nombre);
+
+  /// No description provided for @aRendreAvant.
+  ///
+  /// In fr, this message translates to:
+  /// **'À rendre avant le {date}'**
+  String aRendreAvant(String date);
+
+  /// No description provided for @messageDuService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message du service'**
+  String get messageDuService;
+
+  /// No description provided for @notesSaisies.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes saisies'**
+  String get notesSaisies;
+
+  /// No description provided for @notesSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes sur {max}'**
+  String notesSur(String max);
+
+  /// No description provided for @ponderationDe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pondération {valeur}'**
+  String ponderationDe(String valeur);
+
+  /// No description provided for @saisirParCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisir par code d\'anonymat'**
+  String get saisirParCode;
+
+  /// No description provided for @saisieParCodeExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les copies ne portent que leur code d\'anonymat : portez chaque note en face du code inscrit sur la copie. La correspondance entre un code et un étudiant n\'est connue que du service.'**
+  String get saisieParCodeExplication;
+
+  /// No description provided for @rechercherCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un code'**
+  String get rechercherCode;
+
+  /// No description provided for @aucuneCopieCodee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune copie codée. Signalez-le au service.'**
+  String get aucuneCopieCodee;
+
+  /// No description provided for @aucunEtudiantSurFeuille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun étudiant sur cette feuille. Signalez-le au service.'**
+  String get aucunEtudiantSurFeuille;
+
+  /// No description provided for @noteSaisie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note saisie'**
+  String get noteSaisie;
+
+  /// No description provided for @noteInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez un nombre.'**
+  String get noteInvalide;
+
+  /// No description provided for @noteTropHaute.
+  ///
+  /// In fr, this message translates to:
+  /// **'La note ne peut pas dépasser {max}.'**
+  String noteTropHaute(String max);
+
+  /// No description provided for @enregistrerLesNotes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer les notes'**
+  String get enregistrerLesNotes;
+
+  /// No description provided for @aucuneModification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune modification à enregistrer.'**
+  String get aucuneModification;
+
+  /// No description provided for @notesNonEnregistrees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes non enregistrées'**
+  String get notesNonEnregistrees;
+
+  /// No description provided for @notesNonEnregistreesTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Des notes de cette page n\'ont pas été enregistrées. Les abandonner ?'**
+  String get notesNonEnregistreesTexte;
+
+  /// No description provided for @quitterSansEnregistrer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quitter sans enregistrer'**
+  String get quitterSansEnregistrer;
+
+  /// No description provided for @enregistrerSansRendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer sans rendre'**
+  String get enregistrerSansRendre;
+
+  /// No description provided for @sectionDocumentsDeCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes documents de cours'**
+  String get sectionDocumentsDeCours;
+
+  /// No description provided for @documentsCoursExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le plan de cours et le support que le service vous demande, cours par cours. Rien n\'est visible des étudiants avant validation par le service.'**
+  String get documentsCoursExplication;
+
+  /// No description provided for @documentsACorriger.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{1 document vous a été renvoyé pour correction.} other{{nombre} documents vous ont été renvoyés pour correction.}}'**
+  String documentsACorriger(int nombre);
+
+  /// No description provided for @aucunDocumentDemande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun document ne vous est demandé pour l\'instant. Le service ouvre les dépôts attendus en début de semestre.'**
+  String get aucunDocumentDemande;
+
+  /// No description provided for @planDeCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan de cours'**
+  String get planDeCours;
+
+  /// No description provided for @supportDeCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Support de cours'**
+  String get supportDeCours;
+
+  /// No description provided for @publieAuxEtudiants.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publié aux étudiants'**
+  String get publieAuxEtudiants;
+
+  /// No description provided for @aCorriger.
+  ///
+  /// In fr, this message translates to:
+  /// **'À corriger'**
+  String get aCorriger;
+
+  /// No description provided for @transmisAuService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmis au service'**
+  String get transmisAuService;
+
+  /// No description provided for @fichierRecuPlanATransmettre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier reçu — plan à vérifier et transmettre'**
+  String get fichierRecuPlanATransmettre;
+
+  /// No description provided for @aRemplirEtATransmettre.
+  ///
+  /// In fr, this message translates to:
+  /// **'À remplir et à transmettre'**
+  String get aRemplirEtATransmettre;
+
+  /// No description provided for @pasEncoreRemis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas encore remis'**
+  String get pasEncoreRemis;
+
+  /// No description provided for @enRetardDeJours.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{En retard de 1 jour} other{En retard de {nombre} jours}}'**
+  String enRetardDeJours(int nombre);
+
+  /// No description provided for @attendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attendu'**
+  String get attendu;
+
+  /// No description provided for @enAttenteDeValidation.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de validation'**
+  String get enAttenteDeValidation;
+
+  /// No description provided for @attenduAvantLe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attendu avant le {date}'**
+  String attenduAvantLe(String date);
+
+  /// No description provided for @moratoireAccorde.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moratoire accordé'**
+  String get moratoireAccorde;
+
+  /// No description provided for @deposeLeDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déposé le {date}'**
+  String deposeLeDate(String date);
+
+  /// No description provided for @misAJourLeDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mis à jour le {date}'**
+  String misAJourLeDate(String date);
+
+  /// No description provided for @renvoyePourCorrectionLe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Renvoyé pour correction le {date}'**
+  String renvoyePourCorrectionLe(String date);
+
+  /// No description provided for @fichierSeulNeVautPasDepot.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le fichier seul ne vaut pas dépôt : remplissez le plan en ligne puis transmettez-le.'**
+  String get fichierSeulNeVautPasDepot;
+
+  /// No description provided for @remplirDepuisFichierDepose.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplir le plan depuis le fichier déposé'**
+  String get remplirDepuisFichierDepose;
+
+  /// No description provided for @deposerLeFichierDuPlan.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déposer le fichier du plan'**
+  String get deposerLeFichierDuPlan;
+
+  /// No description provided for @planPagesAuPlus.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{Un plan tient en 1 page au plus.} other{Un plan tient en {nombre} pages au plus.}}'**
+  String planPagesAuPlus(int nombre);
+
+  /// No description provided for @ouRemplirEnLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ou remplir en ligne, à la main'**
+  String get ouRemplirEnLigne;
+
+  /// No description provided for @remplirEnLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplir en ligne'**
+  String get remplirEnLigne;
+
+  /// No description provided for @modifierLePlanEnLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le plan en ligne'**
+  String get modifierLePlanEnLigne;
+
+  /// No description provided for @consulter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consulter'**
+  String get consulter;
+
+  /// No description provided for @planPublieModifiable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan validé et publié : le service vous laisse le modifier. Les étudiants sont informés de chaque mise à jour.'**
+  String get planPublieModifiable;
+
+  /// No description provided for @planPublieFige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan validé et publié : il ne se modifie plus. Contactez le service pour le rouvrir.'**
+  String get planPublieFige;
+
+  /// No description provided for @planTransmisExamine.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan transmis : le service l\'examine. Il vous sera renvoyé s\'il faut le reprendre.'**
+  String get planTransmisExamine;
+
+  /// No description provided for @projetFinDeCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Projet de fin de cours'**
+  String get projetFinDeCours;
+
+  /// No description provided for @deposerDesFichiers.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déposer des fichiers'**
+  String get deposerDesFichiers;
+
+  /// No description provided for @ajouterDesFichiers.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter des fichiers'**
+  String get ajouterDesFichiers;
+
+  /// No description provided for @piecesLimites.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre} fichiers au plus, 5 Mo chacun. Les fichiers s\'ajoutent à ceux déjà déposés.'**
+  String piecesLimites(int nombre);
+
+  /// No description provided for @commentaireEtProjet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commentaire et projet de fin de cours'**
+  String get commentaireEtProjet;
+
+  /// No description provided for @supportPublieModifiable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Support validé et publié : le service vous laisse le modifier. Les étudiants sont informés de chaque mise à jour.'**
+  String get supportPublieModifiable;
+
+  /// No description provided for @supportPublieFige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Support validé et publié : il ne se modifie plus. Contactez le service pour rouvrir le dépôt.'**
+  String get supportPublieFige;
+
+  /// No description provided for @retirerCettePiece.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer cette pièce'**
+  String get retirerCettePiece;
+
+  /// No description provided for @retirerPieceConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer « {nom} » de ce dépôt ?'**
+  String retirerPieceConfirmation(String nom);
+
+  /// No description provided for @projetFinDeCoursQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce cours comporte un projet à déposer à la fin du cours'**
+  String get projetFinDeCoursQuestion;
+
+  /// No description provided for @descriptionDuProjet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description du projet'**
+  String get descriptionDuProjet;
+
+  /// No description provided for @descriptionDuProjetAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet, livrables attendus, échéance…'**
+  String get descriptionDuProjetAide;
+
+  /// No description provided for @remplacerFichierDuProjet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplacer le fichier du projet'**
+  String get remplacerFichierDuProjet;
+
+  /// No description provided for @fichierDuProjetFacultatif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier du projet (facultatif)'**
+  String get fichierDuProjetFacultatif;
+
+  /// No description provided for @transmettreLePlan.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmettre le plan'**
+  String get transmettreLePlan;
+
+  /// No description provided for @transmettrePlanConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une fois transmis, le plan passe au service et ne se modifie plus d\'ici. Il vous sera renvoyé s\'il faut le reprendre.'**
+  String get transmettrePlanConfirmation;
+
+  /// No description provided for @remplacerLaSaisie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplacer la saisie ?'**
+  String get remplacerLaSaisie;
+
+  /// No description provided for @remplacerLaSaisieTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'La proposition de l\'assistant réécrira des lignes que vous venez de modifier sans les enregistrer.'**
+  String get remplacerLaSaisieTexte;
+
+  /// No description provided for @continuer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get continuer;
+
+  /// No description provided for @analyseEnCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Analyse en cours — cela peut prendre une minute. Ne quittez pas la page.'**
+  String get analyseEnCours;
+
+  /// No description provided for @documentAssistantTropLourd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce document dépasse 10 Mo : choisissez-en un plus léger.'**
+  String get documentAssistantTropLourd;
+
+  /// No description provided for @planNonEnregistre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan non enregistré'**
+  String get planNonEnregistre;
+
+  /// No description provided for @planNonEnregistreTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre saisie du plan n\'a pas été enregistrée. L\'abandonner ?'**
+  String get planNonEnregistreTexte;
+
+  /// No description provided for @planGeneral.
+  ///
+  /// In fr, this message translates to:
+  /// **'Général'**
+  String get planGeneral;
+
+  /// No description provided for @travaux.
+  ///
+  /// In fr, this message translates to:
+  /// **'Travaux'**
+  String get travaux;
+
+  /// No description provided for @seancesProgrammeesSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre} séance(s) programmée(s) sur {total} attendue(s)'**
+  String seancesProgrammeesSur(int nombre, int total);
+
+  /// No description provided for @planACorrigerConsigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrigez le plan puis transmettez-le de nouveau : le service en sera prévenu.'**
+  String get planACorrigerConsigne;
+
+  /// No description provided for @planAttendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan attendu'**
+  String get planAttendu;
+
+  /// No description provided for @planAttenduExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le service de suivi académique attend ce plan : remplissez les rubriques puis transmettez-le. Il compte {nombre} séances, toutes à programmer avant de pouvoir être transmis ; les travaux à faire par l\'étudiant sont facultatifs. Le fichier de votre plan ne suffit pas : c\'est la transmission du plan rempli en ligne qui vaut dépôt.'**
+  String planAttenduExplication(int nombre);
+
+  /// No description provided for @propositionAVerifier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposition de l\'assistant d\'IA — à vérifier'**
+  String get propositionAVerifier;
+
+  /// No description provided for @propositionAVerifierTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérifiez chaque rubrique et corrigez-la au besoin : rien n\'est enregistré tant que vous n\'avez pas appuyé sur « Enregistrer » ou « Transmettre ».'**
+  String get propositionAVerifierTexte;
+
+  /// No description provided for @abandonnerLaProposition.
+  ///
+  /// In fr, this message translates to:
+  /// **'Abandonner la proposition'**
+  String get abandonnerLaProposition;
+
+  /// No description provided for @remplirDepuisVotreFichier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplir depuis votre fichier'**
+  String get remplirDepuisVotreFichier;
+
+  /// No description provided for @assistantPlanExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'assistant d\'IA lit votre plan et remplit les objectifs, les chapitres, les travaux et le programme des séances. Vous vérifiez, puis enregistrez ou transmettez : rien n\'est enregistré avant. Le document est transmis à Claude (Anthropic) pour l\'analyse.'**
+  String get assistantPlanExplication;
+
+  /// No description provided for @extraireContenuDe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Extraire le contenu de « {nom} »'**
+  String extraireContenuDe(String nom);
+
+  /// No description provided for @analyserUnAutreFichier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Analyser un autre fichier'**
+  String get analyserUnAutreFichier;
+
+  /// No description provided for @documentSourceDuPlan.
+  ///
+  /// In fr, this message translates to:
+  /// **'Document source du pré-remplissage : {nom}, analysé le {date}.'**
+  String documentSourceDuPlan(String nom, String date);
+
+  /// No description provided for @objectifsDuCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Objectifs du cours'**
+  String get objectifsDuCours;
+
+  /// No description provided for @objectifsAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'« À la fin de ce cours, l\'étudiant sera capable de… » — un objectif par ligne.'**
+  String get objectifsAide;
+
+  /// No description provided for @aucunObjectif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun objectif renseigné.'**
+  String get aucunObjectif;
+
+  /// No description provided for @chapitresAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le contenu de l\'enseignement, chapitre par chapitre. Un chapitre devient choisissable dans les séances une fois enregistré.'**
+  String get chapitresAide;
+
+  /// No description provided for @programmeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une ligne par séance, de 1 à {nombre}. Les {nombre} séances sont exigées pour transmettre le plan.'**
+  String programmeAide(int nombre);
+
+  /// No description provided for @travauxAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les travaux à faire par l\'étudiant : une rubrique facultative.'**
+  String get travauxAide;
+
+  /// No description provided for @rienPourLeMoment.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rien pour le moment.'**
+  String get rienPourLeMoment;
+
+  /// No description provided for @ajouterUnChapitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un chapitre'**
+  String get ajouterUnChapitre;
+
+  /// No description provided for @ajouterUnTravail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un travail'**
+  String get ajouterUnTravail;
+
+  /// No description provided for @chapitreNumero.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chapitre {numero} : {titre}'**
+  String chapitreNumero(String numero, String titre);
+
+  /// No description provided for @seanceARemplir.
+  ///
+  /// In fr, this message translates to:
+  /// **'À remplir'**
+  String get seanceARemplir;
+
+  /// No description provided for @aucun.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun'**
+  String get aucun;
+
+  /// No description provided for @valider.
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get valider;
+
+  /// No description provided for @retirerCetteLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer cette ligne'**
+  String get retirerCetteLigne;
+
+  /// No description provided for @numeroAbrege.
+  ///
+  /// In fr, this message translates to:
+  /// **'N°'**
+  String get numeroAbrege;
+
+  /// No description provided for @intitule.
+  ///
+  /// In fr, this message translates to:
+  /// **'Intitulé'**
+  String get intitule;
+
+  /// No description provided for @theme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Thème'**
+  String get theme;
+
+  /// No description provided for @elementsATraiter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Éléments à traiter'**
+  String get elementsATraiter;
+
+  /// No description provided for @competenceVisee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétence visée'**
+  String get competenceVisee;
+
+  /// No description provided for @competences.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compétences'**
+  String get competences;
+
+  /// No description provided for @contenus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenus'**
+  String get contenus;
+
+  /// No description provided for @lecturePreparatoire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lecture préparatoire'**
+  String get lecturePreparatoire;
+
+  /// No description provided for @activiteDominante.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activité dominante'**
+  String get activiteDominante;
+
+  /// No description provided for @datePrevue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date prévue'**
+  String get datePrevue;
+
+  /// No description provided for @dateDeRemise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de remise'**
+  String get dateDeRemise;
+
+  /// No description provided for @bareme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Barème'**
+  String get bareme;
+
+  /// No description provided for @sectionEpreuves.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes épreuves d\'examen'**
+  String get sectionEpreuves;
+
+  /// No description provided for @aucuneEpreuveDemandee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune épreuve ne vous est demandée pour le moment. Vous serez notifié dès que le service ouvrira le dépôt.'**
+  String get aucuneEpreuveDemandee;
+
+  /// No description provided for @epreuvesBilan.
+  ///
+  /// In fr, this message translates to:
+  /// **'{demandees} demandée(s) · {completes} complète(s) · {retard} en retard'**
+  String epreuvesBilan(int demandees, int completes, int retard);
+
+  /// No description provided for @tousMesModeles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous mes modèles d\'épreuve (ZIP)'**
+  String get tousMesModeles;
+
+  /// No description provided for @depotAttendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dépôt attendu'**
+  String get depotAttendu;
+
+  /// No description provided for @sujetsAcceptes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujets acceptés'**
+  String get sujetsAcceptes;
+
+  /// No description provided for @aReprendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'À reprendre'**
+  String get aReprendre;
+
+  /// No description provided for @sujetsCompletsSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'{completes} sujet(s) complet(s) sur {requis}'**
+  String sujetsCompletsSur(int completes, int requis);
+
+  /// No description provided for @aDeposerAvant.
+  ///
+  /// In fr, this message translates to:
+  /// **'À déposer avant le {date}'**
+  String aDeposerAvant(String date);
+
+  /// No description provided for @motifDeReprise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif de reprise'**
+  String get motifDeReprise;
+
+  /// No description provided for @sujetFrancaisAnglais.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet en français et en anglais'**
+  String get sujetFrancaisAnglais;
+
+  /// No description provided for @sujetFrancaisAnglaisTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette épreuve est composée par la classe francophone et la classe anglophone : chaque sujet se dépose dans les deux langues, et le dépôt n\'est complet qu\'une fois les deux versions remises.'**
+  String get sujetFrancaisAnglaisTexte;
+
+  /// No description provided for @consignesDuService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consignes du service'**
+  String get consignesDuService;
+
+  /// No description provided for @sujetNumero.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet n° {numero}'**
+  String sujetNumero(int numero);
+
+  /// No description provided for @accepte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepté'**
+  String get accepte;
+
+  /// No description provided for @modeleARemplir.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modèle à remplir'**
+  String get modeleARemplir;
+
+  /// No description provided for @anglaisWord.
+  ///
+  /// In fr, this message translates to:
+  /// **'Anglais (Word)'**
+  String get anglaisWord;
+
+  /// No description provided for @francaisWord.
+  ///
+  /// In fr, this message translates to:
+  /// **'Français (Word)'**
+  String get francaisWord;
+
+  /// No description provided for @sujetVersion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet — {version}'**
+  String sujetVersion(String version);
+
+  /// No description provided for @sujet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet'**
+  String get sujet;
+
+  /// No description provided for @corrige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrigé'**
+  String get corrige;
+
+  /// No description provided for @manquantExige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Manquant, exigé'**
+  String get manquantExige;
+
+  /// No description provided for @facultatifPourCetteCampagne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Facultatif pour cette campagne'**
+  String get facultatifPourCetteCampagne;
+
+  /// No description provided for @sujetAccepteFige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet accepté par le service : il ne peut plus être modifié.'**
+  String get sujetAccepteFige;
+
+  /// No description provided for @depotClos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le dépôt est clos pour cette campagne.'**
+  String get depotClos;
+
+  /// No description provided for @ajouterOuModifier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter des pièces ou modifier'**
+  String get ajouterOuModifier;
+
+  /// No description provided for @deposerCeSujet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déposer ce sujet'**
+  String get deposerCeSujet;
+
+  /// No description provided for @deposer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déposer'**
+  String get deposer;
+
+  /// No description provided for @piecesSajoutent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Énoncé, annexes, jeu de données : déposez chaque pièce. Les fichiers s\'ajoutent, aucun n\'est remplacé.'**
+  String get piecesSajoutent;
+
+  /// No description provided for @formatsAcceptes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Formats acceptés : {formats}.'**
+  String formatsAcceptes(String formats);
+
+  /// No description provided for @intituleDuSujetFacultatif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Intitulé du sujet (facultatif)'**
+  String get intituleDuSujetFacultatif;
+
+  /// No description provided for @fichiersDuSujet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers du sujet'**
+  String get fichiersDuSujet;
+
+  /// No description provided for @fichiersSujetFrancais.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers du sujet — version française'**
+  String get fichiersSujetFrancais;
+
+  /// No description provided for @fichiersSujetAnglais.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers du sujet — version anglaise'**
+  String get fichiersSujetAnglais;
+
+  /// No description provided for @memeSujetTraduit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le même sujet, traduit pour la classe anglophone.'**
+  String get memeSujetTraduit;
+
+  /// No description provided for @fichiersCorrigeExige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers du corrigé (exigé)'**
+  String get fichiersCorrigeExige;
+
+  /// No description provided for @fichiersCorrigeFacultatif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers du corrigé (facultatif)'**
+  String get fichiersCorrigeFacultatif;
+
+  /// No description provided for @dureeProposeeMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée proposée (min)'**
+  String get dureeProposeeMinutes;
+
+  /// No description provided for @commentaireSujetAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Matériel autorisé, remarques…'**
+  String get commentaireSujetAide;
 }
 
 class _AppLocalizationsDelegate

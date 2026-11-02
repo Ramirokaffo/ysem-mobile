@@ -1297,5 +1297,578 @@
       }
     }
   },
-  "delegue": "Délégué"
+  "delegue": "Délégué",
+  "sectionDisponibilites": "Mes disponibilités",
+  "sectionPonctualite": "Ma ponctualité",
+  "sectionVacations": "Mes vacations",
+  "modifier": "Modifier",
+  "disponibilitesExplication": "Dites à la planification les créneaux où vous êtes disponible, ceux que vous préférez et ceux où vous ne l'êtes pas. Elle en est prévenue et compose les emplois du temps avec.",
+  "aucuneDisponibilite": "Vous n'avez déclaré aucune disponibilité pour cette année.",
+  "declarerDisponibilite": "Déclarer une disponibilité",
+  "modifierDisponibilite": "Modifier la disponibilité",
+  "retirerDisponibilite": "Retirer la disponibilité",
+  "retirerDisponibiliteConfirmation": "Retirer votre déclaration pour « {creneau} » ? La planification en sera prévenue.",
+  "@retirerDisponibiliteConfirmation": {
+    "placeholders": {
+      "creneau": {
+        "type": "String"
+      }
+    }
+  },
+  "touteLAnnee": "Toute l'année",
+  "aucunPlanningEnseignant": "Aucun planning d'examens publié ne vous attend pour l'instant.",
+  "votreEpreuve": "Votre épreuve",
+  "reglesPonctualite": "Arrivée attendue {avance} min avant le début du cours ; le retard compte au-delà de {tolerance} min de tolérance.",
+  "@reglesPonctualite": {
+    "placeholders": {
+      "avance": {
+        "type": "int"
+      },
+      "tolerance": {
+        "type": "int"
+      }
+    }
+  },
+  "aucuneSeanceRelevee": "Aucune séance n'a encore été relevée en salle.",
+  "heuresDispensees": "Temps dispensé",
+  "heuresPerdues": "Temps perdu",
+  "tempsRetenu": "Temps retenu",
+  "arriveeA": "Arrivée à {heure}",
+  "@arriveeA": {
+    "placeholders": {
+      "heure": {
+        "type": "String"
+      }
+    }
+  },
+  "finA": "fin à {heure}",
+  "@finA": {
+    "placeholders": {
+      "heure": {
+        "type": "String"
+      }
+    }
+  },
+  "retardDe": "Retard de {duree}",
+  "@retardDe": {
+    "placeholders": {
+      "duree": {
+        "type": "String"
+      }
+    }
+  },
+  "retenue": "Retenue de {duree}",
+  "@retenue": {
+    "placeholders": {
+      "duree": {
+        "type": "String"
+      }
+    }
+  },
+  "finConstateeDOffice": "Heure de fin posée d'office à minuit : elle n'a pas été relevée.",
+  "fichesEmargement": "Émargement",
+  "fichesEmargementExplication": "Vos séances relevées en salle s'y reportent d'elles-mêmes. Transmettez chaque fiche à la fin du mois : seules les fiches validées par le service entrent dans la paie.",
+  "aucuneFicheEmargement": "Aucune fiche d'émargement pour cette année.",
+  "detailDesSeances": "Détail des séances",
+  "transmettre": "Transmettre",
+  "transmettreLaFiche": "Transmettre la fiche",
+  "transmettreFicheConfirmation": "Transmettre au service la fiche de « {cours} » pour {mois} ? Elle ne sera plus modifiable tant qu'il ne vous l'aura pas renvoyée.",
+  "@transmettreFicheConfirmation": {
+    "placeholders": {
+      "cours": {
+        "type": "String"
+      },
+      "mois": {
+        "type": "String"
+      }
+    }
+  },
+  "aucunEtatPaiement": "Aucun état de paiement arrêté pour cette année.",
+  "heuresEffectuees": "Heures effectuées",
+  "heuresDeRattrapage": "dont rattrapage",
+  "heuresRetenues": "Heures retenues",
+  "montantBrut": "Montant brut",
+  "montantNet": "Net à payer",
+  "precompte": "Précompte",
+  "precompteAuTaux": "Précompte ({taux} %)",
+  "@precompteAuTaux": {
+    "placeholders": {
+      "taux": {
+        "type": "String"
+      }
+    }
+  },
+  "precompteExonere": "Précompte (exonéré)",
+  "payeLe": "Payé le {date}",
+  "@payeLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "paiementBloque": "Paiement bloqué",
+  "reservesDuMois": "Réserves du mois",
+  "vacationsExamen": "Vacations d'examen",
+  "commissions": "Commissions",
+  "surveillance": "Surveillance",
+  "sectionEnseignements": "Mes enseignements",
+  "avancementDeMesCours": "Avancement de mes cours",
+  "aucunCoursAffecte": "Aucun cours ne vous est affecté pour cette année académique.",
+  "seancesObservees": "Séances observées",
+  "seancesObserveesAide": "Ce que le service a relevé lors de ses passages en salle.",
+  "aucuneSeanceObservee": "Aucune séance observée pour le moment.",
+  "absencesConstatees": "Absences constatées",
+  "rattrapagesOuverts": "Rattrapages ouverts",
+  "chapitres": "Chapitres",
+  "seances": "Séances",
+  "seancesNonSuivies": "{nombre, plural, =1{1 séance prévue non relevée} other{{nombre} séances prévues non relevées}}",
+  "@seancesNonSuivies": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "derniereSeance": "Dernière séance : {date}",
+  "@derniereSeance": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "retoursEtudiants": "Retours des étudiants",
+  "retoursEtudiantsAide": "Synthèses que le service a choisi de partager avec vous.",
+  "chapitreAtteint": "Chapitre atteint : {numero}",
+  "@chapitreAtteint": {
+    "placeholders": {
+      "numero": {
+        "type": "int"
+      }
+    }
+  },
+  "suiteADonner": "Suite à donner : {suite}",
+  "@suiteADonner": {
+    "placeholders": {
+      "suite": {
+        "type": "String"
+      }
+    }
+  },
+  "seanceCertifieeDOffice": "Constat posé d'office à la clôture de la journée : personne n'a relevé cette séance.",
+  "discussionDeLaClasse": "Discussion de la classe",
+  "sectionFeuillesDeNotes": "Mes feuilles de notes",
+  "aucuneFeuilleDeNotes": "Aucune feuille de notes ne vous est attribuée pour le moment.",
+  "feuilleDeliberee": "Délibérée — plus modifiable",
+  "feuilleVerrouillee": "Cette feuille a été délibérée : ses notes ne se modifient plus.",
+  "caseVideTitre": "Une case vide n'est pas un zéro",
+  "caseVideExplication": "Si l'épreuve n'a pas eu lieu pour un étudiant, choisissez le statut qui l'explique : une absence justifiée ou une dispense retire l'épreuve du calcul et redistribue son poids, tandis qu'une absence non justifiée compte pour zéro.",
+  "controleContinu": "Contrôle continu",
+  "controleContinuExplication": "Déclarez chaque contrôle quand vous le tenez. Vos contrôles d'un même type sont moyennés entre eux, puis chaque type pèse de la pondération fixée par le service. Rendez-le au service quand vous avez terminé : vous ne pourrez plus ajouter ni modifier de contrôle, mais le service peut vous le renvoyer si besoin.",
+  "controleContinuRenduLecture": "Le contrôle continu a été rendu au service : ses notes ne se modifient plus d'ici.",
+  "aucunControle": "Aucun contrôle déclaré pour le moment.",
+  "nouveauControle": "Nouveau contrôle",
+  "ajouterLeControle": "Ajouter le contrôle",
+  "typeDeControle": "Type de contrôle",
+  "date": "Date",
+  "supprimerControle": "Supprimer ce contrôle",
+  "supprimerControleConfirmation": "Supprimer « {libelle} » et ses notes ?",
+  "@supprimerControleConfirmation": {
+    "placeholders": {
+      "libelle": {
+        "type": "String"
+      }
+    }
+  },
+  "rendreControleContinu": "Rendre le contrôle continu",
+  "rendreCcConfirmation": "Une fois rendu, vous ne pouvez plus ajouter ni modifier de contrôle — le service peut vous le renvoyer si besoin.",
+  "rendre": "Rendre",
+  "rendreLesNotes": "Rendre les notes ({epreuve})",
+  "@rendreLesNotes": {
+    "placeholders": {
+      "epreuve": {
+        "type": "String"
+      }
+    }
+  },
+  "rendreEpreuveConfirmation": "Une fois rendue, l'épreuve passe au service et vous ne pouvez plus la modifier — il peut vous la renvoyer si besoin.",
+  "epreuveAVenir": "À venir",
+  "epreuveAVenirExplication": "La saisie s'ouvre après la composition, une fois les copies anonymées.",
+  "epreuveValidee": "Validée par le service",
+  "epreuveRendue": "Rendue, en attente de validation",
+  "controlesARendre": "{nombre, plural, =0{Aucun contrôle — à rendre quand vous avez terminé} =1{1 contrôle — à rendre quand vous avez terminé} other{{nombre} contrôles — à rendre quand vous avez terminé}}",
+  "@controlesARendre": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "notesASaisirSur": "{manquantes, plural, =1{1 note encore à saisir sur {total}} other{{manquantes} notes encore à saisir sur {total}}}",
+  "@notesASaisirSur": {
+    "placeholders": {
+      "manquantes": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "saisieCompleteARendre": "Saisie complète — reste à rendre",
+  "saisieComplete": "Saisie complète",
+  "notesEncoreAttendues": "{nombre, plural, =1{1 note encore attendue} other{{nombre} notes encore attendues}}",
+  "@notesEncoreAttendues": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "aRendreAvant": "À rendre avant le {date}",
+  "@aRendreAvant": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "messageDuService": "Message du service",
+  "notesSaisies": "Notes saisies",
+  "notesSur": "Notes sur {max}",
+  "@notesSur": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "ponderationDe": "Pondération {valeur}",
+  "@ponderationDe": {
+    "placeholders": {
+      "valeur": {
+        "type": "String"
+      }
+    }
+  },
+  "saisirParCode": "Saisir par code d'anonymat",
+  "saisieParCodeExplication": "Les copies ne portent que leur code d'anonymat : portez chaque note en face du code inscrit sur la copie. La correspondance entre un code et un étudiant n'est connue que du service.",
+  "rechercherCode": "Rechercher un code",
+  "aucuneCopieCodee": "Aucune copie codée. Signalez-le au service.",
+  "aucunEtudiantSurFeuille": "Aucun étudiant sur cette feuille. Signalez-le au service.",
+  "noteSaisie": "Note saisie",
+  "noteInvalide": "Saisissez un nombre.",
+  "noteTropHaute": "La note ne peut pas dépasser {max}.",
+  "@noteTropHaute": {
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "enregistrerLesNotes": "Enregistrer les notes",
+  "aucuneModification": "Aucune modification à enregistrer.",
+  "notesNonEnregistrees": "Notes non enregistrées",
+  "notesNonEnregistreesTexte": "Des notes de cette page n'ont pas été enregistrées. Les abandonner ?",
+  "quitterSansEnregistrer": "Quitter sans enregistrer",
+  "enregistrerSansRendre": "Enregistrer sans rendre",
+  "sectionDocumentsDeCours": "Mes documents de cours",
+  "documentsCoursExplication": "Le plan de cours et le support que le service vous demande, cours par cours. Rien n'est visible des étudiants avant validation par le service.",
+  "documentsACorriger": "{nombre, plural, =1{1 document vous a été renvoyé pour correction.} other{{nombre} documents vous ont été renvoyés pour correction.}}",
+  "@documentsACorriger": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "aucunDocumentDemande": "Aucun document ne vous est demandé pour l'instant. Le service ouvre les dépôts attendus en début de semestre.",
+  "planDeCours": "Plan de cours",
+  "supportDeCours": "Support de cours",
+  "publieAuxEtudiants": "Publié aux étudiants",
+  "aCorriger": "À corriger",
+  "transmisAuService": "Transmis au service",
+  "fichierRecuPlanATransmettre": "Fichier reçu — plan à vérifier et transmettre",
+  "aRemplirEtATransmettre": "À remplir et à transmettre",
+  "pasEncoreRemis": "Pas encore remis",
+  "enRetardDeJours": "{nombre, plural, =1{En retard de 1 jour} other{En retard de {nombre} jours}}",
+  "@enRetardDeJours": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "attendu": "Attendu",
+  "enAttenteDeValidation": "En attente de validation",
+  "attenduAvantLe": "Attendu avant le {date}",
+  "@attenduAvantLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "moratoireAccorde": "Moratoire accordé",
+  "deposeLeDate": "Déposé le {date}",
+  "@deposeLeDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "misAJourLeDate": "Mis à jour le {date}",
+  "@misAJourLeDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "renvoyePourCorrectionLe": "Renvoyé pour correction le {date}",
+  "@renvoyePourCorrectionLe": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "fichierSeulNeVautPasDepot": "Le fichier seul ne vaut pas dépôt : remplissez le plan en ligne puis transmettez-le.",
+  "remplirDepuisFichierDepose": "Remplir le plan depuis le fichier déposé",
+  "deposerLeFichierDuPlan": "Déposer le fichier du plan",
+  "planPagesAuPlus": "{nombre, plural, =1{Un plan tient en 1 page au plus.} other{Un plan tient en {nombre} pages au plus.}}",
+  "@planPagesAuPlus": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "ouRemplirEnLigne": "Ou remplir en ligne, à la main",
+  "remplirEnLigne": "Remplir en ligne",
+  "modifierLePlanEnLigne": "Modifier le plan en ligne",
+  "consulter": "Consulter",
+  "planPublieModifiable": "Plan validé et publié : le service vous laisse le modifier. Les étudiants sont informés de chaque mise à jour.",
+  "planPublieFige": "Plan validé et publié : il ne se modifie plus. Contactez le service pour le rouvrir.",
+  "planTransmisExamine": "Plan transmis : le service l'examine. Il vous sera renvoyé s'il faut le reprendre.",
+  "projetFinDeCours": "Projet de fin de cours",
+  "deposerDesFichiers": "Déposer des fichiers",
+  "ajouterDesFichiers": "Ajouter des fichiers",
+  "piecesLimites": "{nombre} fichiers au plus, 5 Mo chacun. Les fichiers s'ajoutent à ceux déjà déposés.",
+  "@piecesLimites": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "commentaireEtProjet": "Commentaire et projet de fin de cours",
+  "supportPublieModifiable": "Support validé et publié : le service vous laisse le modifier. Les étudiants sont informés de chaque mise à jour.",
+  "supportPublieFige": "Support validé et publié : il ne se modifie plus. Contactez le service pour rouvrir le dépôt.",
+  "retirerCettePiece": "Retirer cette pièce",
+  "retirerPieceConfirmation": "Retirer « {nom} » de ce dépôt ?",
+  "@retirerPieceConfirmation": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "projetFinDeCoursQuestion": "Ce cours comporte un projet à déposer à la fin du cours",
+  "descriptionDuProjet": "Description du projet",
+  "descriptionDuProjetAide": "Sujet, livrables attendus, échéance…",
+  "remplacerFichierDuProjet": "Remplacer le fichier du projet",
+  "fichierDuProjetFacultatif": "Fichier du projet (facultatif)",
+  "transmettreLePlan": "Transmettre le plan",
+  "transmettrePlanConfirmation": "Une fois transmis, le plan passe au service et ne se modifie plus d'ici. Il vous sera renvoyé s'il faut le reprendre.",
+  "remplacerLaSaisie": "Remplacer la saisie ?",
+  "remplacerLaSaisieTexte": "La proposition de l'assistant réécrira des lignes que vous venez de modifier sans les enregistrer.",
+  "continuer": "Continuer",
+  "analyseEnCours": "Analyse en cours — cela peut prendre une minute. Ne quittez pas la page.",
+  "documentAssistantTropLourd": "Ce document dépasse 10 Mo : choisissez-en un plus léger.",
+  "planNonEnregistre": "Plan non enregistré",
+  "planNonEnregistreTexte": "Votre saisie du plan n'a pas été enregistrée. L'abandonner ?",
+  "planGeneral": "Général",
+  "travaux": "Travaux",
+  "seancesProgrammeesSur": "{nombre} séance(s) programmée(s) sur {total} attendue(s)",
+  "@seancesProgrammeesSur": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "planACorrigerConsigne": "Corrigez le plan puis transmettez-le de nouveau : le service en sera prévenu.",
+  "planAttendu": "Plan attendu",
+  "planAttenduExplication": "Le service de suivi académique attend ce plan : remplissez les rubriques puis transmettez-le. Il compte {nombre} séances, toutes à programmer avant de pouvoir être transmis ; les travaux à faire par l'étudiant sont facultatifs. Le fichier de votre plan ne suffit pas : c'est la transmission du plan rempli en ligne qui vaut dépôt.",
+  "@planAttenduExplication": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "propositionAVerifier": "Proposition de l'assistant d'IA — à vérifier",
+  "propositionAVerifierTexte": "Vérifiez chaque rubrique et corrigez-la au besoin : rien n'est enregistré tant que vous n'avez pas appuyé sur « Enregistrer » ou « Transmettre ».",
+  "abandonnerLaProposition": "Abandonner la proposition",
+  "remplirDepuisVotreFichier": "Remplir depuis votre fichier",
+  "assistantPlanExplication": "L'assistant d'IA lit votre plan et remplit les objectifs, les chapitres, les travaux et le programme des séances. Vous vérifiez, puis enregistrez ou transmettez : rien n'est enregistré avant. Le document est transmis à Claude (Anthropic) pour l'analyse.",
+  "extraireContenuDe": "Extraire le contenu de « {nom} »",
+  "@extraireContenuDe": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "analyserUnAutreFichier": "Analyser un autre fichier",
+  "documentSourceDuPlan": "Document source du pré-remplissage : {nom}, analysé le {date}.",
+  "@documentSourceDuPlan": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "objectifsDuCours": "Objectifs du cours",
+  "objectifsAide": "« À la fin de ce cours, l'étudiant sera capable de… » — un objectif par ligne.",
+  "aucunObjectif": "Aucun objectif renseigné.",
+  "chapitresAide": "Le contenu de l'enseignement, chapitre par chapitre. Un chapitre devient choisissable dans les séances une fois enregistré.",
+  "programmeAide": "Une ligne par séance, de 1 à {nombre}. Les {nombre} séances sont exigées pour transmettre le plan.",
+  "@programmeAide": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "travauxAide": "Les travaux à faire par l'étudiant : une rubrique facultative.",
+  "rienPourLeMoment": "Rien pour le moment.",
+  "ajouterUnChapitre": "Ajouter un chapitre",
+  "ajouterUnTravail": "Ajouter un travail",
+  "chapitreNumero": "Chapitre {numero} : {titre}",
+  "@chapitreNumero": {
+    "placeholders": {
+      "numero": {
+        "type": "String"
+      },
+      "titre": {
+        "type": "String"
+      }
+    }
+  },
+  "seanceARemplir": "À remplir",
+  "aucun": "Aucun",
+  "valider": "Valider",
+  "retirerCetteLigne": "Retirer cette ligne",
+  "numeroAbrege": "N°",
+  "intitule": "Intitulé",
+  "theme": "Thème",
+  "elementsATraiter": "Éléments à traiter",
+  "competenceVisee": "Compétence visée",
+  "competences": "Compétences",
+  "contenus": "Contenus",
+  "lecturePreparatoire": "Lecture préparatoire",
+  "activiteDominante": "Activité dominante",
+  "datePrevue": "Date prévue",
+  "dateDeRemise": "Date de remise",
+  "bareme": "Barème",
+  "sectionEpreuves": "Mes épreuves d'examen",
+  "aucuneEpreuveDemandee": "Aucune épreuve ne vous est demandée pour le moment. Vous serez notifié dès que le service ouvrira le dépôt.",
+  "epreuvesBilan": "{demandees} demandée(s) · {completes} complète(s) · {retard} en retard",
+  "@epreuvesBilan": {
+    "placeholders": {
+      "demandees": {
+        "type": "int"
+      },
+      "completes": {
+        "type": "int"
+      },
+      "retard": {
+        "type": "int"
+      }
+    }
+  },
+  "tousMesModeles": "Tous mes modèles d'épreuve (ZIP)",
+  "depotAttendu": "Dépôt attendu",
+  "sujetsAcceptes": "Sujets acceptés",
+  "aReprendre": "À reprendre",
+  "sujetsCompletsSur": "{completes} sujet(s) complet(s) sur {requis}",
+  "@sujetsCompletsSur": {
+    "placeholders": {
+      "completes": {
+        "type": "int"
+      },
+      "requis": {
+        "type": "int"
+      }
+    }
+  },
+  "aDeposerAvant": "À déposer avant le {date}",
+  "@aDeposerAvant": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "motifDeReprise": "Motif de reprise",
+  "sujetFrancaisAnglais": "Sujet en français et en anglais",
+  "sujetFrancaisAnglaisTexte": "Cette épreuve est composée par la classe francophone et la classe anglophone : chaque sujet se dépose dans les deux langues, et le dépôt n'est complet qu'une fois les deux versions remises.",
+  "consignesDuService": "Consignes du service",
+  "sujetNumero": "Sujet n° {numero}",
+  "@sujetNumero": {
+    "placeholders": {
+      "numero": {
+        "type": "int"
+      }
+    }
+  },
+  "accepte": "Accepté",
+  "modeleARemplir": "Modèle à remplir",
+  "anglaisWord": "Anglais (Word)",
+  "francaisWord": "Français (Word)",
+  "sujetVersion": "Sujet — {version}",
+  "@sujetVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "sujet": "Sujet",
+  "corrige": "Corrigé",
+  "manquantExige": "Manquant, exigé",
+  "facultatifPourCetteCampagne": "Facultatif pour cette campagne",
+  "sujetAccepteFige": "Sujet accepté par le service : il ne peut plus être modifié.",
+  "depotClos": "Le dépôt est clos pour cette campagne.",
+  "ajouterOuModifier": "Ajouter des pièces ou modifier",
+  "deposerCeSujet": "Déposer ce sujet",
+  "deposer": "Déposer",
+  "piecesSajoutent": "Énoncé, annexes, jeu de données : déposez chaque pièce. Les fichiers s'ajoutent, aucun n'est remplacé.",
+  "formatsAcceptes": "Formats acceptés : {formats}.",
+  "@formatsAcceptes": {
+    "placeholders": {
+      "formats": {
+        "type": "String"
+      }
+    }
+  },
+  "intituleDuSujetFacultatif": "Intitulé du sujet (facultatif)",
+  "fichiersDuSujet": "Fichiers du sujet",
+  "fichiersSujetFrancais": "Fichiers du sujet — version française",
+  "fichiersSujetAnglais": "Fichiers du sujet — version anglaise",
+  "memeSujetTraduit": "Le même sujet, traduit pour la classe anglophone.",
+  "fichiersCorrigeExige": "Fichiers du corrigé (exigé)",
+  "fichiersCorrigeFacultatif": "Fichiers du corrigé (facultatif)",
+  "dureeProposeeMinutes": "Durée proposée (min)",
+  "commentaireSujetAide": "Matériel autorisé, remarques…"
 }

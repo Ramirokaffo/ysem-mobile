@@ -3,11 +3,16 @@ import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/espace.dart';
+import '../../../core/models/examens.dart';
 import '../../../core/providers.dart';
 import '../../commun/espace/menu.dart';
 import '../domain/cours.dart';
+import '../domain/documents.dart';
+import '../domain/epreuves.dart';
+import '../domain/feuilles.dart';
 import '../domain/modeles.dart';
 import '../domain/planning.dart';
+import '../domain/situation.dart';
 
 final tableauDeBordEnseignantProvider =
     FutureProvider.autoDispose<TableauDeBordEnseignant>(
@@ -50,4 +55,54 @@ final detailClasseProvider =
 
 final fichesASignerProvider = FutureProvider.autoDispose<FichesASigner>(
   (ref) => ref.watch(enseignantRepositoryProvider).fichesASigner(),
+);
+
+final disponibilitesProvider = FutureProvider.autoDispose<Disponibilites>(
+  (ref) => ref.watch(enseignantRepositoryProvider).disponibilites(),
+);
+
+final examensEnseignantProvider = FutureProvider.autoDispose<Examens>(
+  (ref) => ref.watch(enseignantRepositoryProvider).examens(),
+);
+
+final ponctualiteProvider = FutureProvider.autoDispose<Ponctualite>(
+  (ref) => ref.watch(enseignantRepositoryProvider).ponctualite(),
+);
+
+final vacationsProvider = FutureProvider.autoDispose<Vacations>(
+  (ref) => ref.watch(enseignantRepositoryProvider).vacations(),
+);
+
+final enseignementsProvider = FutureProvider.autoDispose<Enseignements>(
+  (ref) => ref.watch(enseignantRepositoryProvider).enseignements(),
+);
+
+final feuillesDeNotesProvider = FutureProvider.autoDispose<FeuillesDeNotes>(
+  (ref) => ref.watch(enseignantRepositoryProvider).feuillesDeNotes(),
+);
+
+/// Une feuille, avec son contrôle continu et ses grilles par code.
+final detailFeuilleProvider =
+    FutureProvider.autoDispose.family<DetailFeuille, int>(
+  (ref, id) => ref.watch(enseignantRepositoryProvider).feuille(id),
+);
+
+/// Un contrôle continu et ses notes, par `(feuille, contrôle)`.
+final detailControleProvider =
+    FutureProvider.autoDispose.family<DetailControle, (int, int)>(
+  (ref, cle) =>
+      ref.watch(enseignantRepositoryProvider).controle(cle.$1, cle.$2),
+);
+
+final documentsCoursProvider = FutureProvider.autoDispose<DocumentsDeCours>(
+  (ref) => ref.watch(enseignantRepositoryProvider).documentsDeCours(),
+);
+
+/// Un plan de cours, tel qu'il se lit ou se saisit en ligne.
+final planCoursProvider = FutureProvider.autoDispose.family<PlanEnLigne, int>(
+  (ref, id) => ref.watch(enseignantRepositoryProvider).planDeCours(id),
+);
+
+final mesEpreuvesProvider = FutureProvider.autoDispose<MesEpreuves>(
+  (ref) => ref.watch(enseignantRepositoryProvider).mesEpreuves(),
 );

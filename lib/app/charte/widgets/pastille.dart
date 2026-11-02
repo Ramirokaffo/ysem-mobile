@@ -15,11 +15,11 @@ class Pastille extends StatelessWidget {
   /// Ton d'un statut rendu par l'API, d'après son code.
   static TonPastille tonDuStatut(String statut) {
     final s = statut.toLowerCase();
-    if (const ['paid', 'solde', 'up_to_date', 'a_jour', 'valide', 'validated', 'accorde', 'approved', 'available', 'disponible']
+    if (const ['paid', 'paye', 'solde', 'up_to_date', 'a_jour', 'valide', 'validated', 'accorde', 'approved', 'available', 'disponible']
         .any(s.contains)) {
       return TonPastille.succes;
     }
-    if (const ['overdue', 'retard', 'echu', 'refuse', 'rejete', 'rejected', 'annule']
+    if (const ['overdue', 'retard', 'echu', 'refuse', 'rejete', 'rejected', 'annule', 'bloque']
         .any(s.contains)) {
       return TonPastille.danger;
     }

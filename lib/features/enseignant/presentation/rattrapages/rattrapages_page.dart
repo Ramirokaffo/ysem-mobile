@@ -219,17 +219,6 @@ class _PropositionDateState extends ConsumerState<_PropositionDate> {
     super.dispose();
   }
 
-  Future<void> _choisirDate() async {
-    final aujourdhui = DateTime.now();
-    final choisie = await showDatePicker(
-      context: context,
-      initialDate: _date ?? aujourdhui,
-      firstDate: DateTime(aujourdhui.year, aujourdhui.month, aujourdhui.day),
-      lastDate: aujourdhui.add(const Duration(days: 365)),
-    );
-    if (choisie != null) setState(() => _date = choisie);
-  }
-
   Future<void> _envoyer() async {
     setState(() => _tente = true);
     if (_date == null || _creneau == null) return;
@@ -258,10 +247,12 @@ class _PropositionDateState extends ConsumerState<_PropositionDate> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final langue = langueCourante(context);
     final creneaux = widget.formulaire['time_slot']?.choix ?? const [];
     final salles = widget.formulaire['classroom']?.choix ?? const [];
     final erreur = _erreur;
+    final maintenant = DateTime.now();
+    final aujourdhui =
+        DateTime(maintenant.year, maintenant.month, maintenant.day);
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
@@ -286,21 +277,14 @@ class _PropositionDateState extends ConsumerState<_PropositionDate> {
                   messages: erreursGlobales(erreur, _champsAffiches)),
             ],
             const SizedBox(height: 20),
-            InkWell(
-              onTap: _choisirDate,
-              borderRadius: BorderRadius.circular(YsemTokens.rayon),
-              child: InputDecorator(
-                isEmpty: _date == null,
-                decoration: InputDecoration(
-                  labelText: t.dateProposee,
-                  prefixIcon: const Icon(Icons.event_rounded),
-                  errorText: erreur?.erreurDuChamp('date_prevue') ??
-                      (_tente && _date == null ? t.champObligatoire : null),
-                ),
-                child: Text(_date == null
-                    ? ''
-                    : Formats.dateLongue(_date, langue)),
-              ),
+            ChampDate(
+              libelle: t.dateProposee,
+              valeur: _date,
+              premiere: aujourdhui,
+              derniere: aujourdhui.add(const Duration(days: 365)),
+              surChoix: (d) => setState(() => _date = d),
+              erreur: erreur?.erreurDuChamp('date_prevue') ??
+                  (_tente && _date == null ? t.champObligatoire : null),
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(

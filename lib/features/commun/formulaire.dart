@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../app/charte/charte.dart';
+import '../../core/format/formats.dart';
 import '../../core/network/api_exception.dart';
 import '../../l10n/app_localizations.dart';
+import 'langue.dart';
 
 /// Ce qu'un envoi refusé doit dire en tête du formulaire : le message du
 /// serveur, ses erreurs d'ensemble (`__all__`) et celles des champs que
@@ -76,4 +79,72 @@ Future<bool> confirmer(
     ),
   );
   return reponse == true;
+}
+
+/// Champ de date : ouvre le calendrier du téléphone, et se vide d'un geste
+/// quand il est facultatif.
+class ChampDate extends StatelessWidget {
+  const ChampDate({
+    super.key,
+    required this.libelle,
+    required this.valeur,
+    required this.surChoix,
+    required this.premiere,
+    required this.derniere,
+    this.icone = Icons.event_rounded,
+    this.erreur,
+    this.effacable = false,
+  });
+
+  final String libelle;
+  final DateTime? valeur;
+  final ValueChanged<DateTime?> surChoix;
+  final DateTime premiere;
+  final DateTime derniere;
+  final IconData icone;
+  final String? erreur;
+  final bool effacable;
+
+  Future<void> _choisir(BuildContext context) async {
+    final depart = valeur ?? DateTime.now();
+    final choisie = await showDatePicker(
+      context: context,
+      initialDate: depart.isBefore(premiere)
+          ? premiere
+          : depart.isAfter(derniere)
+              ? derniere
+              : depart,
+      firstDate: premiere,
+      lastDate: derniere,
+    );
+    if (choisie != null) surChoix(choisie);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    return InkWell(
+      onTap: () => _choisir(context),
+      borderRadius: BorderRadius.circular(YsemTokens.rayon),
+      child: InputDecorator(
+        isEmpty: valeur == null,
+        decoration: InputDecoration(
+          labelText: libelle,
+          prefixIcon: Icon(icone),
+          errorText: erreur,
+          errorMaxLines: 3,
+          suffixIcon: effacable && valeur != null
+              ? IconButton(
+                  tooltip: t.effacer,
+                  icon: const Icon(Icons.close_rounded),
+                  onPressed: () => surChoix(null),
+                )
+              : null,
+        ),
+        child: Text(valeur == null
+            ? ''
+            : Formats.dateLongue(valeur, langueCourante(context))),
+      ),
+    );
+  }
 }

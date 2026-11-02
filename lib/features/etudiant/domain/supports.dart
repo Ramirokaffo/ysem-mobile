@@ -1,6 +1,5 @@
 import '../../../core/models/json.dart';
 import 'modeles.dart';
-import 'notes.dart';
 
 /// Modèles de `supports/` (`serializers.depot_support`) : ce que le service
 /// a **publié** pour la cohorte — un plan validé, un support validé.

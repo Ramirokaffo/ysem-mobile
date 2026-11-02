@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/auth/espace.dart';
 import '../../../core/navigation/icones_sections.dart';
+import '../../commun/fil/discussions_page.dart';
 import '../../shell/presentation/a_implementer_page.dart';
 import '../application/lectures.dart';
 import 'archives/archives_page.dart';
@@ -10,7 +12,6 @@ import 'association/association_page.dart';
 import 'bibliotheque/bibliotheque_page.dart';
 import 'delegation/delegation_page.dart';
 import 'discipline/discipline_page.dart';
-import 'discussions/discussions_page.dart';
 import 'documents/documents_page.dart';
 import 'examens/examens_page.dart';
 import 'finances/finances_page.dart';
@@ -49,7 +50,7 @@ class SectionPage extends ConsumerWidget {
       'messages' => MessageriePage(titre: titre),
       'suggestions' => SuggestionsPage(titre: titre),
       'inscription' => ReinscriptionPage(titre: titre),
-      'discussions' => DiscussionsPage(titre: titre),
+      'discussions' => DiscussionsPage(espace: Espace.etudiant, titre: titre),
       'bibliotheque' => BibliothequePage(titre: titre),
       'archives' => ArchivesPage(titre: titre),
       'promotion' => PromotionPage(titre: titre),

@@ -1,5 +1,5 @@
+import '../../../core/models/agenda.dart';
 import '../../../core/models/json.dart';
-import 'notes.dart';
 import 'reinscription.dart';
 
 /// Modèles de `delegation/` : les gestes de fin de séance du délégué —

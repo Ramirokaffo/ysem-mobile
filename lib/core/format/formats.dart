@@ -43,6 +43,27 @@ class Formats {
     return texte.isEmpty ? texte : texte[0].toUpperCase() + texte.substring(1);
   }
 
+  /// `Novembre 2026` / `November 2026`.
+  static String moisAnnee(DateTime? date, String langue) {
+    if (date == null) return '';
+    final texte = DateFormat.yMMMM(langue).format(date);
+    return texte.isEmpty ? texte : texte[0].toUpperCase() + texte.substring(1);
+  }
+
+  /// `1 h 20`, `45 min`, `2 h` : une durée lue en minutes par le serveur.
+  static String duree(int minutes) {
+    final h = minutes ~/ 60;
+    final m = minutes % 60;
+    if (h == 0) return '$m min';
+    return m == 0 ? '$h h' : '$h h ${m.toString().padLeft(2, '0')}';
+  }
+
+  /// Heures en nombre : `12,5 h` / `12.5 h`.
+  static String heures(double? valeur, String langue) {
+    if (valeur == null) return '—';
+    return '${NumberFormat('0.##', langue == 'en' ? 'en' : 'fr').format(valeur)} h';
+  }
+
   /// `4 novembre 2026` / `November 4, 2026`.
   static String dateLongue(DateTime? date, String langue) {
     if (date == null) return '';

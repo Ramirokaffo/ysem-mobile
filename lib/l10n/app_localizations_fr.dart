@@ -2272,4 +2272,919 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get delegue => 'Délégué';
+
+  @override
+  String get sectionDisponibilites => 'Mes disponibilités';
+
+  @override
+  String get sectionPonctualite => 'Ma ponctualité';
+
+  @override
+  String get sectionVacations => 'Mes vacations';
+
+  @override
+  String get modifier => 'Modifier';
+
+  @override
+  String get disponibilitesExplication =>
+      'Dites à la planification les créneaux où vous êtes disponible, ceux que vous préférez et ceux où vous ne l\'êtes pas. Elle en est prévenue et compose les emplois du temps avec.';
+
+  @override
+  String get aucuneDisponibilite =>
+      'Vous n\'avez déclaré aucune disponibilité pour cette année.';
+
+  @override
+  String get declarerDisponibilite => 'Déclarer une disponibilité';
+
+  @override
+  String get modifierDisponibilite => 'Modifier la disponibilité';
+
+  @override
+  String get retirerDisponibilite => 'Retirer la disponibilité';
+
+  @override
+  String retirerDisponibiliteConfirmation(String creneau) {
+    return 'Retirer votre déclaration pour « $creneau » ? La planification en sera prévenue.';
+  }
+
+  @override
+  String get touteLAnnee => 'Toute l\'année';
+
+  @override
+  String get aucunPlanningEnseignant =>
+      'Aucun planning d\'examens publié ne vous attend pour l\'instant.';
+
+  @override
+  String get votreEpreuve => 'Votre épreuve';
+
+  @override
+  String reglesPonctualite(int avance, int tolerance) {
+    return 'Arrivée attendue $avance min avant le début du cours ; le retard compte au-delà de $tolerance min de tolérance.';
+  }
+
+  @override
+  String get aucuneSeanceRelevee =>
+      'Aucune séance n\'a encore été relevée en salle.';
+
+  @override
+  String get heuresDispensees => 'Temps dispensé';
+
+  @override
+  String get heuresPerdues => 'Temps perdu';
+
+  @override
+  String get tempsRetenu => 'Temps retenu';
+
+  @override
+  String arriveeA(String heure) {
+    return 'Arrivée à $heure';
+  }
+
+  @override
+  String finA(String heure) {
+    return 'fin à $heure';
+  }
+
+  @override
+  String retardDe(String duree) {
+    return 'Retard de $duree';
+  }
+
+  @override
+  String retenue(String duree) {
+    return 'Retenue de $duree';
+  }
+
+  @override
+  String get finConstateeDOffice =>
+      'Heure de fin posée d\'office à minuit : elle n\'a pas été relevée.';
+
+  @override
+  String get fichesEmargement => 'Émargement';
+
+  @override
+  String get fichesEmargementExplication =>
+      'Vos séances relevées en salle s\'y reportent d\'elles-mêmes. Transmettez chaque fiche à la fin du mois : seules les fiches validées par le service entrent dans la paie.';
+
+  @override
+  String get aucuneFicheEmargement =>
+      'Aucune fiche d\'émargement pour cette année.';
+
+  @override
+  String get detailDesSeances => 'Détail des séances';
+
+  @override
+  String get transmettre => 'Transmettre';
+
+  @override
+  String get transmettreLaFiche => 'Transmettre la fiche';
+
+  @override
+  String transmettreFicheConfirmation(String cours, String mois) {
+    return 'Transmettre au service la fiche de « $cours » pour $mois ? Elle ne sera plus modifiable tant qu\'il ne vous l\'aura pas renvoyée.';
+  }
+
+  @override
+  String get aucunEtatPaiement =>
+      'Aucun état de paiement arrêté pour cette année.';
+
+  @override
+  String get heuresEffectuees => 'Heures effectuées';
+
+  @override
+  String get heuresDeRattrapage => 'dont rattrapage';
+
+  @override
+  String get heuresRetenues => 'Heures retenues';
+
+  @override
+  String get montantBrut => 'Montant brut';
+
+  @override
+  String get montantNet => 'Net à payer';
+
+  @override
+  String get precompte => 'Précompte';
+
+  @override
+  String precompteAuTaux(String taux) {
+    return 'Précompte ($taux %)';
+  }
+
+  @override
+  String get precompteExonere => 'Précompte (exonéré)';
+
+  @override
+  String payeLe(String date) {
+    return 'Payé le $date';
+  }
+
+  @override
+  String get paiementBloque => 'Paiement bloqué';
+
+  @override
+  String get reservesDuMois => 'Réserves du mois';
+
+  @override
+  String get vacationsExamen => 'Vacations d\'examen';
+
+  @override
+  String get commissions => 'Commissions';
+
+  @override
+  String get surveillance => 'Surveillance';
+
+  @override
+  String get sectionEnseignements => 'Mes enseignements';
+
+  @override
+  String get avancementDeMesCours => 'Avancement de mes cours';
+
+  @override
+  String get aucunCoursAffecte =>
+      'Aucun cours ne vous est affecté pour cette année académique.';
+
+  @override
+  String get seancesObservees => 'Séances observées';
+
+  @override
+  String get seancesObserveesAide =>
+      'Ce que le service a relevé lors de ses passages en salle.';
+
+  @override
+  String get aucuneSeanceObservee => 'Aucune séance observée pour le moment.';
+
+  @override
+  String get absencesConstatees => 'Absences constatées';
+
+  @override
+  String get rattrapagesOuverts => 'Rattrapages ouverts';
+
+  @override
+  String get chapitres => 'Chapitres';
+
+  @override
+  String get seances => 'Séances';
+
+  @override
+  String seancesNonSuivies(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: '$nombre séances prévues non relevées',
+      one: '1 séance prévue non relevée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String derniereSeance(String date) {
+    return 'Dernière séance : $date';
+  }
+
+  @override
+  String get retoursEtudiants => 'Retours des étudiants';
+
+  @override
+  String get retoursEtudiantsAide =>
+      'Synthèses que le service a choisi de partager avec vous.';
+
+  @override
+  String chapitreAtteint(int numero) {
+    return 'Chapitre atteint : $numero';
+  }
+
+  @override
+  String suiteADonner(String suite) {
+    return 'Suite à donner : $suite';
+  }
+
+  @override
+  String get seanceCertifieeDOffice =>
+      'Constat posé d\'office à la clôture de la journée : personne n\'a relevé cette séance.';
+
+  @override
+  String get discussionDeLaClasse => 'Discussion de la classe';
+
+  @override
+  String get sectionFeuillesDeNotes => 'Mes feuilles de notes';
+
+  @override
+  String get aucuneFeuilleDeNotes =>
+      'Aucune feuille de notes ne vous est attribuée pour le moment.';
+
+  @override
+  String get feuilleDeliberee => 'Délibérée — plus modifiable';
+
+  @override
+  String get feuilleVerrouillee =>
+      'Cette feuille a été délibérée : ses notes ne se modifient plus.';
+
+  @override
+  String get caseVideTitre => 'Une case vide n\'est pas un zéro';
+
+  @override
+  String get caseVideExplication =>
+      'Si l\'épreuve n\'a pas eu lieu pour un étudiant, choisissez le statut qui l\'explique : une absence justifiée ou une dispense retire l\'épreuve du calcul et redistribue son poids, tandis qu\'une absence non justifiée compte pour zéro.';
+
+  @override
+  String get controleContinu => 'Contrôle continu';
+
+  @override
+  String get controleContinuExplication =>
+      'Déclarez chaque contrôle quand vous le tenez. Vos contrôles d\'un même type sont moyennés entre eux, puis chaque type pèse de la pondération fixée par le service. Rendez-le au service quand vous avez terminé : vous ne pourrez plus ajouter ni modifier de contrôle, mais le service peut vous le renvoyer si besoin.';
+
+  @override
+  String get controleContinuRenduLecture =>
+      'Le contrôle continu a été rendu au service : ses notes ne se modifient plus d\'ici.';
+
+  @override
+  String get aucunControle => 'Aucun contrôle déclaré pour le moment.';
+
+  @override
+  String get nouveauControle => 'Nouveau contrôle';
+
+  @override
+  String get ajouterLeControle => 'Ajouter le contrôle';
+
+  @override
+  String get typeDeControle => 'Type de contrôle';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get supprimerControle => 'Supprimer ce contrôle';
+
+  @override
+  String supprimerControleConfirmation(String libelle) {
+    return 'Supprimer « $libelle » et ses notes ?';
+  }
+
+  @override
+  String get rendreControleContinu => 'Rendre le contrôle continu';
+
+  @override
+  String get rendreCcConfirmation =>
+      'Une fois rendu, vous ne pouvez plus ajouter ni modifier de contrôle — le service peut vous le renvoyer si besoin.';
+
+  @override
+  String get rendre => 'Rendre';
+
+  @override
+  String rendreLesNotes(String epreuve) {
+    return 'Rendre les notes ($epreuve)';
+  }
+
+  @override
+  String get rendreEpreuveConfirmation =>
+      'Une fois rendue, l\'épreuve passe au service et vous ne pouvez plus la modifier — il peut vous la renvoyer si besoin.';
+
+  @override
+  String get epreuveAVenir => 'À venir';
+
+  @override
+  String get epreuveAVenirExplication =>
+      'La saisie s\'ouvre après la composition, une fois les copies anonymées.';
+
+  @override
+  String get epreuveValidee => 'Validée par le service';
+
+  @override
+  String get epreuveRendue => 'Rendue, en attente de validation';
+
+  @override
+  String controlesARendre(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: '$nombre contrôles — à rendre quand vous avez terminé',
+      one: '1 contrôle — à rendre quand vous avez terminé',
+      zero: 'Aucun contrôle — à rendre quand vous avez terminé',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notesASaisirSur(int manquantes, int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      manquantes,
+      locale: localeName,
+      other: '$manquantes notes encore à saisir sur $total',
+      one: '1 note encore à saisir sur $total',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get saisieCompleteARendre => 'Saisie complète — reste à rendre';
+
+  @override
+  String get saisieComplete => 'Saisie complète';
+
+  @override
+  String notesEncoreAttendues(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: '$nombre notes encore attendues',
+      one: '1 note encore attendue',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String aRendreAvant(String date) {
+    return 'À rendre avant le $date';
+  }
+
+  @override
+  String get messageDuService => 'Message du service';
+
+  @override
+  String get notesSaisies => 'Notes saisies';
+
+  @override
+  String notesSur(String max) {
+    return 'Notes sur $max';
+  }
+
+  @override
+  String ponderationDe(String valeur) {
+    return 'Pondération $valeur';
+  }
+
+  @override
+  String get saisirParCode => 'Saisir par code d\'anonymat';
+
+  @override
+  String get saisieParCodeExplication =>
+      'Les copies ne portent que leur code d\'anonymat : portez chaque note en face du code inscrit sur la copie. La correspondance entre un code et un étudiant n\'est connue que du service.';
+
+  @override
+  String get rechercherCode => 'Rechercher un code';
+
+  @override
+  String get aucuneCopieCodee => 'Aucune copie codée. Signalez-le au service.';
+
+  @override
+  String get aucunEtudiantSurFeuille =>
+      'Aucun étudiant sur cette feuille. Signalez-le au service.';
+
+  @override
+  String get noteSaisie => 'Note saisie';
+
+  @override
+  String get noteInvalide => 'Saisissez un nombre.';
+
+  @override
+  String noteTropHaute(String max) {
+    return 'La note ne peut pas dépasser $max.';
+  }
+
+  @override
+  String get enregistrerLesNotes => 'Enregistrer les notes';
+
+  @override
+  String get aucuneModification => 'Aucune modification à enregistrer.';
+
+  @override
+  String get notesNonEnregistrees => 'Notes non enregistrées';
+
+  @override
+  String get notesNonEnregistreesTexte =>
+      'Des notes de cette page n\'ont pas été enregistrées. Les abandonner ?';
+
+  @override
+  String get quitterSansEnregistrer => 'Quitter sans enregistrer';
+
+  @override
+  String get enregistrerSansRendre => 'Enregistrer sans rendre';
+
+  @override
+  String get sectionDocumentsDeCours => 'Mes documents de cours';
+
+  @override
+  String get documentsCoursExplication =>
+      'Le plan de cours et le support que le service vous demande, cours par cours. Rien n\'est visible des étudiants avant validation par le service.';
+
+  @override
+  String documentsACorriger(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: '$nombre documents vous ont été renvoyés pour correction.',
+      one: '1 document vous a été renvoyé pour correction.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get aucunDocumentDemande =>
+      'Aucun document ne vous est demandé pour l\'instant. Le service ouvre les dépôts attendus en début de semestre.';
+
+  @override
+  String get planDeCours => 'Plan de cours';
+
+  @override
+  String get supportDeCours => 'Support de cours';
+
+  @override
+  String get publieAuxEtudiants => 'Publié aux étudiants';
+
+  @override
+  String get aCorriger => 'À corriger';
+
+  @override
+  String get transmisAuService => 'Transmis au service';
+
+  @override
+  String get fichierRecuPlanATransmettre =>
+      'Fichier reçu — plan à vérifier et transmettre';
+
+  @override
+  String get aRemplirEtATransmettre => 'À remplir et à transmettre';
+
+  @override
+  String get pasEncoreRemis => 'Pas encore remis';
+
+  @override
+  String enRetardDeJours(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: 'En retard de $nombre jours',
+      one: 'En retard de 1 jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get attendu => 'Attendu';
+
+  @override
+  String get enAttenteDeValidation => 'En attente de validation';
+
+  @override
+  String attenduAvantLe(String date) {
+    return 'Attendu avant le $date';
+  }
+
+  @override
+  String get moratoireAccorde => 'Moratoire accordé';
+
+  @override
+  String deposeLeDate(String date) {
+    return 'Déposé le $date';
+  }
+
+  @override
+  String misAJourLeDate(String date) {
+    return 'Mis à jour le $date';
+  }
+
+  @override
+  String renvoyePourCorrectionLe(String date) {
+    return 'Renvoyé pour correction le $date';
+  }
+
+  @override
+  String get fichierSeulNeVautPasDepot =>
+      'Le fichier seul ne vaut pas dépôt : remplissez le plan en ligne puis transmettez-le.';
+
+  @override
+  String get remplirDepuisFichierDepose =>
+      'Remplir le plan depuis le fichier déposé';
+
+  @override
+  String get deposerLeFichierDuPlan => 'Déposer le fichier du plan';
+
+  @override
+  String planPagesAuPlus(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: 'Un plan tient en $nombre pages au plus.',
+      one: 'Un plan tient en 1 page au plus.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ouRemplirEnLigne => 'Ou remplir en ligne, à la main';
+
+  @override
+  String get remplirEnLigne => 'Remplir en ligne';
+
+  @override
+  String get modifierLePlanEnLigne => 'Modifier le plan en ligne';
+
+  @override
+  String get consulter => 'Consulter';
+
+  @override
+  String get planPublieModifiable =>
+      'Plan validé et publié : le service vous laisse le modifier. Les étudiants sont informés de chaque mise à jour.';
+
+  @override
+  String get planPublieFige =>
+      'Plan validé et publié : il ne se modifie plus. Contactez le service pour le rouvrir.';
+
+  @override
+  String get planTransmisExamine =>
+      'Plan transmis : le service l\'examine. Il vous sera renvoyé s\'il faut le reprendre.';
+
+  @override
+  String get projetFinDeCours => 'Projet de fin de cours';
+
+  @override
+  String get deposerDesFichiers => 'Déposer des fichiers';
+
+  @override
+  String get ajouterDesFichiers => 'Ajouter des fichiers';
+
+  @override
+  String piecesLimites(int nombre) {
+    return '$nombre fichiers au plus, 5 Mo chacun. Les fichiers s\'ajoutent à ceux déjà déposés.';
+  }
+
+  @override
+  String get commentaireEtProjet => 'Commentaire et projet de fin de cours';
+
+  @override
+  String get supportPublieModifiable =>
+      'Support validé et publié : le service vous laisse le modifier. Les étudiants sont informés de chaque mise à jour.';
+
+  @override
+  String get supportPublieFige =>
+      'Support validé et publié : il ne se modifie plus. Contactez le service pour rouvrir le dépôt.';
+
+  @override
+  String get retirerCettePiece => 'Retirer cette pièce';
+
+  @override
+  String retirerPieceConfirmation(String nom) {
+    return 'Retirer « $nom » de ce dépôt ?';
+  }
+
+  @override
+  String get projetFinDeCoursQuestion =>
+      'Ce cours comporte un projet à déposer à la fin du cours';
+
+  @override
+  String get descriptionDuProjet => 'Description du projet';
+
+  @override
+  String get descriptionDuProjetAide => 'Sujet, livrables attendus, échéance…';
+
+  @override
+  String get remplacerFichierDuProjet => 'Remplacer le fichier du projet';
+
+  @override
+  String get fichierDuProjetFacultatif => 'Fichier du projet (facultatif)';
+
+  @override
+  String get transmettreLePlan => 'Transmettre le plan';
+
+  @override
+  String get transmettrePlanConfirmation =>
+      'Une fois transmis, le plan passe au service et ne se modifie plus d\'ici. Il vous sera renvoyé s\'il faut le reprendre.';
+
+  @override
+  String get remplacerLaSaisie => 'Remplacer la saisie ?';
+
+  @override
+  String get remplacerLaSaisieTexte =>
+      'La proposition de l\'assistant réécrira des lignes que vous venez de modifier sans les enregistrer.';
+
+  @override
+  String get continuer => 'Continuer';
+
+  @override
+  String get analyseEnCours =>
+      'Analyse en cours — cela peut prendre une minute. Ne quittez pas la page.';
+
+  @override
+  String get documentAssistantTropLourd =>
+      'Ce document dépasse 10 Mo : choisissez-en un plus léger.';
+
+  @override
+  String get planNonEnregistre => 'Plan non enregistré';
+
+  @override
+  String get planNonEnregistreTexte =>
+      'Votre saisie du plan n\'a pas été enregistrée. L\'abandonner ?';
+
+  @override
+  String get planGeneral => 'Général';
+
+  @override
+  String get travaux => 'Travaux';
+
+  @override
+  String seancesProgrammeesSur(int nombre, int total) {
+    return '$nombre séance(s) programmée(s) sur $total attendue(s)';
+  }
+
+  @override
+  String get planACorrigerConsigne =>
+      'Corrigez le plan puis transmettez-le de nouveau : le service en sera prévenu.';
+
+  @override
+  String get planAttendu => 'Plan attendu';
+
+  @override
+  String planAttenduExplication(int nombre) {
+    return 'Le service de suivi académique attend ce plan : remplissez les rubriques puis transmettez-le. Il compte $nombre séances, toutes à programmer avant de pouvoir être transmis ; les travaux à faire par l\'étudiant sont facultatifs. Le fichier de votre plan ne suffit pas : c\'est la transmission du plan rempli en ligne qui vaut dépôt.';
+  }
+
+  @override
+  String get propositionAVerifier =>
+      'Proposition de l\'assistant d\'IA — à vérifier';
+
+  @override
+  String get propositionAVerifierTexte =>
+      'Vérifiez chaque rubrique et corrigez-la au besoin : rien n\'est enregistré tant que vous n\'avez pas appuyé sur « Enregistrer » ou « Transmettre ».';
+
+  @override
+  String get abandonnerLaProposition => 'Abandonner la proposition';
+
+  @override
+  String get remplirDepuisVotreFichier => 'Remplir depuis votre fichier';
+
+  @override
+  String get assistantPlanExplication =>
+      'L\'assistant d\'IA lit votre plan et remplit les objectifs, les chapitres, les travaux et le programme des séances. Vous vérifiez, puis enregistrez ou transmettez : rien n\'est enregistré avant. Le document est transmis à Claude (Anthropic) pour l\'analyse.';
+
+  @override
+  String extraireContenuDe(String nom) {
+    return 'Extraire le contenu de « $nom »';
+  }
+
+  @override
+  String get analyserUnAutreFichier => 'Analyser un autre fichier';
+
+  @override
+  String documentSourceDuPlan(String nom, String date) {
+    return 'Document source du pré-remplissage : $nom, analysé le $date.';
+  }
+
+  @override
+  String get objectifsDuCours => 'Objectifs du cours';
+
+  @override
+  String get objectifsAide =>
+      '« À la fin de ce cours, l\'étudiant sera capable de… » — un objectif par ligne.';
+
+  @override
+  String get aucunObjectif => 'Aucun objectif renseigné.';
+
+  @override
+  String get chapitresAide =>
+      'Le contenu de l\'enseignement, chapitre par chapitre. Un chapitre devient choisissable dans les séances une fois enregistré.';
+
+  @override
+  String programmeAide(int nombre) {
+    return 'Une ligne par séance, de 1 à $nombre. Les $nombre séances sont exigées pour transmettre le plan.';
+  }
+
+  @override
+  String get travauxAide =>
+      'Les travaux à faire par l\'étudiant : une rubrique facultative.';
+
+  @override
+  String get rienPourLeMoment => 'Rien pour le moment.';
+
+  @override
+  String get ajouterUnChapitre => 'Ajouter un chapitre';
+
+  @override
+  String get ajouterUnTravail => 'Ajouter un travail';
+
+  @override
+  String chapitreNumero(String numero, String titre) {
+    return 'Chapitre $numero : $titre';
+  }
+
+  @override
+  String get seanceARemplir => 'À remplir';
+
+  @override
+  String get aucun => 'Aucun';
+
+  @override
+  String get valider => 'Valider';
+
+  @override
+  String get retirerCetteLigne => 'Retirer cette ligne';
+
+  @override
+  String get numeroAbrege => 'N°';
+
+  @override
+  String get intitule => 'Intitulé';
+
+  @override
+  String get theme => 'Thème';
+
+  @override
+  String get elementsATraiter => 'Éléments à traiter';
+
+  @override
+  String get competenceVisee => 'Compétence visée';
+
+  @override
+  String get competences => 'Compétences';
+
+  @override
+  String get contenus => 'Contenus';
+
+  @override
+  String get lecturePreparatoire => 'Lecture préparatoire';
+
+  @override
+  String get activiteDominante => 'Activité dominante';
+
+  @override
+  String get datePrevue => 'Date prévue';
+
+  @override
+  String get dateDeRemise => 'Date de remise';
+
+  @override
+  String get bareme => 'Barème';
+
+  @override
+  String get sectionEpreuves => 'Mes épreuves d\'examen';
+
+  @override
+  String get aucuneEpreuveDemandee =>
+      'Aucune épreuve ne vous est demandée pour le moment. Vous serez notifié dès que le service ouvrira le dépôt.';
+
+  @override
+  String epreuvesBilan(int demandees, int completes, int retard) {
+    return '$demandees demandée(s) · $completes complète(s) · $retard en retard';
+  }
+
+  @override
+  String get tousMesModeles => 'Tous mes modèles d\'épreuve (ZIP)';
+
+  @override
+  String get depotAttendu => 'Dépôt attendu';
+
+  @override
+  String get sujetsAcceptes => 'Sujets acceptés';
+
+  @override
+  String get aReprendre => 'À reprendre';
+
+  @override
+  String sujetsCompletsSur(int completes, int requis) {
+    return '$completes sujet(s) complet(s) sur $requis';
+  }
+
+  @override
+  String aDeposerAvant(String date) {
+    return 'À déposer avant le $date';
+  }
+
+  @override
+  String get motifDeReprise => 'Motif de reprise';
+
+  @override
+  String get sujetFrancaisAnglais => 'Sujet en français et en anglais';
+
+  @override
+  String get sujetFrancaisAnglaisTexte =>
+      'Cette épreuve est composée par la classe francophone et la classe anglophone : chaque sujet se dépose dans les deux langues, et le dépôt n\'est complet qu\'une fois les deux versions remises.';
+
+  @override
+  String get consignesDuService => 'Consignes du service';
+
+  @override
+  String sujetNumero(int numero) {
+    return 'Sujet n° $numero';
+  }
+
+  @override
+  String get accepte => 'Accepté';
+
+  @override
+  String get modeleARemplir => 'Modèle à remplir';
+
+  @override
+  String get anglaisWord => 'Anglais (Word)';
+
+  @override
+  String get francaisWord => 'Français (Word)';
+
+  @override
+  String sujetVersion(String version) {
+    return 'Sujet — $version';
+  }
+
+  @override
+  String get sujet => 'Sujet';
+
+  @override
+  String get corrige => 'Corrigé';
+
+  @override
+  String get manquantExige => 'Manquant, exigé';
+
+  @override
+  String get facultatifPourCetteCampagne => 'Facultatif pour cette campagne';
+
+  @override
+  String get sujetAccepteFige =>
+      'Sujet accepté par le service : il ne peut plus être modifié.';
+
+  @override
+  String get depotClos => 'Le dépôt est clos pour cette campagne.';
+
+  @override
+  String get ajouterOuModifier => 'Ajouter des pièces ou modifier';
+
+  @override
+  String get deposerCeSujet => 'Déposer ce sujet';
+
+  @override
+  String get deposer => 'Déposer';
+
+  @override
+  String get piecesSajoutent =>
+      'Énoncé, annexes, jeu de données : déposez chaque pièce. Les fichiers s\'ajoutent, aucun n\'est remplacé.';
+
+  @override
+  String formatsAcceptes(String formats) {
+    return 'Formats acceptés : $formats.';
+  }
+
+  @override
+  String get intituleDuSujetFacultatif => 'Intitulé du sujet (facultatif)';
+
+  @override
+  String get fichiersDuSujet => 'Fichiers du sujet';
+
+  @override
+  String get fichiersSujetFrancais => 'Fichiers du sujet — version française';
+
+  @override
+  String get fichiersSujetAnglais => 'Fichiers du sujet — version anglaise';
+
+  @override
+  String get memeSujetTraduit =>
+      'Le même sujet, traduit pour la classe anglophone.';
+
+  @override
+  String get fichiersCorrigeExige => 'Fichiers du corrigé (exigé)';
+
+  @override
+  String get fichiersCorrigeFacultatif => 'Fichiers du corrigé (facultatif)';
+
+  @override
+  String get dureeProposeeMinutes => 'Durée proposée (min)';
+
+  @override
+  String get commentaireSujetAide => 'Matériel autorisé, remarques…';
 }
