@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/auth/espace.dart';
 import '../../commun/espace/coque_espace.dart';
+import '../hors_ligne/gardien_hors_ligne.dart';
 
 /// Coque de l'espace étudiant.
 class ShellEtudiant extends StatelessWidget {
@@ -12,5 +13,7 @@ class ShellEtudiant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      CoqueEspace(espace: Espace.etudiant, coque: coque);
+      GardienHorsLigne(
+        child: CoqueEspace(espace: Espace.etudiant, coque: coque),
+      );
 }

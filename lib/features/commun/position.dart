@@ -7,6 +7,7 @@ class PositionRelevee {
     required this.latitude,
     required this.longitude,
     required this.precision,
+    this.horodatage,
   });
 
   final double latitude;
@@ -15,12 +16,18 @@ class PositionRelevee {
   /// Rayon d'incertitude annoncé, en mètres.
   final double precision;
 
+  /// Instant du relevé. Il vient du récepteur GPS et non de l'horloge du
+  /// téléphone : le serveur s'en sert pour contrôler une saisie hors ligne.
+  final DateTime? horodatage;
+
   /// Les champs que l'API attend (`geo_latitude`, `geo_longitude`,
   /// `geo_precision`), les mêmes que le formulaire du web.
   Map<String, String> get champs => {
         'geo_latitude': latitude.toStringAsFixed(7),
         'geo_longitude': longitude.toStringAsFixed(7),
         'geo_precision': precision.toStringAsFixed(1),
+        if (horodatage != null)
+          'geo_horodatage': horodatage!.toUtc().toIso8601String(),
       };
 }
 
@@ -35,7 +42,11 @@ class PositionIndisponible implements Exception {
 
 /// Relève la position en haute précision, sans position en cache — même
 /// règle que le navigateur (`student_portal/js/geolocalisation.js`).
-Future<PositionRelevee> releverPosition() async {
+///
+/// `delai` s'allonge sans réseau : le GPS ne reçoit alors aucune aide des
+/// antennes et met plus de temps à trouver les satellites.
+Future<PositionRelevee> releverPosition(
+    {Duration delai = const Duration(seconds: 25)}) async {
   if (!await Geolocator.isLocationServiceEnabled()) {
     throw const PositionIndisponible(RaisonPosition.serviceDesactive);
   }
@@ -52,15 +63,16 @@ Future<PositionRelevee> releverPosition() async {
   }
   try {
     final position = await Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(
+      locationSettings: LocationSettings(
         accuracy: LocationAccuracy.best,
-        timeLimit: Duration(seconds: 25),
+        timeLimit: delai,
       ),
     );
     return PositionRelevee(
       latitude: position.latitude,
       longitude: position.longitude,
       precision: position.accuracy,
+      horodatage: position.timestamp,
     );
   } on Exception {
     throw const PositionIndisponible(RaisonPosition.delai);

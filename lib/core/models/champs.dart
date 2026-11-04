@@ -26,6 +26,10 @@ class ChampFormulaire {
     this.obligatoire = false,
     this.type = '',
     this.choix = const [],
+    this.multiligne = false,
+    this.retirable = false,
+    this.champAutre = '',
+    this.valeurAutre = '',
   });
 
   final String nom;
@@ -37,6 +41,23 @@ class ChampFormulaire {
   final String type;
   final List<OptionChamp> choix;
 
+  /// Zone de texte plutôt que ligne simple.
+  final bool multiligne;
+
+  /// Pièce que le web permet d'effacer (`<champ>_retirer`).
+  final bool retirable;
+
+  /// Liste fermée sur « Autres » : le champ libre, et la valeur qui le révèle.
+  final String champAutre;
+  final String valeurAutre;
+
+  bool get estFichier => type == 'FileField' || type == 'ImageField';
+  bool get estDate => type == 'DateField';
+  bool get estBooleen => type == 'BooleanField';
+  bool get estEntier => type == 'IntegerField';
+  bool get estEmail => type == 'EmailField';
+  bool get estListe => choix.isNotEmpty || champAutre.isNotEmpty;
+
   factory ChampFormulaire.depuisJson(Json json) => ChampFormulaire(
         nom: json.texte('nom'),
         libelle: json.texte('libelle'),
@@ -44,6 +65,10 @@ class ChampFormulaire {
         obligatoire: json.booleen('obligatoire'),
         type: json.texte('type'),
         choix: json.liste('choix', OptionChamp.depuisJson),
+        multiligne: json.booleen('multiligne'),
+        retirable: json.booleen('retirable'),
+        champAutre: json.texte('champ_autre'),
+        valeurAutre: json.texte('valeur_autre'),
       );
 }
 

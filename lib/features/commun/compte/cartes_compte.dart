@@ -8,6 +8,7 @@ import '../../../core/network/api_exception.dart';
 import '../../../core/providers.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../auth/application/session_controller.dart';
+import '../../etudiant/hors_ligne/providers.dart';
 import '../langue.dart';
 
 // Cartes du profil communes aux deux espaces : sécurité du compte, langue,
@@ -268,11 +269,15 @@ class BoutonDeconnexion extends ConsumerWidget {
       icon: const Icon(Icons.logout_rounded),
       label: Text(t.deconnexion),
       onPressed: () async {
+        final nonEnvoyees = await nombreSaisiesNonEnvoyees(ref);
+        if (!context.mounted) return;
         final confirme = await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
             title: Text(t.deconnexion),
-            content: Text(t.deconnexionConfirmation),
+            content: Text(nonEnvoyees > 0
+                ? t.deconnexionAvecSaisies(nonEnvoyees)
+                : t.deconnexionConfirmation),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),

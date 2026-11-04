@@ -85,6 +85,7 @@ class Constat {
 /// Une séance de la classe et l'état de ses deux fenêtres.
 class SeanceDelegue {
   const SeanceDelegue({
+    this.cle = '',
     this.date,
     this.debut,
     this.fin,
@@ -110,6 +111,8 @@ class SeanceDelegue {
     this.cahier,
   });
 
+  /// Clé de la séance, celle qui rapproche les saisies du téléphone.
+  final String cle;
   final DateTime? date;
   final String? debut;
   final String? fin;
@@ -159,6 +162,7 @@ class SeanceDelegue {
     final creneau = json.objet('creneau');
     final cahier = json.objet('cahier_texte');
     return SeanceDelegue(
+      cle: json.texte('cle'),
       date: json.date('date'),
       debut: creneau?.texteOuNul('debut'),
       fin: creneau?.texteOuNul('fin'),

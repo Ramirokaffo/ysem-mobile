@@ -9,13 +9,17 @@ import '../../../../core/providers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../commun/langue.dart';
 import '../../domain/delegation.dart';
+import '../../hors_ligne/depot_delegation.dart';
+import '../../hors_ligne/providers.dart';
+import '../../hors_ligne/saisie_locale.dart';
 import 'appel_page.dart';
 import 'cahier_page.dart';
 
 /// Ma délégation, journée par journée (`null` : aujourd'hui).
 final delegationProvider =
-    FutureProvider.autoDispose.family<Delegation, String?>(
-  (ref, jour) => ref.watch(etudiantRepositoryProvider).delegation(jour: jour),
+    FutureProvider.autoDispose.family<VueDelegation, String?>(
+  (ref, jour) async =>
+      (await ref.watch(depotDelegationProvider.future)).delegation(jour: jour),
 );
 
 /// « Ma délégation » : les séances de la classe pour la journée, avec, pour
@@ -33,7 +37,34 @@ class DelegationPage extends ConsumerStatefulWidget {
 
 class _DelegationPageState extends ConsumerState<DelegationPage> {
   String? _jour;
-  Delegation? _derniere;
+  VueDelegation? _derniere;
+  bool _synchro = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // L'écran s'affiche depuis le téléphone, sans attendre le réseau.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _synchroniser());
+  }
+
+  Future<void> _synchroniser() async {
+    if (_synchro) return;
+    if (mounted) setState(() => _synchro = true);
+    try {
+      await (await ref.read(depotDelegationProvider.future)).synchroniser();
+    } finally {
+      if (mounted) {
+        setState(() => _synchro = false);
+        ref.invalidate(delegationProvider);
+        ref.invalidate(etatHorsLigneProvider);
+      }
+    }
+  }
+
+  Future<void> _rafraichir() async {
+    await _synchroniser();
+    if (mounted) await ref.read(delegationProvider(_jour).future);
+  }
 
   void _allerA(DateTime? jour, Delegation etat) {
     if (jour == null) return;
@@ -47,6 +78,7 @@ class _DelegationPageState extends ConsumerState<DelegationPage> {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
     ref.invalidate(delegationProvider);
+    ref.invalidate(etatHorsLigneProvider);
   }
 
   @override
@@ -54,7 +86,8 @@ class _DelegationPageState extends ConsumerState<DelegationPage> {
     final t = AppLocalizations.of(context);
     final valeur = ref.watch(delegationProvider(_jour));
     if (valeur.hasValue) _derniere = valeur.value;
-    final etat = valeur.valueOrNull ?? _derniere;
+    final vue = valeur.valueOrNull ?? _derniere;
+    final etat = vue?.etat;
     final erreur = valeur.error;
 
     Widget corps;
@@ -67,20 +100,33 @@ class _DelegationPageState extends ConsumerState<DelegationPage> {
         ],
       );
     } else if (etat == null) {
-      corps = VueAsynchrone<Delegation>(
+      corps = VueAsynchrone<VueDelegation>(
         valeur: valeur,
         surRafraichir: () => ref.refresh(delegationProvider(_jour).future),
         constructeur: (_) => const SizedBox.shrink(),
       );
     } else {
       corps = RefreshIndicator(
-        onRefresh: () => ref.refresh(delegationProvider(_jour).future),
+        onRefresh: _rafraichir,
         child: ListView(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
           children: [
             _CarteClasse(etat: etat),
             const SizedBox(height: 12),
+            if (vue!.depuisLePaquet) ...[
+              _CarteHorsLigne(
+                vue: vue,
+                synchro: _synchro,
+                surSynchroniser: _synchroniser,
+                surOublier: (saisie) async {
+                  await (await ref.read(depotDelegationProvider.future))
+                      .oublierSaisie(saisie);
+                  ref.invalidate(delegationProvider);
+                },
+              ),
+              const SizedBox(height: 12),
+            ],
             _BarreJour(
               etat: etat,
               chargement: valeur.isLoading,
@@ -98,6 +144,8 @@ class _DelegationPageState extends ConsumerState<DelegationPage> {
             for (final seance in etat.seances) ...[
               _CarteSeance(
                 seance: seance,
+                saisieAppel: vue.saisieDe(seance.cle, SaisieLocale.gesteAppel),
+                saisieCahier: vue.saisieDe(seance.cle, SaisieLocale.gesteCahier),
                 appelAutorise: etat.appelAutorise,
                 cahierAutorise: etat.cahierAutorise,
                 surAppel: () => _ouvrir(AppelPage(seance: seance)),
@@ -251,9 +299,22 @@ class _BarreJour extends StatelessWidget {
   };
 }
 
+/// Ce que le téléphone sait d'un geste et que le serveur ne dit pas encore.
+(String, TonPastille)? _etatSaisie(AppLocalizations t, SaisieLocale? saisie) =>
+    switch (saisie?.etat) {
+      EtatSaisie.enAttente => (t.saisieEnAttenteEnvoi, TonPastille.info),
+      EtatSaisie.transmise => (t.saisieTransmise, TonPastille.succes),
+      EtatSaisie.aArbitrer => (t.saisieAArbitrer, TonPastille.alerte),
+      EtatSaisie.ecartee => (t.saisieEcartee, TonPastille.danger),
+      EtatSaisie.refusee => (t.saisieRefusee, TonPastille.danger),
+      _ => null,
+    };
+
 class _CarteSeance extends StatelessWidget {
   const _CarteSeance({
     required this.seance,
+    this.saisieAppel,
+    this.saisieCahier,
     required this.appelAutorise,
     required this.cahierAutorise,
     required this.surAppel,
@@ -261,6 +322,8 @@ class _CarteSeance extends StatelessWidget {
   });
 
   final SeanceDelegue seance;
+  final SaisieLocale? saisieAppel;
+  final SaisieLocale? saisieCahier;
   final bool appelAutorise;
   final bool cahierAutorise;
   final VoidCallback surAppel;
@@ -284,10 +347,11 @@ class _CarteSeance extends StatelessWidget {
       required bool ouvert,
       required bool rouvert,
       required VoidCallback surAction,
+      SaisieLocale? saisie,
       DateTime? ouverture,
       DateTime? fermeture,
     }) {
-      final (texte, ton) = _etatGeste(t, etat, constat);
+      final (texte, ton) = _etatSaisie(t, saisie) ?? _etatGeste(t, etat, constat);
       final fenetre = ouverture != null && fermeture != null &&
               (etat == 'a_venir' || etat == 'ouverte')
           ? t.fenetreDeA(heure(ouverture), heure(fermeture))
@@ -330,7 +394,8 @@ class _CarteSeance extends StatelessWidget {
                 if (ouvert)
                   FilledButton.tonal(
                     onPressed: surAction,
-                    child: Text(constat == null ? t.faire : t.corriger),
+                    child: Text(
+                        constat == null && saisie == null ? t.faire : t.corriger),
                   ),
               ],
             ),
@@ -387,6 +452,7 @@ class _CarteSeance extends StatelessWidget {
               ouvert: seance.appelOuvert,
               rouvert: seance.appelRouvert,
               surAction: surAppel,
+              saisie: saisieAppel,
               ouverture: seance.ouverture,
               fermeture: seance.fermeture,
             ),
@@ -399,8 +465,88 @@ class _CarteSeance extends StatelessWidget {
               ouvert: seance.cahierOuvert,
               rouvert: seance.cahierRouvert,
               surAction: surCahier,
+              saisie: saisieCahier,
               fermeture: seance.cahierFermeture,
             ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Où en est le téléphone : ce qu'il emporte, ce qui attend le réseau, et ce
+/// que le serveur n'a pas accepté d'office.
+class _CarteHorsLigne extends StatelessWidget {
+  const _CarteHorsLigne({
+    required this.vue,
+    required this.synchro,
+    required this.surSynchroniser,
+    required this.surOublier,
+  });
+
+  final VueDelegation vue;
+  final bool synchro;
+  final VoidCallback surSynchroniser;
+  final ValueChanged<SaisieLocale> surOublier;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final langue = langueCourante(context);
+    final secondaire = theme.textTheme.bodySmall
+        ?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+    return CarteYsem(
+      titre: t.disponibleHorsLigne,
+      icone: Icons.offline_pin_outlined,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            [
+              if (vue.valableJusquAu != null)
+                t.horsLigneJusquAu(Formats.jourCourt(vue.valableJusquAu, langue)),
+              t.horsLigneMisAJour(Formats.horodatage(vue.luLe, langue)),
+            ].join(' · '),
+            style: secondaire,
+          ),
+          if (vue.aEnvoyer > 0) ...[
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(t.saisiesAEnvoyer(vue.aEnvoyer),
+                      style: theme.textTheme.bodyMedium),
+                ),
+                TextButton(
+                  onPressed: synchro ? null : surSynchroniser,
+                  child: Text(t.envoyerMaintenant),
+                ),
+              ],
+            ),
+          ],
+          for (final saisie in vue.aSuivre) ...[
+            const SizedBox(height: 8),
+            Encadre(
+              icone: saisie.etat == EtatSaisie.aArbitrer
+                  ? Icons.hourglass_top_rounded
+                  : Icons.block_rounded,
+              titre: [
+                saisie.geste == SaisieLocale.gesteAppel ? t.appel : t.cahierDeTexte,
+                Formats.jourCourt(DateTime.tryParse(saisie.jour), langue),
+                (_etatSaisie(t, saisie))?.$1 ?? '',
+              ].join(' · '),
+              texte: saisie.detail,
+            ),
+            if (saisie.etat != EtatSaisie.aArbitrer)
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => surOublier(saisie),
+                  child: Text(t.compris),
+                ),
+              ),
+          ],
         ],
       ),
     );

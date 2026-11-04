@@ -354,7 +354,7 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
         query: jour == null ? null : {'jour': jour},
       ));
 
-  static Map<String, dynamic> _designation(SeanceDelegue seance) => {
+  static Map<String, dynamic> designationDe(SeanceDelegue seance) => {
         for (final MapEntry(:key, :value) in seance.designation.entries)
           if (value != null) key: '$value',
       };
@@ -362,7 +362,7 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
   Future<FeuilleAppel> feuilleAppel(SeanceDelegue seance) async =>
       FeuilleAppel.depuisJson(await _client.get<Map<String, dynamic>>(
           RoutesEtudiant.delegationAppel,
-          query: _designation(seance)));
+          query: designationDe(seance)));
 
   /// Enregistre l'appel : seuls les absents sont cochés, le relevé qui en
   /// sort est pourtant un appel complet. `position` quand elle est exigée.
@@ -374,7 +374,7 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
       _detail(await _client.post<Map<String, dynamic>>(
         RoutesEtudiant.delegationAppel,
         donnees: {
-          ..._designation(seance),
+          ...designationDe(seance),
           'absents': absents,
           ...?position?.champs,
         },
@@ -383,7 +383,7 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
   Future<FeuilleCahier> feuilleCahier(SeanceDelegue seance) async =>
       FeuilleCahier.depuisJson(await _client.get<Map<String, dynamic>>(
           RoutesEtudiant.delegationCahier,
-          query: _designation(seance)));
+          query: designationDe(seance)));
 
   /// Tient le cahier : réponses d'activité et séances du plan faites. Le
   /// contenu prévu n'est jamais envoyé, le serveur le reprend du plan.
@@ -396,7 +396,7 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
       _detail(await _client.post<Map<String, dynamic>>(
         RoutesEtudiant.delegationCahier,
         donnees: {
-          ..._designation(seance),
+          ...designationDe(seance),
           ...activites,
           'blocs': [
             for (final id in seancesFaites) {'programme_fait': id},
@@ -404,6 +404,21 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
           ...?position?.champs,
         },
       ));
+
+  /// Tout ce qu'il faut pour tenir la semaine sans réseau.
+  Future<Map<String, dynamic>> paquetHorsLigne() =>
+      _client.get<Map<String, dynamic>>(RoutesEtudiant.delegationHorsLigne);
+
+  /// Ce que le téléphone a recueilli : un résultat par saisie. `immediate` :
+  /// le délégué est devant son écran et peut corriger un refus.
+  Future<Map<String, dynamic>> synchroniserSaisies(
+    List<Map<String, dynamic>> saisies, {
+    required bool immediate,
+  }) =>
+      _client.post<Map<String, dynamic>>(
+        RoutesEtudiant.delegationSynchroniser,
+        donnees: {'saisies': saisies, 'immediate': immediate},
+      );
 
   /// Le principal ouvre ou referme l'appel à un assistant.
   Future<String> autoriserAssistant(int id, {required bool peutFaireAppel}) async =>

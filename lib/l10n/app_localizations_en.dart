@@ -3143,4 +3143,158 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commentaireSujetAide => 'Permitted materials, remarks…';
+
+  @override
+  String get informationsPersonnelles => 'Personal information';
+
+  @override
+  String get coordonneesEtUrgence => 'Contact details and emergency contact';
+
+  @override
+  String get informationsProfessionnelles => 'Professional information';
+
+  @override
+  String get dossierAideProfessionnel =>
+      'Your academic background determines which courses can be assigned to you; the office revalidates your fields after any change.';
+
+  @override
+  String get dossierTenuParLeService =>
+      'The academic monitoring office is informed of your changes. Rank, department, fields and courses are set by the office: contact it if any of them is wrong.';
+
+  @override
+  String get ajouterUnDiplome => 'Add a degree';
+
+  @override
+  String get modifierLeDiplome => 'Edit degree';
+
+  @override
+  String get ajouterUneCertification => 'Add a certification';
+
+  @override
+  String get modifierLaCertification => 'Edit certification';
+
+  @override
+  String get ajouterUneExperience => 'Add an experience';
+
+  @override
+  String get modifierLExperience => 'Edit experience';
+
+  @override
+  String get supprimerCetteLigne => 'Delete this entry?';
+
+  @override
+  String get supprimerCetteLigneTexte =>
+      'It will be removed from your file, along with its supporting document.';
+
+  @override
+  String get changerLaPhoto => 'Change photo';
+
+  @override
+  String get ajouterUnePhoto => 'Add a photo';
+
+  @override
+  String get photoDossierAide => 'Recent ID photo, in JPG or PNG format.';
+
+  @override
+  String get pieceDejaDeposee =>
+      'A file is already on record: choose another one to replace it.';
+
+  @override
+  String get retirerLeFichierActuel => 'Remove the current file';
+
+  @override
+  String get fichierRetireALEnregistrement =>
+      'The current file will be removed when you save.';
+
+  @override
+  String get conserverLeFichier => 'Keep it';
+
+  @override
+  String get effacerLaSelection => 'Clear selection';
+
+  @override
+  String get rechercherDansLaListe => 'Search the list';
+
+  @override
+  String get aucunChoixTrouve => 'No matching choice.';
+
+  @override
+  String get cursusAcademique => 'Academic background';
+
+  @override
+  String get telephoneSecondaire => 'Second phone';
+
+  @override
+  String get disponibleHorsLigne => 'Available offline';
+
+  @override
+  String get horsLigne => 'Offline';
+
+  @override
+  String get envoyerMaintenant => 'Send now';
+
+  @override
+  String get saisieEnAttenteEnvoi => 'On this phone, waiting to be sent';
+
+  @override
+  String get saisieTransmise => 'Sent';
+
+  @override
+  String get saisieAArbitrer => 'Awaiting a decision from the office';
+
+  @override
+  String get saisieEcartee => 'Set aside by the office';
+
+  @override
+  String get saisieRefusee => 'Refused, to be redone';
+
+  @override
+  String get saisieGardeeSurLeTelephone =>
+      'Saved on this phone. It will be sent automatically as soon as the network is back.';
+
+  @override
+  String get saisieTransmiseAuService =>
+      'Sent to the office, which will decide.';
+
+  @override
+  String get saisieEnregistree => 'Saved and sent.';
+
+  @override
+  String horsLigneJusquAu(String date) {
+    return 'Until $date';
+  }
+
+  @override
+  String horsLigneMisAJour(String date) {
+    return 'Updated on $date';
+  }
+
+  @override
+  String saisiesAEnvoyer(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: '$nombre entries to send',
+      one: '1 entry to send',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deconnexionAvecSaisies(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other:
+          '$nombre entries have not been sent yet: they will wait for your next sign-in and will not be sent until then. Sign out anyway?',
+      one:
+          '1 entry has not been sent yet: it will wait for your next sign-in and will not be sent until then. Sign out anyway?',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String positionTropImprecise(int precision, int max) {
+    return 'Position too imprecise ($precision m, $max m at most). Move closer to a window or go outside, then try again.';
+  }
 }

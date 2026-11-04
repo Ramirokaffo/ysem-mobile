@@ -1,6 +1,7 @@
 import '../../../core/models/agenda.dart';
 import '../../../core/models/enseignant.dart';
 import '../../../core/models/json.dart';
+import 'dossier.dart';
 
 export '../../../core/models/agenda.dart';
 export '../../../core/models/enseignant.dart';
@@ -87,6 +88,7 @@ class TableauDeBordEnseignant {
 /// Un diplôme du cursus.
 class LigneCursus {
   const LigneCursus({
+    this.id = 0,
     required this.diplome,
     this.specialisation = '',
     this.etablissement = '',
@@ -95,6 +97,7 @@ class LigneCursus {
     this.justificatif = false,
   });
 
+  final int id;
   final String diplome;
   final String specialisation;
   final String etablissement;
@@ -103,6 +106,7 @@ class LigneCursus {
   final bool justificatif;
 
   factory LigneCursus.depuisJson(Json json) => LigneCursus(
+        id: json.entier('id') ?? 0,
         diplome: json.texteOuNul('diplome_libelle') ?? json.texte('diplome'),
         specialisation: json.texte('specialization'),
         etablissement: json.texte('establishment'),
@@ -115,18 +119,21 @@ class LigneCursus {
 /// Une certification.
 class LigneCertification {
   const LigneCertification({
+    this.id = 0,
     required this.intitule,
     this.organisme = '',
     this.annee,
     this.domaine = '',
   });
 
+  final int id;
   final String intitule;
   final String organisme;
   final int? annee;
   final String domaine;
 
   factory LigneCertification.depuisJson(Json json) => LigneCertification(
+        id: json.entier('id') ?? 0,
         intitule: json.texte('title'),
         organisme: json.texte('organisme'),
         annee: json.entier('year_obtained'),
@@ -138,6 +145,7 @@ class LigneCertification {
 /// (`company`, `position`).
 class LigneExperience {
   const LigneExperience({
+    this.id = 0,
     required this.organisme,
     this.poste = '',
     this.annees = 0,
@@ -148,6 +156,7 @@ class LigneExperience {
     this.fin,
   });
 
+  final int id;
   final String organisme;
   final String poste;
   final int annees;
@@ -158,6 +167,7 @@ class LigneExperience {
   final DateTime? fin;
 
   factory LigneExperience.depuisJson(Json json) => LigneExperience(
+        id: json.entier('id') ?? 0,
         organisme: json.texteOuNul('establishment') ?? json.texte('company'),
         poste: json.texte('position'),
         annees: json.entier('years') ?? 0,
@@ -210,6 +220,7 @@ class DossierEnseignant {
     this.domaines = const [],
     this.coursProposes = const [],
     this.piecesACompleter = const [],
+    this.formulaires,
   });
 
   final Enseignant enseignant;
@@ -236,6 +247,10 @@ class DossierEnseignant {
 
   /// Ce que le dossier attend encore — signalé, jamais opposé.
   final List<String> piecesACompleter;
+
+  /// De quoi composer les écrans de saisie ; `null` face à un serveur qui ne
+  /// les rend pas encore, et le dossier reste alors en lecture.
+  final FormulairesDossier? formulaires;
 
   factory DossierEnseignant.depuisJson(Json json) {
     final d = json.objet('dossier') ?? const {};
@@ -285,6 +300,7 @@ class DossierEnseignant {
       piecesACompleter: pieces is List
           ? [for (final p in pieces) p.toString()]
           : const [],
+      formulaires: FormulairesDossier.depuisJson(json),
     );
   }
 }

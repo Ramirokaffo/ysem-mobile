@@ -55,6 +55,8 @@ class RoutesEtudiant {
   static const delegation = 'delegation/';
   static const delegationAppel = 'delegation/appel/';
   static const delegationCahier = 'delegation/cahier/';
+  static const delegationHorsLigne = 'delegation/hors-ligne/';
+  static const delegationSynchroniser = 'delegation/synchroniser/';
   static String delegationAssistant(int id) =>
       'delegation/assistants/$id/appel/';
 

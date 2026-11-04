@@ -1,0 +1,19 @@
+name: horloge_monotone
+description: "Compteur interne de l'appareil, que changer l'heure du téléphone ne touche pas."
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.11.5
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: education.ysem.horloge_monotone
+        pluginClass: HorlogeMonotonePlugin

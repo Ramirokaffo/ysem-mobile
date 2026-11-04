@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -16,6 +17,7 @@ import '../../commun/fil/fil.dart';
 import '../../commun/piece_jointe.dart';
 import '../domain/cours.dart';
 import '../domain/documents.dart';
+import '../domain/dossier.dart';
 import '../domain/epreuves.dart';
 import '../domain/feuilles.dart';
 import '../domain/modeles.dart';
@@ -45,6 +47,33 @@ class EnseignantRepository implements DepotEspace, DepotDiscussions {
   /// Le dossier (réservé aux recrutés : 403 `reserve_aux_recrutes` sinon).
   Future<DossierEnseignant> dossier() async => DossierEnseignant.depuisJson(
       await _client.get<Map<String, dynamic>>(RoutesEnseignant.profil));
+
+  /// Met à jour le dossier avec les formulaires du web : un champ absent garde
+  /// sa valeur, une ligne absente reste telle quelle. Avec des fichiers,
+  /// l'envoi passe en multipart et les listes s'y postent en JSON.
+  Future<ResultatDossier> modifierDossier(
+    Map<String, dynamic> corps, {
+    Map<String, PieceAJoindre> fichiers = const {},
+  }) async {
+    final Object donnees;
+    if (fichiers.isEmpty) {
+      donnees = corps;
+    } else {
+      final formulaire = FormData();
+      for (final MapEntry(:key, :value) in corps.entries) {
+        formulaire.fields
+            .add(MapEntry(key, value is List ? jsonEncode(value) : '$value'));
+      }
+      for (final MapEntry(:key, :value) in fichiers.entries) {
+        formulaire.files.add(MapEntry(key, value.versMultipart()));
+      }
+      donnees = formulaire;
+    }
+    return ResultatDossier.depuisJson(await _client.post<Map<String, dynamic>>(
+      RoutesEnseignant.profilModifier,
+      donnees: donnees,
+    ));
+  }
 
   /// La photo du dossier, servie par une vue gardée par le jeton : elle ne
   /// se charge donc pas par une simple adresse. `null` sans photo.

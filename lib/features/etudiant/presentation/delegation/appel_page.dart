@@ -4,11 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/charte/charte.dart';
 import '../../../../core/format/formats.dart';
 import '../../../../core/network/api_exception.dart';
-import '../../../../core/providers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../commun/formulaire.dart';
 import '../../../commun/langue.dart';
 import '../../domain/delegation.dart';
+import '../../hors_ligne/providers.dart';
+import 'message_saisie.dart';
 import 'releve_position.dart';
 
 /// La feuille d'appel d'une séance : toute la cohorte attendue, et l'on ne
@@ -25,11 +26,13 @@ class AppelPage extends ConsumerStatefulWidget {
 }
 
 class _AppelPageState extends ConsumerState<AppelPage> {
-  late Future<FeuilleAppel> _feuille =
-      ref.read(etudiantRepositoryProvider).feuilleAppel(widget.seance);
+  late Future<FeuilleAppel> _feuille = _charger();
   Set<int>? _absents;
   bool _envoi = false;
   ApiException? _erreur;
+
+  Future<FeuilleAppel> _charger() async =>
+      (await ref.read(depotDelegationProvider.future)).feuilleAppel(widget.seance);
 
   Future<void> _enregistrer(FeuilleAppel feuille) async {
     final t = AppLocalizations.of(context);
@@ -41,20 +44,27 @@ class _AppelPageState extends ConsumerState<AppelPage> {
       action: t.enregistrer,
     );
     if (!ok || !mounted) return;
-    final (continuer, position) =
-        await positionPourEnvoi(context, feuille.positionExigee);
+    final depot = await ref.read(depotDelegationProvider.future);
+    final precisionMax = await depot.precisionMax(widget.seance);
+    if (!mounted) return;
+    final (continuer, position) = await positionPourEnvoi(
+      context,
+      feuille.positionExigee,
+      precisionMax: precisionMax,
+      sansReseau: ref.read(reseauProvider).valueOrNull == false,
+    );
     if (!continuer || !mounted) return;
     setState(() {
       _envoi = true;
       _erreur = null;
     });
     try {
-      final message = await ref.read(etudiantRepositoryProvider).enregistrerAppel(
-            widget.seance,
-            absents: absents.toList(),
-            position: position,
-          );
-      if (mounted) Navigator.of(context).pop(message);
+      final issue = await depot.enregistrerAppel(
+        widget.seance,
+        absents: absents.toList(),
+        position: position,
+      );
+      if (mounted) Navigator.of(context).pop(messageDeSaisie(t, issue));
     } on ApiException catch (e) {
       if (mounted) {
         setState(() {
@@ -80,9 +90,7 @@ class _AppelPageState extends ConsumerState<AppelPage> {
           if (instantane.hasError) {
             return EtatErreur(
               erreur: instantane.error!,
-              surReessayer: () => setState(() => _feuille = ref
-                  .read(etudiantRepositoryProvider)
-                  .feuilleAppel(widget.seance)),
+              surReessayer: () => setState(() => _feuille = _charger()),
             );
           }
           final feuille = instantane.data;

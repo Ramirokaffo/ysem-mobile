@@ -5023,6 +5023,252 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Matériel autorisé, remarques…'**
   String get commentaireSujetAide;
+
+  /// No description provided for @informationsPersonnelles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations personnelles'**
+  String get informationsPersonnelles;
+
+  /// No description provided for @coordonneesEtUrgence.
+  ///
+  /// In fr, this message translates to:
+  /// **'Coordonnées et contact d\'urgence'**
+  String get coordonneesEtUrgence;
+
+  /// No description provided for @informationsProfessionnelles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations professionnelles'**
+  String get informationsProfessionnelles;
+
+  /// No description provided for @dossierAideProfessionnel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre cursus conditionne les cours qui peuvent vous être confiés ; le service revalide vos domaines après tout changement.'**
+  String get dossierAideProfessionnel;
+
+  /// No description provided for @dossierTenuParLeService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le service de suivi académique est informé de vos modifications. Le grade, le département, les domaines et les cours sont fixés par le service : contactez-le si l\'un d\'eux est inexact.'**
+  String get dossierTenuParLeService;
+
+  /// No description provided for @ajouterUnDiplome.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un diplôme'**
+  String get ajouterUnDiplome;
+
+  /// No description provided for @modifierLeDiplome.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le diplôme'**
+  String get modifierLeDiplome;
+
+  /// No description provided for @ajouterUneCertification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une certification'**
+  String get ajouterUneCertification;
+
+  /// No description provided for @modifierLaCertification.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier la certification'**
+  String get modifierLaCertification;
+
+  /// No description provided for @ajouterUneExperience.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une expérience'**
+  String get ajouterUneExperience;
+
+  /// No description provided for @modifierLExperience.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier l\'expérience'**
+  String get modifierLExperience;
+
+  /// No description provided for @supprimerCetteLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer cette ligne ?'**
+  String get supprimerCetteLigne;
+
+  /// No description provided for @supprimerCetteLigneTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Elle sera retirée de votre dossier, avec sa pièce justificative.'**
+  String get supprimerCetteLigneTexte;
+
+  /// No description provided for @changerLaPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer la photo'**
+  String get changerLaPhoto;
+
+  /// No description provided for @ajouterUnePhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une photo'**
+  String get ajouterUnePhoto;
+
+  /// No description provided for @photoDossierAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Photo d\'identité récente, au format JPG ou PNG.'**
+  String get photoDossierAide;
+
+  /// No description provided for @pieceDejaDeposee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier déjà déposé : choisissez-en un autre pour le remplacer.'**
+  String get pieceDejaDeposee;
+
+  /// No description provided for @retirerLeFichierActuel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer le fichier actuel'**
+  String get retirerLeFichierActuel;
+
+  /// No description provided for @fichierRetireALEnregistrement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le fichier actuel sera retiré à l\'enregistrement.'**
+  String get fichierRetireALEnregistrement;
+
+  /// No description provided for @conserverLeFichier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le conserver'**
+  String get conserverLeFichier;
+
+  /// No description provided for @effacerLaSelection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer la sélection'**
+  String get effacerLaSelection;
+
+  /// No description provided for @rechercherDansLaListe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher dans la liste'**
+  String get rechercherDansLaListe;
+
+  /// No description provided for @aucunChoixTrouve.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun choix ne correspond.'**
+  String get aucunChoixTrouve;
+
+  /// No description provided for @cursusAcademique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cursus académique'**
+  String get cursusAcademique;
+
+  /// No description provided for @telephoneSecondaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Second téléphone'**
+  String get telephoneSecondaire;
+
+  /// No description provided for @disponibleHorsLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponible hors ligne'**
+  String get disponibleHorsLigne;
+
+  /// No description provided for @horsLigne.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors ligne'**
+  String get horsLigne;
+
+  /// No description provided for @envoyerMaintenant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer maintenant'**
+  String get envoyerMaintenant;
+
+  /// No description provided for @saisieEnAttenteEnvoi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sur le téléphone, en attente d\'envoi'**
+  String get saisieEnAttenteEnvoi;
+
+  /// No description provided for @saisieTransmise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmis'**
+  String get saisieTransmise;
+
+  /// No description provided for @saisieAArbitrer.
+  ///
+  /// In fr, this message translates to:
+  /// **'À arbitrer par le service'**
+  String get saisieAArbitrer;
+
+  /// No description provided for @saisieEcartee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écartée par le service'**
+  String get saisieEcartee;
+
+  /// No description provided for @saisieRefusee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refusée, à refaire'**
+  String get saisieRefusee;
+
+  /// No description provided for @saisieGardeeSurLeTelephone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistré sur le téléphone. L\'envoi se fera tout seul dès le retour du réseau.'**
+  String get saisieGardeeSurLeTelephone;
+
+  /// No description provided for @saisieTransmiseAuService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmis au service, qui va trancher.'**
+  String get saisieTransmiseAuService;
+
+  /// No description provided for @saisieEnregistree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistré et transmis.'**
+  String get saisieEnregistree;
+
+  /// No description provided for @horsLigneJusquAu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jusqu\'au {date}'**
+  String horsLigneJusquAu(String date);
+
+  /// No description provided for @horsLigneMisAJour.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mis à jour le {date}'**
+  String horsLigneMisAJour(String date);
+
+  /// No description provided for @saisiesAEnvoyer.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{1 saisie à envoyer} other{{nombre} saisies à envoyer}}'**
+  String saisiesAEnvoyer(int nombre);
+
+  /// No description provided for @deconnexionAvecSaisies.
+  ///
+  /// In fr, this message translates to:
+  /// **'{nombre, plural, =1{1 saisie n\'a pas encore été envoyée : elle attendra votre prochaine connexion et ne partira pas d\'ici là. Vous déconnecter quand même ?} other{{nombre} saisies n\'ont pas encore été envoyées : elles attendront votre prochaine connexion et ne partiront pas d\'ici là. Vous déconnecter quand même ?}}'**
+  String deconnexionAvecSaisies(int nombre);
+
+  /// No description provided for @positionTropImprecise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Position trop imprécise ({precision} m, {max} m au plus). Rapprochez-vous d\'une fenêtre ou sortez à découvert, puis réessayez.'**
+  String positionTropImprecise(int precision, int max);
 }
 
 class _AppLocalizationsDelegate

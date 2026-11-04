@@ -15,7 +15,8 @@ class Env {
 
   static const String apiBaseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'http://192.168.1.20:8002',
+    defaultValue: 'https://test.ysem.education',
+    // defaultValue: 'http://192.168.1.20:8002',
   );
 
   /// Journalise les requêtes HTTP dans la console (jamais les en-têtes

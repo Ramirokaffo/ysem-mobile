@@ -93,7 +93,9 @@ class ChampDate extends StatelessWidget {
     required this.derniere,
     this.icone = Icons.event_rounded,
     this.erreur,
+    this.aide,
     this.effacable = false,
+    this.modeInitial = DatePickerMode.day,
   });
 
   final String libelle;
@@ -103,7 +105,12 @@ class ChampDate extends StatelessWidget {
   final DateTime derniere;
   final IconData icone;
   final String? erreur;
+  final String? aide;
   final bool effacable;
+
+  /// `year` pour une date lointaine : une date de naissance ne se cherche pas
+  /// mois après mois.
+  final DatePickerMode modeInitial;
 
   Future<void> _choisir(BuildContext context) async {
     final depart = valeur ?? DateTime.now();
@@ -116,6 +123,7 @@ class ChampDate extends StatelessWidget {
               : depart,
       firstDate: premiere,
       lastDate: derniere,
+      initialDatePickerMode: modeInitial,
     );
     if (choisie != null) surChoix(choisie);
   }
@@ -133,6 +141,8 @@ class ChampDate extends StatelessWidget {
           prefixIcon: Icon(icone),
           errorText: erreur,
           errorMaxLines: 3,
+          helperText: aide,
+          helperMaxLines: 3,
           suffixIcon: effacable && valeur != null
               ? IconButton(
                   tooltip: t.effacer,

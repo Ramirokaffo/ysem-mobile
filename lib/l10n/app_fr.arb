@@ -1870,5 +1870,84 @@
   "fichiersCorrigeExige": "Fichiers du corrigé (exigé)",
   "fichiersCorrigeFacultatif": "Fichiers du corrigé (facultatif)",
   "dureeProposeeMinutes": "Durée proposée (min)",
-  "commentaireSujetAide": "Matériel autorisé, remarques…"
+  "commentaireSujetAide": "Matériel autorisé, remarques…",
+  "informationsPersonnelles": "Informations personnelles",
+  "coordonneesEtUrgence": "Coordonnées et contact d'urgence",
+  "informationsProfessionnelles": "Informations professionnelles",
+  "dossierAideProfessionnel": "Votre cursus conditionne les cours qui peuvent vous être confiés ; le service revalide vos domaines après tout changement.",
+  "dossierTenuParLeService": "Le service de suivi académique est informé de vos modifications. Le grade, le département, les domaines et les cours sont fixés par le service : contactez-le si l'un d'eux est inexact.",
+  "ajouterUnDiplome": "Ajouter un diplôme",
+  "modifierLeDiplome": "Modifier le diplôme",
+  "ajouterUneCertification": "Ajouter une certification",
+  "modifierLaCertification": "Modifier la certification",
+  "ajouterUneExperience": "Ajouter une expérience",
+  "modifierLExperience": "Modifier l'expérience",
+  "supprimerCetteLigne": "Supprimer cette ligne ?",
+  "supprimerCetteLigneTexte": "Elle sera retirée de votre dossier, avec sa pièce justificative.",
+  "changerLaPhoto": "Changer la photo",
+  "ajouterUnePhoto": "Ajouter une photo",
+  "photoDossierAide": "Photo d'identité récente, au format JPG ou PNG.",
+  "pieceDejaDeposee": "Fichier déjà déposé : choisissez-en un autre pour le remplacer.",
+  "retirerLeFichierActuel": "Retirer le fichier actuel",
+  "fichierRetireALEnregistrement": "Le fichier actuel sera retiré à l'enregistrement.",
+  "conserverLeFichier": "Le conserver",
+  "effacerLaSelection": "Effacer la sélection",
+  "rechercherDansLaListe": "Rechercher dans la liste",
+  "aucunChoixTrouve": "Aucun choix ne correspond.",
+  "cursusAcademique": "Cursus académique",
+  "telephoneSecondaire": "Second téléphone",
+  "disponibleHorsLigne": "Disponible hors ligne",
+  "horsLigne": "Hors ligne",
+  "envoyerMaintenant": "Envoyer maintenant",
+  "saisieEnAttenteEnvoi": "Sur le téléphone, en attente d'envoi",
+  "saisieTransmise": "Transmis",
+  "saisieAArbitrer": "À arbitrer par le service",
+  "saisieEcartee": "Écartée par le service",
+  "saisieRefusee": "Refusée, à refaire",
+  "saisieGardeeSurLeTelephone": "Enregistré sur le téléphone. L'envoi se fera tout seul dès le retour du réseau.",
+  "saisieTransmiseAuService": "Transmis au service, qui va trancher.",
+  "saisieEnregistree": "Enregistré et transmis.",
+  "horsLigneJusquAu": "Jusqu'au {date}",
+  "@horsLigneJusquAu": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "horsLigneMisAJour": "Mis à jour le {date}",
+  "@horsLigneMisAJour": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "saisiesAEnvoyer": "{nombre, plural, =1{1 saisie à envoyer} other{{nombre} saisies à envoyer}}",
+  "@saisiesAEnvoyer": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "deconnexionAvecSaisies": "{nombre, plural, =1{1 saisie n'a pas encore été envoyée : elle attendra votre prochaine connexion et ne partira pas d'ici là. Vous déconnecter quand même ?} other{{nombre} saisies n'ont pas encore été envoyées : elles attendront votre prochaine connexion et ne partiront pas d'ici là. Vous déconnecter quand même ?}}",
+  "@deconnexionAvecSaisies": {
+    "placeholders": {
+      "nombre": {
+        "type": "int"
+      }
+    }
+  },
+  "positionTropImprecise": "Position trop imprécise ({precision} m, {max} m au plus). Rapprochez-vous d'une fenêtre ou sortez à découvert, puis réessayez.",
+  "@positionTropImprecise": {
+    "placeholders": {
+      "precision": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  }
 }

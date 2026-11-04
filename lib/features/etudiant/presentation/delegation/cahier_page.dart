@@ -4,11 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../app/charte/charte.dart';
 import '../../../../core/format/formats.dart';
 import '../../../../core/network/api_exception.dart';
-import '../../../../core/providers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../commun/formulaire.dart';
 import '../../../commun/langue.dart';
 import '../../domain/delegation.dart';
+import '../../hors_ligne/providers.dart';
+import 'message_saisie.dart';
 import 'releve_position.dart';
 
 /// Le cahier de texte d'une séance : ce qui a été fait (séances du plan de
@@ -24,31 +25,41 @@ class CahierPage extends ConsumerStatefulWidget {
 }
 
 class _CahierPageState extends ConsumerState<CahierPage> {
-  late Future<FeuilleCahier> _feuille =
-      ref.read(etudiantRepositoryProvider).feuilleCahier(widget.seance);
+  late Future<FeuilleCahier> _feuille = _charger();
   List<int>? _faites;
   Map<String, String>? _activites;
   bool _envoi = false;
   ApiException? _erreur;
 
+  Future<FeuilleCahier> _charger() async =>
+      (await ref.read(depotDelegationProvider.future)).feuilleCahier(widget.seance);
+
   Future<void> _enregistrer(FeuilleCahier feuille) async {
-    final (continuer, position) =
-        await positionPourEnvoi(context, feuille.positionExigee);
+    final t = AppLocalizations.of(context);
+    final depot = await ref.read(depotDelegationProvider.future);
+    final precisionMax = await depot.precisionMax(widget.seance);
+    if (!mounted) return;
+    final (continuer, position) = await positionPourEnvoi(
+      context,
+      feuille.positionExigee,
+      precisionMax: precisionMax,
+      sansReseau: ref.read(reseauProvider).valueOrNull == false,
+    );
     if (!continuer || !mounted) return;
     setState(() {
       _envoi = true;
       _erreur = null;
     });
     try {
-      final message = await ref.read(etudiantRepositoryProvider).enregistrerCahier(
-            widget.seance,
-            activites: {
-              for (final g in feuille.groupes) g.champ: _activites![g.champ] ?? '',
-            },
-            seancesFaites: _faites!,
-            position: position,
-          );
-      if (mounted) Navigator.of(context).pop(message);
+      final issue = await depot.enregistrerCahier(
+        widget.seance,
+        activites: {
+          for (final g in feuille.groupes) g.champ: _activites![g.champ] ?? '',
+        },
+        seancesFaites: _faites!,
+        position: position,
+      );
+      if (mounted) Navigator.of(context).pop(messageDeSaisie(t, issue));
     } on ApiException catch (e) {
       if (mounted) {
         setState(() {
@@ -74,9 +85,7 @@ class _CahierPageState extends ConsumerState<CahierPage> {
           if (instantane.hasError) {
             return EtatErreur(
               erreur: instantane.error!,
-              surReessayer: () => setState(() => _feuille = ref
-                  .read(etudiantRepositoryProvider)
-                  .feuilleCahier(widget.seance)),
+              surReessayer: () => setState(() => _feuille = _charger()),
             );
           }
           final feuille = instantane.data;

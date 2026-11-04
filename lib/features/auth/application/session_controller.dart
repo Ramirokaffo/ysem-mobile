@@ -6,6 +6,8 @@ import '../../../core/models/etudiant.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/providers.dart';
 import '../data/auth_repository.dart';
+import '../../etudiant/hors_ligne/providers.dart';
+import '../../etudiant/hors_ligne/tache_de_fond.dart';
 
 /// Session ouverte dans l'application.
 class Session {
@@ -56,7 +58,11 @@ class SessionController extends AsyncNotifier<Session?> {
     if (espace == null) return null;
 
     final jetons = await stockage.lire(espace);
-    if (jetons == null || jetons.rafraichissementExpire) {
+    // Sans réseau, le délégué qui emporte sa semaine ne pourrait pas se
+    // reconnecter : sa session expirée reste ouverte le temps qu'il rentre,
+    // et le serveur la fermera au premier contact. Ses saisies l'attendent.
+    final enSursis = espace == Espace.etudiant && await _aUnPaquet();
+    if (jetons == null || (jetons.rafraichissementExpire && !enSursis)) {
       await stockage.effacer(espace);
       return null;
     }
@@ -77,6 +83,11 @@ class SessionController extends AsyncNotifier<Session?> {
       await stockage.effacer(espace);
       return null;
     }
+  }
+
+  Future<bool> _aUnPaquet() async {
+    final base = await ref.read(baseHorsLigneProvider.future);
+    return await base?.aUnPaquet() ?? false;
   }
 
   /// À appeler après une [ConnexionOuverte] du dépôt d'authentification.
@@ -110,6 +121,12 @@ class SessionController extends AsyncNotifier<Session?> {
     final session = state.valueOrNull;
     if (session != null) {
       await ref.read(authRepositoryProvider(session.espace)).deconnexion();
+    }
+    if (session?.espace == Espace.etudiant) {
+      // La liste de la classe ne reste pas sur le téléphone ; les saisies non
+      // envoyées, si : elles attendent le retour du même compte.
+      await (await ref.read(baseHorsLigneProvider.future))?.oublierPaquet();
+      await arreterTacheDeFond();
     }
     state = const AsyncData(null);
   }

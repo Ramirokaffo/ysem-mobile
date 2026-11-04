@@ -3187,4 +3187,159 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get commentaireSujetAide => 'Matériel autorisé, remarques…';
+
+  @override
+  String get informationsPersonnelles => 'Informations personnelles';
+
+  @override
+  String get coordonneesEtUrgence => 'Coordonnées et contact d\'urgence';
+
+  @override
+  String get informationsProfessionnelles => 'Informations professionnelles';
+
+  @override
+  String get dossierAideProfessionnel =>
+      'Votre cursus conditionne les cours qui peuvent vous être confiés ; le service revalide vos domaines après tout changement.';
+
+  @override
+  String get dossierTenuParLeService =>
+      'Le service de suivi académique est informé de vos modifications. Le grade, le département, les domaines et les cours sont fixés par le service : contactez-le si l\'un d\'eux est inexact.';
+
+  @override
+  String get ajouterUnDiplome => 'Ajouter un diplôme';
+
+  @override
+  String get modifierLeDiplome => 'Modifier le diplôme';
+
+  @override
+  String get ajouterUneCertification => 'Ajouter une certification';
+
+  @override
+  String get modifierLaCertification => 'Modifier la certification';
+
+  @override
+  String get ajouterUneExperience => 'Ajouter une expérience';
+
+  @override
+  String get modifierLExperience => 'Modifier l\'expérience';
+
+  @override
+  String get supprimerCetteLigne => 'Supprimer cette ligne ?';
+
+  @override
+  String get supprimerCetteLigneTexte =>
+      'Elle sera retirée de votre dossier, avec sa pièce justificative.';
+
+  @override
+  String get changerLaPhoto => 'Changer la photo';
+
+  @override
+  String get ajouterUnePhoto => 'Ajouter une photo';
+
+  @override
+  String get photoDossierAide =>
+      'Photo d\'identité récente, au format JPG ou PNG.';
+
+  @override
+  String get pieceDejaDeposee =>
+      'Fichier déjà déposé : choisissez-en un autre pour le remplacer.';
+
+  @override
+  String get retirerLeFichierActuel => 'Retirer le fichier actuel';
+
+  @override
+  String get fichierRetireALEnregistrement =>
+      'Le fichier actuel sera retiré à l\'enregistrement.';
+
+  @override
+  String get conserverLeFichier => 'Le conserver';
+
+  @override
+  String get effacerLaSelection => 'Effacer la sélection';
+
+  @override
+  String get rechercherDansLaListe => 'Rechercher dans la liste';
+
+  @override
+  String get aucunChoixTrouve => 'Aucun choix ne correspond.';
+
+  @override
+  String get cursusAcademique => 'Cursus académique';
+
+  @override
+  String get telephoneSecondaire => 'Second téléphone';
+
+  @override
+  String get disponibleHorsLigne => 'Disponible hors ligne';
+
+  @override
+  String get horsLigne => 'Hors ligne';
+
+  @override
+  String get envoyerMaintenant => 'Envoyer maintenant';
+
+  @override
+  String get saisieEnAttenteEnvoi => 'Sur le téléphone, en attente d\'envoi';
+
+  @override
+  String get saisieTransmise => 'Transmis';
+
+  @override
+  String get saisieAArbitrer => 'À arbitrer par le service';
+
+  @override
+  String get saisieEcartee => 'Écartée par le service';
+
+  @override
+  String get saisieRefusee => 'Refusée, à refaire';
+
+  @override
+  String get saisieGardeeSurLeTelephone =>
+      'Enregistré sur le téléphone. L\'envoi se fera tout seul dès le retour du réseau.';
+
+  @override
+  String get saisieTransmiseAuService =>
+      'Transmis au service, qui va trancher.';
+
+  @override
+  String get saisieEnregistree => 'Enregistré et transmis.';
+
+  @override
+  String horsLigneJusquAu(String date) {
+    return 'Jusqu\'au $date';
+  }
+
+  @override
+  String horsLigneMisAJour(String date) {
+    return 'Mis à jour le $date';
+  }
+
+  @override
+  String saisiesAEnvoyer(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other: '$nombre saisies à envoyer',
+      one: '1 saisie à envoyer',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deconnexionAvecSaisies(int nombre) {
+    String _temp0 = intl.Intl.pluralLogic(
+      nombre,
+      locale: localeName,
+      other:
+          '$nombre saisies n\'ont pas encore été envoyées : elles attendront votre prochaine connexion et ne partiront pas d\'ici là. Vous déconnecter quand même ?',
+      one:
+          '1 saisie n\'a pas encore été envoyée : elle attendra votre prochaine connexion et ne partira pas d\'ici là. Vous déconnecter quand même ?',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String positionTropImprecise(int precision, int max) {
+    return 'Position trop imprécise ($precision m, $max m au plus). Rapprochez-vous d\'une fenêtre ou sortez à découvert, puis réessayez.';
+  }
 }
