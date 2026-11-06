@@ -20,6 +20,7 @@ import '../domain/discussions.dart';
 import '../domain/documents.dart';
 import '../domain/examens.dart';
 import '../domain/finances.dart';
+import '../domain/mobile_money.dart';
 import '../domain/messagerie.dart';
 import '../domain/modeles.dart';
 import '../domain/moratoires.dart';
@@ -213,6 +214,45 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
   Future<File> recuBanque(int id) => _client.telecharger(
       RoutesEtudiant.declarationRecuBanque(id),
       nomParDefaut: 'recu_banque_$id');
+
+  // --- Mobile Money -------------------------------------------------------
+
+  /// État et transactions de l'année. `montant` ajoute l'aperçu des frais :
+  /// c'est le serveur qui les calcule.
+  Future<MobileMoney> mobileMoney({int? montant}) async =>
+      MobileMoney.depuisJson(await _client.get<Map<String, dynamic>>(
+        RoutesEtudiant.mobileMoney,
+        query: montant == null ? null : {'montant': '$montant'},
+      ));
+
+  /// Ouvre la transaction et pousse l'invite sur le téléphone. Le serveur
+  /// attend l'agrégateur (20 s au plus) : le délai ordinaire ne suffirait pas.
+  Future<PaiementMobile> lancerPaiementMobile({
+    required int montant,
+    required String operateur,
+    required String telephone,
+    int? tranche,
+  }) async =>
+      PaiementMobile.depuisJson(await _client.post<Map<String, dynamic>>(
+        RoutesEtudiant.mobileMoney,
+        donnees: {
+          'montant': montant,
+          'operateur': operateur,
+          'telephone': telephone,
+          'installment': tranche == null ? '' : '$tranche',
+        },
+        delai: const Duration(seconds: 45),
+      ));
+
+  /// Relit une transaction ; le serveur interroge l'agrégateur si elle est
+  /// ouverte (au plus toutes les 10 s).
+  Future<PaiementMobile> paiementMobile(int id) async =>
+      PaiementMobile.depuisJson(await _client
+          .get<Map<String, dynamic>>(RoutesEtudiant.paiementMobile(id)));
+
+  Future<PaiementMobile> annulerPaiementMobile(int id) async =>
+      PaiementMobile.depuisJson(await _client
+          .post<Map<String, dynamic>>(RoutesEtudiant.paiementMobileAnnuler(id)));
 
   /// Un document désigné par le chemin que rend l'API (`recu_url`…).
   Future<File> documentDuChemin(String chemin, {String? nom}) =>

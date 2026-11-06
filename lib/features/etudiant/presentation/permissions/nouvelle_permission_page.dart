@@ -100,6 +100,8 @@ class _NouvellePermissionPageState
         _erreur = e;
         _envoi = false;
       });
+      // Les validateurs lisent `_erreur` et non une copie du dernier build :
+      // `validate()` part avant la reconstruction.
       _cle.currentState!.validate();
     }
   }
@@ -148,10 +150,9 @@ class _NouvellePermissionPageState
             Encadre(
                 icone: Icons.timer_outlined,
                 texte: t.preavisPermission(etat.preavisHeures!)),
-          if (erreur != null) ...[
-            const SizedBox(height: 16),
-            BandeauErreurs(messages: erreursGlobales(erreur, _champs)),
-          ],
+          EmplacementErreurs(
+            messages: erreur == null ? null : erreursGlobales(erreur, _champs),
+          ),
           const SizedBox(height: 20),
           Text(t.objetDeLaDemande, style: theme.textTheme.labelLarge),
           const SizedBox(height: 6),
@@ -186,7 +187,7 @@ class _NouvellePermissionPageState
             const SizedBox(height: 16),
             FormField<TimeOfDay>(
               validator: (_) =>
-                  erreur?.erreurDuChamp('heure_arrivee_prevue') ??
+                  _erreur?.erreurDuChamp('heure_arrivee_prevue') ??
                   (_arrivee == null ? t.heureArriveeRequise : null),
               builder: (champ) => InkWell(
                 onTap: _envoi ? null : _choisirArrivee,
@@ -234,7 +235,7 @@ class _NouvellePermissionPageState
               alignLabelWithHint: true,
             ),
             validator: (v) =>
-                erreur?.erreurDuChamp('motif_libre') ??
+                _erreur?.erreurDuChamp('motif_libre') ??
                 ((v ?? '').trim().isEmpty ? t.explicationRequise : null),
           ),
           const SizedBox(height: 16),

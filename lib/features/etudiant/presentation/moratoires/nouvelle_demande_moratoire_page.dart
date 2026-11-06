@@ -83,6 +83,8 @@ class _NouvelleDemandeMoratoirePageState
         _erreur = e;
         _envoi = false;
       });
+      // Les validateurs lisent `_erreur` et non une copie du dernier build :
+      // `validate()` part avant la reconstruction.
       _cle.currentState!.validate();
     }
   }
@@ -103,10 +105,9 @@ class _NouvelleDemandeMoratoirePageState
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
           children: [
             Encadre(texte: t.moratoireExplication),
-            if (erreur != null) ...[
-              const SizedBox(height: 16),
-              BandeauErreurs(messages: erreursGlobales(erreur, _champs)),
-            ],
+            EmplacementErreurs(
+              messages: erreur == null ? null : erreursGlobales(erreur, _champs),
+            ),
             const SizedBox(height: 20),
             TextFormField(
               controller: _montant,
@@ -133,7 +134,7 @@ class _NouvelleDemandeMoratoirePageState
                       ),
               ),
               validator: (v) {
-                final serveur = erreur?.erreurDuChamp('amount');
+                final serveur = _erreur?.erreurDuChamp('amount');
                 if (serveur != null) return serveur;
                 final montant = double.tryParse(_normaliser(v ?? ''));
                 if (montant == null || montant <= 0) return t.montantInvalide;
@@ -146,7 +147,7 @@ class _NouvelleDemandeMoratoirePageState
             const SizedBox(height: 16),
             FormField<DateTime>(
               validator: (_) =>
-                  erreur?.erreurDuChamp('requested_due_date') ??
+                  _erreur?.erreurDuChamp('requested_due_date') ??
                   (_date == null ? t.dateRequise : null),
               builder: (champ) => InkWell(
                 onTap: _envoi ? null : _choisirDate,
@@ -177,7 +178,7 @@ class _NouvelleDemandeMoratoirePageState
                 alignLabelWithHint: true,
               ),
               validator: (v) =>
-                  erreur?.erreurDuChamp('reason') ??
+                  _erreur?.erreurDuChamp('reason') ??
                   ((v ?? '').trim().isEmpty ? t.motifRequis : null),
             ),
             const SizedBox(height: 16),

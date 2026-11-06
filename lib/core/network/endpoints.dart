@@ -44,6 +44,10 @@ class RoutesEtudiant {
       'finances/declarations/$id/retirer/';
   static String declarationRecuBanque(int id) =>
       'finances/declarations/$id/recu-banque/';
+  static const mobileMoney = 'finances/mobile-money/';
+  static String paiementMobile(int id) => 'finances/mobile-money/$id/';
+  static String paiementMobileAnnuler(int id) =>
+      'finances/mobile-money/$id/annuler/';
   static const reinscription = 'reinscription/';
   static const moratoires = 'moratoires/';
   static String moratoireRetirer(int id) => 'moratoires/$id/retirer/';

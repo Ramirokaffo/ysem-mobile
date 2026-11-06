@@ -1949,5 +1949,47 @@
         "type": "int"
       }
     }
+  },
+  "payerParMobileMoney": "Payer par Mobile Money",
+  "paiementsMobileMoney": "Paiements Mobile Money",
+  "paiementMobileMoney": "Paiement Mobile Money",
+  "payerCetteTranche": "Payer cette tranche",
+  "mobileMoneyFerme": "Le paiement Mobile Money n'est pas ouvert pour le moment.",
+  "mobileMoneyTest": "Environnement de test : aucun argent réel n'est débité. Seuls les numéros de test sont acceptés : 670000000 (MTN) et 690000000 (Orange) réussissent, 670000001 (MTN) et 690000001 (Orange) échouent.",
+  "montantPayableMaintenant": "Montant payable maintenant",
+  "rienAPayerMobile": "Rien ne reste à payer pour l'année, versements en vérification compris.",
+  "operateur": "Opérateur",
+  "choisirOperateur": "Choisissez l'opérateur.",
+  "numeroMobileMoney": "Numéro Mobile Money",
+  "numeroMobileMoneyAide": "Le numéro qui sera débité : le vôtre, ou celui de qui paie pour vous.",
+  "numeroMobileMoneyInvalide": "Saisissez un numéro camerounais à neuf chiffres, commençant par 6.",
+  "montantARegler": "Montant à régler",
+  "montantRegle": "Montant réglé",
+  "fraisDeTransaction": "Frais de transaction",
+  "totalDebite": "Total débité",
+  "lancerLePaiement": "Lancer le paiement",
+  "inviteTelephone": "Une invite s'affichera sur le téléphone : validez-la avec votre code secret.",
+  "paiementDejaEnCours": "Un paiement attend son dénouement. Vous pourrez en lancer un autre ensuite.",
+  "suivreLePaiement": "Suivre le paiement",
+  "reponsePerdue": "La réponse du serveur n'est pas arrivée : le paiement est peut-être parti. Vérifiez ci-dessous et sur votre téléphone avant de relancer.",
+  "aucunPaiementMobile": "Aucun paiement Mobile Money cette année.",
+  "quitterEcranPaiement": "Vous pouvez quitter cet écran : le paiement se poursuit, et une notification vous préviendra de son dénouement.",
+  "annulerLePaiement": "Annuler le paiement",
+  "paiementAnnule": "Le paiement est annulé : rien n'a été débité.",
+  "lancePar": "Lancé par {nom}",
+  "@lancePar": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "annulerPaiementConfirmation": "Renoncer au paiement {reference} ? Rien ne sera débité.",
+  "@annulerPaiementConfirmation": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
   }
 }

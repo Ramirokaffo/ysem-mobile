@@ -83,6 +83,7 @@ class Reinscription {
     this.demandeur = '',
     this.premiereTranche = const PremiereTranche(),
     this.paiementEnLigneOuvert = false,
+    this.paiementMobileOuvert = false,
   });
 
   final AnneeAcademique? annee;
@@ -114,6 +115,7 @@ class Reinscription {
   final String demandeur;
   final PremiereTranche premiereTranche;
   final bool paiementEnLigneOuvert;
+  final bool paiementMobileOuvert;
 
   bool get aUneDemande => demandeStatut.isNotEmpty;
 
@@ -142,6 +144,7 @@ class Reinscription {
       demandeur: demande?.texte('demandeur') ?? '',
       premiereTranche: PremiereTranche.depuisJson(json.objet('premiere_tranche')),
       paiementEnLigneOuvert: json.booleen('paiement_en_ligne_ouvert'),
+      paiementMobileOuvert: json.booleen('paiement_mobile_ouvert'),
     );
   }
 }

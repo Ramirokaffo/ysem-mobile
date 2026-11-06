@@ -3297,4 +3297,101 @@ class AppLocalizationsEn extends AppLocalizations {
   String positionTropImprecise(int precision, int max) {
     return 'Position too imprecise ($precision m, $max m at most). Move closer to a window or go outside, then try again.';
   }
+
+  @override
+  String get payerParMobileMoney => 'Pay by Mobile Money';
+
+  @override
+  String get paiementsMobileMoney => 'Mobile Money payments';
+
+  @override
+  String get paiementMobileMoney => 'Mobile Money payment';
+
+  @override
+  String get payerCetteTranche => 'Pay this instalment';
+
+  @override
+  String get mobileMoneyFerme =>
+      'Mobile Money payment is not open at the moment.';
+
+  @override
+  String get mobileMoneyTest =>
+      'Test environment: no real money is charged. Only test numbers are accepted: 670000000 (MTN) and 690000000 (Orange) succeed, 670000001 (MTN) and 690000001 (Orange) fail.';
+
+  @override
+  String get montantPayableMaintenant => 'Amount payable now';
+
+  @override
+  String get rienAPayerMobile =>
+      'Nothing is left to pay for the year, payments under review included.';
+
+  @override
+  String get operateur => 'Operator';
+
+  @override
+  String get choisirOperateur => 'Choose the operator.';
+
+  @override
+  String get numeroMobileMoney => 'Mobile Money number';
+
+  @override
+  String get numeroMobileMoneyAide =>
+      'The number that will be charged: yours, or that of whoever is paying for you.';
+
+  @override
+  String get numeroMobileMoneyInvalide =>
+      'Enter a nine-digit Cameroonian number starting with 6.';
+
+  @override
+  String get montantARegler => 'Amount to pay';
+
+  @override
+  String get montantRegle => 'Amount paid';
+
+  @override
+  String get fraisDeTransaction => 'Transaction fees';
+
+  @override
+  String get totalDebite => 'Total charged';
+
+  @override
+  String get lancerLePaiement => 'Start the payment';
+
+  @override
+  String get inviteTelephone =>
+      'A prompt will appear on the phone: confirm it with your secret code.';
+
+  @override
+  String get paiementDejaEnCours =>
+      'A payment is awaiting its outcome. You can start another one afterwards.';
+
+  @override
+  String get suivreLePaiement => 'Follow the payment';
+
+  @override
+  String get reponsePerdue =>
+      'The server\'s reply did not arrive: the payment may have gone through. Check below and on your phone before trying again.';
+
+  @override
+  String get aucunPaiementMobile => 'No Mobile Money payment this year.';
+
+  @override
+  String get quitterEcranPaiement =>
+      'You can leave this screen: the payment continues, and a notification will tell you how it ends.';
+
+  @override
+  String get annulerLePaiement => 'Cancel the payment';
+
+  @override
+  String get paiementAnnule => 'The payment is cancelled: nothing was charged.';
+
+  @override
+  String lancePar(String nom) {
+    return 'Started by $nom';
+  }
+
+  @override
+  String annulerPaiementConfirmation(String reference) {
+    return 'Give up payment $reference? Nothing will be charged.';
+  }
 }

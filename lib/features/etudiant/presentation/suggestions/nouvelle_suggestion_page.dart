@@ -65,6 +65,8 @@ class _NouvelleSuggestionPageState
         _erreur = e;
         _envoi = false;
       });
+      // Les validateurs lisent `_erreur` et non une copie du dernier build :
+      // `validate()` part avant la reconstruction.
       _cle.currentState!.validate();
     }
   }
@@ -87,10 +89,9 @@ class _NouvelleSuggestionPageState
                   ? t.suggestionExplication
                   : widget.anonymat,
             ),
-            if (erreur != null) ...[
-              const SizedBox(height: 16),
-              BandeauErreurs(messages: erreursGlobales(erreur, _champs)),
-            ],
+            EmplacementErreurs(
+              messages: erreur == null ? null : erreursGlobales(erreur, _champs),
+            ),
             const SizedBox(height: 20),
             TextFormField(
               controller: _texte,
@@ -104,7 +105,7 @@ class _NouvelleSuggestionPageState
                 alignLabelWithHint: true,
               ),
               validator: (v) =>
-                  erreur?.erreurDuChamp('texte') ??
+                  _erreur?.erreurDuChamp('texte') ??
                   ((v ?? '').trim().isEmpty ? t.suggestionRequise : null),
             ),
             const SizedBox(height: 16),
@@ -120,7 +121,7 @@ class _NouvelleSuggestionPageState
                 alignLabelWithHint: true,
               ),
               validator: (v) =>
-                  erreur?.erreurDuChamp('solution_proposee') ??
+                  _erreur?.erreurDuChamp('solution_proposee') ??
                   ((v ?? '').trim().isEmpty ? t.solutionRequise : null),
             ),
             const SizedBox(height: 16),

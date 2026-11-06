@@ -106,6 +106,8 @@ class _DeclarerVersementPageState extends ConsumerState<DeclarerVersementPage> {
         _erreur = e;
         _envoi = false;
       });
+      // Les validateurs lisent `_erreur` et non une copie du dernier build :
+      // `validate()` part avant la reconstruction.
       _cle.currentState!.validate();
     }
   }
@@ -130,10 +132,9 @@ class _DeclarerVersementPageState extends ConsumerState<DeclarerVersementPage> {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
           children: [
             Encadre(texte: t.versementExplication),
-            if (erreur != null) ...[
-              const SizedBox(height: 16),
-              BandeauErreurs(messages: erreursGlobales(erreur, _champs)),
-            ],
+            EmplacementErreurs(
+              messages: erreur == null ? null : erreursGlobales(erreur, _champs),
+            ),
             const SizedBox(height: 20),
             DropdownButtonFormField<int>(
               initialValue: _compte,
@@ -148,7 +149,7 @@ class _DeclarerVersementPageState extends ConsumerState<DeclarerVersementPage> {
                   ),
               ],
               validator: (v) =>
-                  erreur?.erreurDuChamp('compte') ??
+                  _erreur?.erreurDuChamp('compte') ??
                   (v == null ? t.choisirCompte : null),
               onChanged: _envoi ? null : (v) => setState(() => _compte = v),
             ),
@@ -201,7 +202,7 @@ class _DeclarerVersementPageState extends ConsumerState<DeclarerVersementPage> {
                       ),
               ),
               validator: (v) {
-                final serveur = erreur?.erreurDuChamp('montant');
+                final serveur = _erreur?.erreurDuChamp('montant');
                 if (serveur != null) return serveur;
                 final montant = double.tryParse(_normaliser(v ?? ''));
                 if (montant == null || montant <= 0) return t.montantInvalide;
@@ -214,7 +215,7 @@ class _DeclarerVersementPageState extends ConsumerState<DeclarerVersementPage> {
             const SizedBox(height: 16),
             FormField<DateTime>(
               validator: (_) =>
-                  erreur?.erreurDuChamp('date_operation') ??
+                  _erreur?.erreurDuChamp('date_operation') ??
                   (_date == null ? t.dateRequise : null),
               builder: (champ) => InkWell(
                 onTap: _envoi ? null : _choisirDate,
@@ -241,13 +242,13 @@ class _DeclarerVersementPageState extends ConsumerState<DeclarerVersementPage> {
                 hintText: t.referenceOperationAide,
               ),
               validator: (v) =>
-                  erreur?.erreurDuChamp('reference_operation') ??
+                  _erreur?.erreurDuChamp('reference_operation') ??
                   ((v ?? '').trim().isEmpty ? t.referenceRequise : null),
             ),
             const SizedBox(height: 16),
             FormField<PieceAJoindre>(
               validator: (_) =>
-                  erreur?.erreurDuChamp('piece') ??
+                  _erreur?.erreurDuChamp('piece') ??
                   (_recu == null ? t.recuRequis : null),
               builder: (champ) => ChampPieceJointe(
                 libelle: t.recuDeLaBanque,

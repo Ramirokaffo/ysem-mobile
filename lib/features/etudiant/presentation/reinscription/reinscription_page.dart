@@ -11,6 +11,7 @@ import '../../../commun/langue.dart';
 import '../../application/lectures.dart';
 import '../../application/sections.dart';
 import '../../domain/reinscription.dart';
+import '../mobile_money/mobile_money_page.dart';
 import 'versements_page.dart';
 
 /// « Ma réinscription » pour l'année active. La demande pose l'inscription
@@ -328,6 +329,19 @@ class _CartePremiereTranche extends StatelessWidget {
           ],
           if (!tranche.couverte) ...[
             const SizedBox(height: 14),
+            if (etat.paiementMobileOuvert) ...[
+              FilledButton.icon(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        MobileMoneyPage(trancheVisee: tranche.trancheId),
+                  ),
+                ),
+                icon: const Icon(Icons.phone_android_rounded),
+                label: Text(t.payerParMobileMoney),
+              ),
+              const SizedBox(height: 8),
+            ],
             if (etat.paiementEnLigneOuvert)
               FilledButton.tonalIcon(
                 onPressed: () => Navigator.of(context).push(
@@ -339,7 +353,7 @@ class _CartePremiereTranche extends StatelessWidget {
                 icon: const Icon(Icons.account_balance_outlined),
                 label: Text(t.declarerUnVersement),
               )
-            else
+            else if (!etat.paiementMobileOuvert)
               Encadre(
                   icone: Icons.storefront_outlined,
                   texte: t.trancheACaisse),

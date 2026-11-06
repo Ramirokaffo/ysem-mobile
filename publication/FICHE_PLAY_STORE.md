@@ -71,11 +71,18 @@ peuvent interagir / échanger des messages » (messagerie et discussions de clas
 **18 ans et plus** (étudiants du supérieur). Évite les règles « Familles ».
 
 ### Application d'actualités : Non. Application gouvernementale : Non.
-### Applications financières : Non (la déclaration de versement n'est pas un service financier).
+### Applications financières : à réexaminer depuis le paiement Mobile Money (2026-11-05).
+L'application règle les frais de scolarité de l'établissement par MTN / Orange Money, via
+l'agrégateur UdevPay. Elle n'est ni un portefeuille ni un service de transfert : à confirmer
+dans le questionnaire de la Console, qui décide de la réponse.
 ### Santé : Non.
 
 ### Sécurité des données
-- Collecte ou partage de données : **Oui, collecte**. Aucun partage avec des tiers.
+- Collecte ou partage de données : **Oui, collecte**. Le paiement Mobile Money transmet le
+  numéro débité, le montant, le nom et l'e-mail du payeur et le matricule à l'agrégateur
+  UdevPay et à l'opérateur, prestataires qui exécutent le paiement pour l'établissement.
+  Google ne compte pas comme « partage » un transfert à un prestataire agissant pour le
+  compte du développeur : à confirmer en remplissant la Console.
 - Chiffrement en transit : **Oui** (HTTPS).
 - Les utilisateurs peuvent-ils demander la suppression ? **Oui**, auprès de la scolarité.
 - Les comptes sont-ils créés dans l'app ? **Non** (fournis par l'établissement) →
@@ -88,7 +95,7 @@ peuvent interagir / échanger des messages » (messagerie et discussions de clas
 | Numéro de téléphone | Oui | Non | Fonctionnalités de l'app |
 | Identifiants utilisateur (matricule) | Oui | Oui | Gestion du compte |
 | Position précise | Oui | Non (délégués seulement) | Fonctionnalités de l'app (vérifier la présence en salle à l'appel) |
-| Autres infos financières (versements, échéances) | Oui | Non | Fonctionnalités de l'app |
+| Autres infos financières (versements, échéances, transactions Mobile Money) | Oui | Non | Fonctionnalités de l'app |
 | Photos | Oui | Non | Fonctionnalités de l'app (pièces jointes, photo de profil) |
 | Fichiers et documents | Oui | Non | Fonctionnalités de l'app (justificatifs) |
 | Messages dans l'application | Oui | Non | Fonctionnalités de l'app |

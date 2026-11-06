@@ -12,6 +12,7 @@ import '../../../commun/telechargement.dart';
 import '../../application/sections.dart';
 import '../../domain/finances.dart';
 import '../../domain/modeles.dart';
+import '../mobile_money/mobile_money_page.dart';
 import '../reinscription/versements_page.dart';
 
 /// « Ma situation financière » : le relevé d'une année, ses échéances, ses
@@ -59,6 +60,17 @@ class _Contenu extends ConsumerWidget {
     final releve = finances.releve;
     final annee = finances.annee;
     final depot = ref.read(etudiantRepositoryProvider);
+    // Lecture à part : sans elle (serveur plus ancien, réseau), la page reste
+    // entière et le paiement n'est simplement pas offert.
+    final mobile = ref.watch(mobileMoneyProvider).valueOrNull;
+    final anneeActive = mobile != null && mobile.annee?.id == annee?.id;
+    final payable = anneeActive && mobile.payable;
+
+    void payer({int? tranche, bool tout = false}) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => MobileMoneyPage(trancheVisee: tranche, tout: tout),
+      ));
+    }
 
     return ListView(
       physics: const AlwaysScrollableScrollPhysics(),
@@ -86,6 +98,14 @@ class _Contenu extends ConsumerWidget {
             const SizedBox(height: 16),
             _DemandeEnCours(demande: finances.demandeEnAttente!),
           ],
+          if (payable) ...[
+            const SizedBox(height: 16),
+            FilledButton.icon(
+              onPressed: () => payer(tout: true),
+              icon: const Icon(Icons.phone_android_rounded),
+              label: Text(t.payerParMobileMoney),
+            ),
+          ],
           const SizedBox(height: 8),
           Wrap(
             spacing: 4,
@@ -102,10 +122,19 @@ class _Contenu extends ConsumerWidget {
                 icon: const Icon(Icons.account_balance_outlined),
                 label: Text(t.versementsDeclares),
               ),
+              if (anneeActive && mobile.paiements.isNotEmpty)
+                TextButton.icon(
+                  onPressed: payer,
+                  icon: const Icon(Icons.phone_android_rounded),
+                  label: Text(t.paiementsMobileMoney),
+                ),
             ],
           ),
           const SizedBox(height: 16),
-          _CarteEcheancier(tranches: releve.tranches),
+          _CarteEcheancier(
+            tranches: releve.tranches,
+            surPayer: payable ? (id) => payer(tranche: id) : null,
+          ),
           const SizedBox(height: 16),
           _CartePaiements(paiements: releve.paiements),
           if (releve.moratoires.isNotEmpty) ...[
@@ -251,9 +280,12 @@ class _DemandeEnCours extends StatelessWidget {
 }
 
 class _CarteEcheancier extends StatelessWidget {
-  const _CarteEcheancier({required this.tranches});
+  const _CarteEcheancier({required this.tranches, this.surPayer});
 
   final List<Tranche> tranches;
+
+  /// Offert quand le paiement Mobile Money est ouvert pour cette année.
+  final ValueChanged<int>? surPayer;
 
   @override
   Widget build(BuildContext context) {
@@ -325,6 +357,16 @@ class _CarteEcheancier extends StatelessWidget {
                             child: Pastille(t.couverteParMoratoire,
                                 ton: TonPastille.info,
                                 icone: Icons.shield_outlined),
+                          ),
+                        ),
+                      if (surPayer != null && !tranche.soldee)
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton.icon(
+                            onPressed: () => surPayer!(tranche.id),
+                            icon: const Icon(Icons.phone_android_rounded,
+                                size: 18),
+                            label: Text(t.payerCetteTranche),
                           ),
                         ),
                     ],

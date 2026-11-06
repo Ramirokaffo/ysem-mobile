@@ -5269,6 +5269,174 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Position trop imprécise ({precision} m, {max} m au plus). Rapprochez-vous d\'une fenêtre ou sortez à découvert, puis réessayez.'**
   String positionTropImprecise(int precision, int max);
+
+  /// No description provided for @payerParMobileMoney.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer par Mobile Money'**
+  String get payerParMobileMoney;
+
+  /// No description provided for @paiementsMobileMoney.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiements Mobile Money'**
+  String get paiementsMobileMoney;
+
+  /// No description provided for @paiementMobileMoney.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement Mobile Money'**
+  String get paiementMobileMoney;
+
+  /// No description provided for @payerCetteTranche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer cette tranche'**
+  String get payerCetteTranche;
+
+  /// No description provided for @mobileMoneyFerme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement Mobile Money n\'est pas ouvert pour le moment.'**
+  String get mobileMoneyFerme;
+
+  /// No description provided for @mobileMoneyTest.
+  ///
+  /// In fr, this message translates to:
+  /// **'Environnement de test : aucun argent réel n\'est débité. Seuls les numéros de test sont acceptés : 670000000 (MTN) et 690000000 (Orange) réussissent, 670000001 (MTN) et 690000001 (Orange) échouent.'**
+  String get mobileMoneyTest;
+
+  /// No description provided for @montantPayableMaintenant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant payable maintenant'**
+  String get montantPayableMaintenant;
+
+  /// No description provided for @rienAPayerMobile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rien ne reste à payer pour l\'année, versements en vérification compris.'**
+  String get rienAPayerMobile;
+
+  /// No description provided for @operateur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Opérateur'**
+  String get operateur;
+
+  /// No description provided for @choisirOperateur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez l\'opérateur.'**
+  String get choisirOperateur;
+
+  /// No description provided for @numeroMobileMoney.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéro Mobile Money'**
+  String get numeroMobileMoney;
+
+  /// No description provided for @numeroMobileMoneyAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le numéro qui sera débité : le vôtre, ou celui de qui paie pour vous.'**
+  String get numeroMobileMoneyAide;
+
+  /// No description provided for @numeroMobileMoneyInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez un numéro camerounais à neuf chiffres, commençant par 6.'**
+  String get numeroMobileMoneyInvalide;
+
+  /// No description provided for @montantARegler.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant à régler'**
+  String get montantARegler;
+
+  /// No description provided for @montantRegle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant réglé'**
+  String get montantRegle;
+
+  /// No description provided for @fraisDeTransaction.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais de transaction'**
+  String get fraisDeTransaction;
+
+  /// No description provided for @totalDebite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Total débité'**
+  String get totalDebite;
+
+  /// No description provided for @lancerLePaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer le paiement'**
+  String get lancerLePaiement;
+
+  /// No description provided for @inviteTelephone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une invite s\'affichera sur le téléphone : validez-la avec votre code secret.'**
+  String get inviteTelephone;
+
+  /// No description provided for @paiementDejaEnCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un paiement attend son dénouement. Vous pourrez en lancer un autre ensuite.'**
+  String get paiementDejaEnCours;
+
+  /// No description provided for @suivreLePaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suivre le paiement'**
+  String get suivreLePaiement;
+
+  /// No description provided for @reponsePerdue.
+  ///
+  /// In fr, this message translates to:
+  /// **'La réponse du serveur n\'est pas arrivée : le paiement est peut-être parti. Vérifiez ci-dessous et sur votre téléphone avant de relancer.'**
+  String get reponsePerdue;
+
+  /// No description provided for @aucunPaiementMobile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun paiement Mobile Money cette année.'**
+  String get aucunPaiementMobile;
+
+  /// No description provided for @quitterEcranPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous pouvez quitter cet écran : le paiement se poursuit, et une notification vous préviendra de son dénouement.'**
+  String get quitterEcranPaiement;
+
+  /// No description provided for @annulerLePaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler le paiement'**
+  String get annulerLePaiement;
+
+  /// No description provided for @paiementAnnule.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement est annulé : rien n\'a été débité.'**
+  String get paiementAnnule;
+
+  /// No description provided for @lancePar.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancé par {nom}'**
+  String lancePar(String nom);
+
+  /// No description provided for @annulerPaiementConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Renoncer au paiement {reference} ? Rien ne sera débité.'**
+  String annulerPaiementConfirmation(String reference);
 }
 
 class _AppLocalizationsDelegate

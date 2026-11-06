@@ -15,6 +15,29 @@ List<String> erreursGlobales(ApiException e, Set<String> champsAffiches) => [
         if (!champsAffiches.contains(champ)) ...messages,
     ];
 
+/// Place du bandeau d'erreur dans un formulaire en `ListView`, **toujours
+/// présente**, vide tant que rien n'est refusé (`messages` à `null`).
+///
+/// Un `ListView` apparie ses enfants par position : un bandeau inséré à
+/// l'erreur décalerait les champs qui le suivent, et l'état de chacun — donc
+/// l'erreur que `validate()` vient d'y poser — passerait à un autre champ,
+/// ou disparaîtrait. Un `Column` n'a pas ce défaut.
+class EmplacementErreurs extends StatelessWidget {
+  const EmplacementErreurs({super.key, this.messages});
+
+  final List<String>? messages;
+
+  @override
+  Widget build(BuildContext context) {
+    final contenu = messages;
+    if (contenu == null) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: BandeauErreurs(messages: contenu),
+    );
+  }
+}
+
 /// Bandeau d'erreur en tête d'un formulaire.
 class BandeauErreurs extends StatelessWidget {
   const BandeauErreurs({super.key, required this.messages});

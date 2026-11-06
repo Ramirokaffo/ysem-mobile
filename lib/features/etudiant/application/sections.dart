@@ -5,6 +5,7 @@ import '../domain/discipline.dart';
 import '../domain/documents.dart';
 import '../domain/examens.dart';
 import '../domain/finances.dart';
+import '../domain/mobile_money.dart';
 import '../domain/moratoires.dart';
 import '../domain/notes.dart';
 import '../domain/permissions.dart';
@@ -66,4 +67,9 @@ final reinscriptionProvider = FutureProvider.autoDispose<Reinscription>(
 
 final versementsProvider = FutureProvider.autoDispose<Versements>(
   (ref) => ref.watch(etudiantRepositoryProvider).versements(),
+);
+
+/// Paiement Mobile Money : ouverture, plafond et transactions de l'année.
+final mobileMoneyProvider = FutureProvider.autoDispose<MobileMoney>(
+  (ref) => ref.watch(etudiantRepositoryProvider).mobileMoney(),
 );
