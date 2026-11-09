@@ -8,6 +8,12 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Le plugin fait échouer le build sans ce fichier, propre au projet Firebase.
+// Sans lui l'application se construit et tourne, sans notifications push.
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 // Clé d'envoi Google Play, hors dépôt (android/key.properties).
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")

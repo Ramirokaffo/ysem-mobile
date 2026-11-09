@@ -5,6 +5,7 @@ import '../../../core/models/enseignant.dart';
 import '../../../core/models/etudiant.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/providers.dart';
+import '../../commun/push/push.dart';
 import '../data/auth_repository.dart';
 import '../../etudiant/hors_ligne/providers.dart';
 import '../../etudiant/hors_ligne/tache_de_fond.dart';
@@ -15,6 +16,7 @@ class Session {
     required this.espace,
     required this.acteur,
     this.doitChangerMotDePasse = false,
+    this.revisionMotDePasse = 0,
   });
 
   final Espace espace;
@@ -22,6 +24,10 @@ class Session {
   /// L'étudiant ou l'enseignant tel que le rend l'API.
   final Map<String, dynamic> acteur;
   final bool doitChangerMotDePasse;
+
+  /// Compte les changements de mot de passe de la session : le serveur coupe
+  /// alors les téléphones de l'acteur, et celui-ci doit se redéclarer.
+  final int revisionMotDePasse;
 
   /// L'acteur lu en étudiant (vide pour une session restaurée hors ligne).
   Etudiant get etudiant => Etudiant.depuisJson(acteur);
@@ -36,12 +42,17 @@ class Session {
     return langue.isEmpty ? 'fr' : langue;
   }
 
-  Session avec({Map<String, dynamic>? acteur, bool? doitChangerMotDePasse}) =>
+  Session avec({
+    Map<String, dynamic>? acteur,
+    bool? doitChangerMotDePasse,
+    int? revisionMotDePasse,
+  }) =>
       Session(
         espace: espace,
         acteur: acteur ?? this.acteur,
         doitChangerMotDePasse:
             doitChangerMotDePasse ?? this.doitChangerMotDePasse,
+        revisionMotDePasse: revisionMotDePasse ?? this.revisionMotDePasse,
       );
 }
 
@@ -113,13 +124,17 @@ class SessionController extends AsyncNotifier<Session?> {
   void marquerMotDePasseChange(Map<String, dynamic> acteur) {
     final session = state.valueOrNull;
     if (session == null) return;
-    state = AsyncData(
-        session.avec(acteur: acteur, doitChangerMotDePasse: false));
+    state = AsyncData(session.avec(
+      acteur: acteur,
+      doitChangerMotDePasse: false,
+      revisionMotDePasse: session.revisionMotDePasse + 1,
+    ));
   }
 
   Future<void> deconnexion() async {
     final session = state.valueOrNull;
     if (session != null) {
+      await ref.read(pushProvider).retirer(session.espace);
       await ref.read(authRepositoryProvider(session.espace)).deconnexion();
     }
     if (session?.espace == Espace.etudiant) {

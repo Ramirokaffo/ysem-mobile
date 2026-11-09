@@ -125,6 +125,22 @@ abstract class AuthRepository {
     );
   }
 
+  /// Déclare ce téléphone pour les notifications push.
+  Future<void> declarerAppareil(String fid, String plateforme) =>
+      client.post<Map<String, dynamic>>(
+        'appareils/',
+        donnees: {'fid': fid, 'plateforme': plateforme},
+      );
+
+  /// Ce téléphone ne reçoit plus rien. Le délai est court : la déconnexion
+  /// l'attend, et elle doit aboutir sans réseau.
+  Future<void> retirerAppareil(String fid) =>
+      client.post<Map<String, dynamic>>(
+        'appareils/retirer/',
+        donnees: {'fid': fid},
+        delai: const Duration(seconds: 5),
+      );
+
   /// Active ou désactive la double authentification ; le mot de passe est
   /// redemandé, comme sur le portail web.
   Future<({Map<String, dynamic> acteur, String message})> basculerDoubleAuth({

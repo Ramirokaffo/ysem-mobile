@@ -15,7 +15,12 @@ class ShellEnseignant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      CoqueEspace(espace: Espace.enseignant, coque: coque);
+      CoqueEspace(
+        espace: Espace.enseignant,
+        coque: coque,
+        sectionDeLAdresse: sectionEnseignantDeLAdresse,
+        ouvrirSection: ouvrirSectionEnseignant,
+      );
 }
 
 /// Tous les services de l'enseignant, venus du registre du portail.

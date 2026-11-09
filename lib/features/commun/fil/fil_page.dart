@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/charte/charte.dart';
+import '../../../core/network/temps_reel.dart';
 import '../../../core/format/formats.dart';
 import '../../../core/models/messagerie.dart';
 import '../../../core/network/api_exception.dart';
@@ -14,11 +15,15 @@ import '../espace/menu.dart';
 import '../langue.dart';
 import '../piece_jointe.dart';
 import '../telechargement.dart';
+import '../temps_reel.dart';
 import 'fil.dart';
 
-/// Délai de relecture du fil tant que l'écran est ouvert : l'application
-/// n'ouvre pas de websocket, elle interroge comme le repli du web.
+/// Délai de relecture du fil quand son websocket est tombé — le repli du web.
 const _intervalleRelecture = Duration(seconds: 15);
+
+/// « En train d'écrire… » s'éteint de lui-même si l'arrêt se perd en route,
+/// comme au web.
+const _extinctionFrappe = Duration(seconds: 6);
 
 /// Un fil de messages : le guichet de la scolarité, ou la discussion d'une
 /// classe ([SourceFil]). Même rendu, mêmes gestes ; seuls changent ce qui
@@ -40,19 +45,105 @@ class _FilPageState extends ConsumerState<FilPage> {
   AppLifecycleListener? _cycle;
   MessageFil? _repondA;
 
+  /// Le websocket du fil, ouvert dès que le fil existe (`conversation`).
+  GardeCanal? _garde;
+  StreamSubscription<Map<String, dynamic>>? _evenements;
+  int? _filOuvert;
+  Timer? _regroupement;
+  Timer? _frappeEteinte;
+  bool _interlocuteurEcrit = false;
+
+  CanalTempsReel? get _canal => _garde?.canal;
+
   @override
   void initState() {
     super.initState();
-    _minuterie = Timer.periodic(_intervalleRelecture, (_) => _relire());
-    _cycle = AppLifecycleListener(onResume: _relire);
+    _minuterie = Timer.periodic(_intervalleRelecture, (_) {
+      if (_canal?.estConnecte != true) _relire();
+    });
+    _cycle = AppLifecycleListener(onResume: () {
+      // Sans socket, le retour relit ; avec, c'est la reconnexion qui le fait.
+      if (_garde == null) _relire();
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _brancher());
   }
 
   @override
   void dispose() {
     _minuterie?.cancel();
     _cycle?.dispose();
+    _regroupement?.cancel();
+    _frappeEteinte?.cancel();
+    _evenements?.cancel();
+    _garde?.dispose();
     super.dispose();
   }
+
+  /// Ouvre le websocket du fil quand on en connaît l'identifiant (le fil du
+  /// guichet ne naît qu'au premier message).
+  void _brancher() {
+    if (!mounted) return;
+    final conversation =
+        ref.read(filProvider(widget.source)).valueOrNull?.fil.conversation;
+    if (conversation == null || conversation == _filOuvert) return;
+    _evenements?.cancel();
+    _garde?.dispose();
+    _filOuvert = conversation;
+    final espace = SourceFil.espaceDe(widget.source);
+    final chemin = _estClasse
+        ? CheminsTempsReel.classe(espace, conversation)
+        : CheminsTempsReel.guichet(conversation);
+    _garde = GardeCanal(canalTempsReel(ref, espace, chemin));
+    _evenements = _garde!.canal.evenements.listen(_surEvenement);
+  }
+
+  void _surEvenement(Map<String, dynamic> evenement) {
+    if (!mounted) return;
+    switch (evenement['type']) {
+      case 'connected':
+        final enLigne = evenement['interlocuteur_en_ligne'];
+        if (enLigne is bool) {
+          ref.read(filProvider(widget.source).notifier).reporterPresence(enLigne);
+        }
+        // (Re)connexion : ce qui est arrivé pendant la coupure se relit.
+        _planifierRelecture();
+      case 'message':
+        _signalerFrappe(false);
+        _planifierRelecture();
+      case 'reaction':
+      case 'lecture':
+        _planifierRelecture();
+      case 'presence':
+        final enLigne = evenement['en_ligne'];
+        if (enLigne is bool) {
+          ref.read(filProvider(widget.source).notifier).reporterPresence(enLigne);
+        }
+      case 'frappe':
+        _signalerFrappe(evenement['actif'] == true);
+    }
+  }
+
+  /// Plusieurs évènements rapprochés (un message et ses accusés) ne font
+  /// qu'une relecture.
+  void _planifierRelecture() {
+    _regroupement?.cancel();
+    _regroupement = Timer(const Duration(milliseconds: 250), _relire);
+  }
+
+  void _signalerFrappe(bool actif) {
+    _frappeEteinte?.cancel();
+    if (actif) {
+      _frappeEteinte =
+          Timer(_extinctionFrappe, () => _signalerFrappe(false));
+    }
+    if (mounted && _interlocuteurEcrit != actif) {
+      setState(() => _interlocuteurEcrit = actif);
+    }
+  }
+
+  /// Ma propre frappe, relayée à l'autre camp (le serveur la bride).
+  void _envoyerFrappe(bool actif) =>
+      _canal?.envoyer({'action': 'frappe', 'actif': actif});
 
   Future<void> _relire() async {
     if (!mounted) return;
@@ -136,6 +227,7 @@ class _FilPageState extends ConsumerState<FilPage> {
       if (avant?.hasValue != true && apres.hasValue) {
         ref.invalidate(menuProvider(SourceFil.espaceDe(widget.source)));
       }
+      if (apres.valueOrNull?.fil.conversation != _filOuvert) _brancher();
     });
 
     return Scaffold(
@@ -148,6 +240,7 @@ class _FilPageState extends ConsumerState<FilPage> {
           sousTitre: fil?.sousTitre ?? '',
           classe: _estClasse,
           enLigne: fil?.enLigne,
+          ecrit: _interlocuteurEcrit,
         ),
       ),
       body: VueAsynchrone<EtatFil>(
@@ -173,6 +266,7 @@ class _FilPageState extends ConsumerState<FilPage> {
                 repondA: _repondA,
                 surAnnulerReponse: () => setState(() => _repondA = null),
                 surEnvoye: () => setState(() => _repondA = null),
+                surFrappe: _envoyerFrappe,
               ),
           ],
         ),
@@ -187,12 +281,16 @@ class _Entete extends StatelessWidget {
     this.sousTitre = '',
     this.classe = false,
     this.enLigne,
+    this.ecrit = false,
   });
 
   final String titre;
   final String sousTitre;
   final bool classe;
   final bool? enLigne;
+
+  /// L'autre camp est en train d'écrire (websocket).
+  final bool ecrit;
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +315,16 @@ class _Entete extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleMedium),
-              if (enLigne != null || sousTitre.isNotEmpty)
+              if (ecrit)
+                Text(
+                  classe ? t.quelquUnEcrit : t.scolariteEcrit,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontStyle: FontStyle.italic),
+                )
+              else if (enLigne != null || sousTitre.isNotEmpty)
                 Row(
                   children: [
                     if (enLigne != null) ...[
@@ -708,6 +815,7 @@ class _Composeur extends ConsumerStatefulWidget {
     required this.repondA,
     required this.surAnnulerReponse,
     required this.surEnvoye,
+    this.surFrappe,
   });
 
   final String source;
@@ -715,6 +823,9 @@ class _Composeur extends ConsumerStatefulWidget {
   final MessageFil? repondA;
   final VoidCallback surAnnulerReponse;
   final VoidCallback surEnvoye;
+
+  /// « En train d'écrire… » : vrai à la frappe, faux à l'arrêt ou à l'envoi.
+  final ValueChanged<bool>? surFrappe;
 
   @override
   ConsumerState<_Composeur> createState() => _ComposeurState();
@@ -726,16 +837,51 @@ class _ComposeurState extends ConsumerState<_Composeur> {
   bool _envoi = false;
   String? _erreur;
 
+  /// Frappe signalée : au plus une fois toutes les deux secondes, et l'arrêt
+  /// trois secondes après la dernière touche.
+  String _texteSignale = '';
+  DateTime _derniereFrappe = DateTime.fromMillisecondsSinceEpoch(0);
+  Timer? _arretFrappe;
+  bool _frappeActive = false;
+
   @override
   void initState() {
     super.initState();
-    _texte.addListener(() => setState(() {}));
+    _texte.addListener(() {
+      setState(() {});
+      _suivreFrappe();
+    });
   }
 
   @override
   void dispose() {
+    _arretFrappe?.cancel();
+    if (_frappeActive) widget.surFrappe?.call(false);
     _texte.dispose();
     super.dispose();
+  }
+
+  void _suivreFrappe() {
+    final texte = _texte.text;
+    if (texte == _texteSignale) return;
+    _texteSignale = texte;
+    if (texte.trim().isEmpty) return _arreterFrappe();
+    final maintenant = DateTime.now();
+    if (!_frappeActive ||
+        maintenant.difference(_derniereFrappe) > const Duration(seconds: 2)) {
+      _frappeActive = true;
+      _derniereFrappe = maintenant;
+      widget.surFrappe?.call(true);
+    }
+    _arretFrappe?.cancel();
+    _arretFrappe = Timer(const Duration(seconds: 3), _arreterFrappe);
+  }
+
+  void _arreterFrappe() {
+    _arretFrappe?.cancel();
+    if (!_frappeActive) return;
+    _frappeActive = false;
+    widget.surFrappe?.call(false);
   }
 
   bool get _envoyable =>
@@ -764,6 +910,7 @@ class _ComposeurState extends ConsumerState<_Composeur> {
             repondA: widget.repondA?.id,
           );
       _texte.clear();
+      _arreterFrappe();
       setState(() {
         _pieces.clear();
         _envoi = false;

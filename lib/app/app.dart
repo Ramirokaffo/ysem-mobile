@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/providers.dart';
 import '../features/auth/application/session_controller.dart';
+import '../features/commun/push/push.dart';
 import '../l10n/app_localizations.dart';
 import 'router.dart';
 import 'theme.dart';
@@ -13,6 +14,9 @@ class YsemApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Le contrôleur vit avec l'application : il suit la session et reçoit les
+    // push, quelle que soit la page ouverte.
+    ref.watch(pushProvider);
     // Choix fait sur l'appareil, sinon langue du dossier une fois connecté,
     // sinon celle du téléphone.
     final forcee = ref.watch(langueForceeProvider);

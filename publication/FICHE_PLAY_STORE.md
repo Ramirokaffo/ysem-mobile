@@ -82,7 +82,9 @@ dans le questionnaire de la Console, qui décide de la réponse.
   numéro débité, le montant, le nom et l'e-mail du payeur et le matricule à l'agrégateur
   UdevPay et à l'opérateur, prestataires qui exécutent le paiement pour l'établissement.
   Google ne compte pas comme « partage » un transfert à un prestataire agissant pour le
-  compte du développeur : à confirmer en remplissant la Console.
+  compte du développeur : à confirmer en remplissant la Console. Il en va de même de
+  Firebase Cloud Messaging (Google), qui remet au téléphone le titre et le texte des
+  notifications.
 - Chiffrement en transit : **Oui** (HTTPS).
 - Les utilisateurs peuvent-ils demander la suppression ? **Oui**, auprès de la scolarité.
 - Les comptes sont-ils créés dans l'app ? **Non** (fournis par l'établissement) →
@@ -99,6 +101,7 @@ dans le questionnaire de la Console, qui décide de la réponse.
 | Photos | Oui | Non | Fonctionnalités de l'app (pièces jointes, photo de profil) |
 | Fichiers et documents | Oui | Non | Fonctionnalités de l'app (justificatifs) |
 | Messages dans l'application | Oui | Non | Fonctionnalités de l'app |
+| Identifiants d'appareil ou autres (identifiant d'installation Firebase) | Oui | Non | Fonctionnalités de l'app (notifications push) |
 
 Aucune donnée n'est traitée de façon « éphémère » ; aucune n'est utilisée pour la
 publicité ou l'analyse.

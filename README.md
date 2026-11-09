@@ -14,6 +14,13 @@ flutter run --dart-define=API_BASE_URL=https://… --dart-define=API_LOGS=true
 Le trafic HTTP en clair n'est autorisé qu'en debug
 (`android/app/src/debug/AndroidManifest.xml`).
 
+## Notifications push
+
+`android/app/google-services.json` vient du projet Firebase (application
+`com.ysem.education`). Sans lui l'application se construit et tourne, sans push :
+le compteur reste relu toutes les 90 s. La clé d'envoi est côté serveur
+(`FCM_SERVICE_ACCOUNT_B64`).
+
 ## Charte
 
 Dérivée du logo (`main/static/main/images/ysemlogo.png` du backend) :

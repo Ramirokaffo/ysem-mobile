@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/charte/charte.dart';
+import '../../../../core/auth/espace.dart';
 import '../../../../core/format/formats.dart';
 import '../../../../core/network/api_exception.dart';
 import '../../../../core/providers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../commun/formulaire.dart';
 import '../../../commun/langue.dart';
+import '../../../commun/temps_reel.dart';
 import '../../application/lectures.dart';
 import '../../domain/association.dart';
 import 'association_commun.dart';
@@ -18,7 +20,8 @@ final _associationProvider = FutureProvider.autoDispose<Association>(
   (ref) => ref.watch(etudiantRepositoryProvider).association(),
 );
 
-/// Relecture du dépouillement pendant le vote, faute de websocket.
+/// Relecture du dépouillement pendant le vote, quand le websocket du scrutin
+/// est tombé — le repli du web.
 const _intervalleDirect = Duration(seconds: 20);
 
 /// « Association des étudiants » : la campagne publiée, ses listes, le vote
@@ -37,16 +40,59 @@ class _AssociationPageState extends ConsumerState<AssociationPage> {
   Timer? _minuterie;
   Resultats? _direct;
 
+  /// Le websocket du scrutin (`ws/association/scrutin/<id>/`), ouvert tant
+  /// que les urnes le sont : les mêmes chiffres, au même instant, qu'à
+  /// l'écran du service.
+  GardeCanal? _garde;
+  StreamSubscription<Map<String, dynamic>>? _evenements;
+  int? _scrutinSuivi;
+
   @override
   void initState() {
     super.initState();
-    _minuterie = Timer.periodic(_intervalleDirect, (_) => _relireResultats());
+    _minuterie = Timer.periodic(_intervalleDirect, (_) {
+      if (_garde?.canal.estConnecte != true) _relireResultats();
+    });
   }
 
   @override
   void dispose() {
     _minuterie?.cancel();
+    _fermerDirect();
     super.dispose();
+  }
+
+  void _suivreScrutin(Association? etat) {
+    final scrutin = etat?.scrutin;
+    final suivi = scrutin != null && scrutin.urnesOuvertes ? scrutin.id : null;
+    if (suivi == _scrutinSuivi) return;
+    _fermerDirect();
+    _scrutinSuivi = suivi;
+    if (suivi == null) return;
+    _garde = GardeCanal(canalTempsReel(
+        ref, Espace.etudiant, CheminsTempsReel.scrutin(suivi)));
+    _evenements = _garde!.canal.evenements.listen(_surEvenement);
+  }
+
+  void _fermerDirect() {
+    _evenements?.cancel();
+    _evenements = null;
+    _garde?.dispose();
+    _garde = null;
+  }
+
+  void _surEvenement(Map<String, dynamic> evenement) {
+    if (!mounted) return;
+    if (evenement['type'] != 'snapshot' && evenement['type'] != 'resultats') {
+      return;
+    }
+    final brut = evenement['resultats'];
+    if (brut is! Map) return;
+    final resultats = Resultats.depuisJson(Map<String, dynamic>.from(brut));
+    if (resultats == null) return;
+    setState(() => _direct = resultats);
+    // La fermeture des urnes change ce qui s'offre : on relit tout.
+    if (resultats.voteTermine) ref.invalidate(_associationProvider);
   }
 
   Future<void> _relireResultats() async {
@@ -70,6 +116,7 @@ class _AssociationPageState extends ConsumerState<AssociationPage> {
     final t = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final depot = ref.read(etudiantRepositoryProvider);
+    ref.listen(_associationProvider, (_, etat) => _suivreScrutin(etat.valueOrNull));
     return Scaffold(
       appBar: AppBar(title: Text(widget.titre ?? t.sectionAssociation)),
       body: VueAsynchrone<Association>(

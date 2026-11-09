@@ -240,6 +240,22 @@ class FilMessages {
         avertissement: avertissement,
       );
 
+  /// Le même fil, l'interlocuteur venant d'apparaître ou de disparaître
+  /// (évènement de présence du websocket).
+  FilMessages avecPresence(bool? autre) => FilMessages(
+        conversation: conversation,
+        interlocuteur: interlocuteur,
+        sousTitre: sousTitre,
+        enLigne: autre,
+        messages: messages,
+        lecteur: lecteur,
+        accuse: accuse,
+        lectureSeule: lectureSeule,
+        piecesMax: piecesMax,
+        extensions: extensions,
+        avertissement: avertissement,
+      );
+
   static int _piecesMax(Json? pieces) => pieces?.entier('maximum') ?? 5;
   static List<String> _extensions(Json? pieces) => [
         for (final e in (pieces?['extensions'] as List? ?? const [])) '$e',

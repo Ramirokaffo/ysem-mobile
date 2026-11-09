@@ -644,6 +644,12 @@ abstract class AppLocalizations {
   /// **'Notification supprimée.'**
   String get notificationSupprimee;
 
+  /// No description provided for @notificationVoir.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir'**
+  String get notificationVoir;
+
   /// No description provided for @ouvrir.
   ///
   /// In fr, this message translates to:
@@ -1663,6 +1669,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Aucun agent en ligne'**
   String get serviceHorsLigne;
+
+  /// No description provided for @scolariteEcrit.
+  ///
+  /// In fr, this message translates to:
+  /// **'La scolarité écrit…'**
+  String get scolariteEcrit;
+
+  /// No description provided for @quelquUnEcrit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quelqu\'un écrit…'**
+  String get quelquUnEcrit;
 
   /// No description provided for @filVide.
   ///

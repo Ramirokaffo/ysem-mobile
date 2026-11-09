@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/router.dart';
 import '../../../core/auth/espace.dart';
 import '../../../core/network/api_exception.dart';
 import '../../../core/providers.dart';
@@ -55,12 +56,24 @@ class _ChangementMotDePassePageState
               );
       if (!mounted) return;
       final messager = ScaffoldMessenger.of(context);
-      final retour = context.canPop();
-      ref
-          .read(sessionProvider.notifier)
-          .marquerMotDePasseChange(resultat.acteur);
+      final routeur = GoRouter.of(context);
+      // Changement volontaire : l'écran a été empilé depuis le profil, on y
+      // revient. Changement imposé : on y a été *redirigé* (rien à dépiler),
+      // et la page reste une adresse valide de l'espace — la redirection ne
+      // l'en fera pas sortir : c'est à elle de mener à l'accueil.
+      //
+      // L'ordre compte : lever l'obligation rafraîchit le routeur, qui relit
+      // l'adresse courante. Dépilé avant, l'écran ne revient pas ; dans le
+      // cas imposé, l'accueil n'est atteignable qu'une fois l'obligation levée.
+      final session = ref.read(sessionProvider.notifier);
+      if (routeur.canPop()) {
+        routeur.pop();
+        session.marquerMotDePasseChange(resultat.acteur);
+      } else {
+        session.marquerMotDePasseChange(resultat.acteur);
+        routeur.go(Routes.accueil(espace));
+      }
       messager.showSnackBar(SnackBar(content: Text(resultat.message)));
-      if (retour && mounted) context.pop();
     } on ApiException catch (e) {
       if (mounted) setState(() => _erreur = e);
     } finally {

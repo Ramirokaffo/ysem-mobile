@@ -181,8 +181,11 @@ List<MessageFil> fusionnerMessages(
   return parId.values.toList()..sort((a, b) => a.id.compareTo(b.id));
 }
 
-/// Un fil (guichet ou classe). Pas de websocket côté mobile : la page relit
-/// le fil à intervalle régulier, comme le repli du web quand le socket tombe.
+/// Un fil (guichet ou classe). Le websocket du fil, tenu par la page, ne fait
+/// que **signaler** : un message, une réaction ou un accusé de lecture
+/// annoncés font relire le dernier lot par l'API, qui reste la seule source
+/// des messages — pas de second rendu d'un payload à tenir en phase avec le
+/// premier. Socket tombé, la page relit à intervalle régulier.
 class FilController extends AutoDisposeFamilyAsyncNotifier<EtatFil, String> {
   AccesFil get _acces => ref.read(accesFilProvider(arg));
 
@@ -256,6 +259,16 @@ class FilController extends AutoDisposeFamilyAsyncNotifier<EtatFil, String> {
     state = AsyncData(courant.copie(
       messages: fusionnerMessages(courant.messages, [message]),
     ));
+    // Le fil vient de naître avec ce premier message : on relit pour en
+    // apprendre l'identifiant, c'est lui qui ouvre le websocket.
+    if (courant.fil.conversation == null) await actualiser();
+  }
+
+  /// L'interlocuteur vient d'apparaître ou de disparaître (websocket).
+  void reporterPresence(bool enLigne) {
+    final courant = state.valueOrNull;
+    if (courant == null || courant.fil.enLigne == enLigne) return;
+    state = AsyncData(courant.copie(fil: courant.fil.avecPresence(enLigne)));
   }
 
   /// Pose, remplace ou retire mon avis (le serveur tranche, d'un même geste).

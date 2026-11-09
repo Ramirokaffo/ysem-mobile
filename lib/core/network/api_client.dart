@@ -29,14 +29,15 @@ class ApiClient {
     Dio? dio,
   })  : _stockage = stockage,
         dio = dio ?? Dio(_options(espace)) {
+    _auth = _AuthInterceptor(
+      espace: espace,
+      stockage: stockage,
+      dio: this.dio,
+      surSessionPerdue: surSessionPerdue,
+    );
     this.dio.interceptors.addAll([
       _LangueInterceptor(langueForcee),
-      _AuthInterceptor(
-        espace: espace,
-        stockage: stockage,
-        dio: this.dio,
-        surSessionPerdue: surSessionPerdue,
-      ),
+      _auth,
       if (Env.apiLogs && kDebugMode)
         LogInterceptor(
           requestBody: true,
@@ -50,6 +51,7 @@ class ApiClient {
   final Espace espace;
   final Dio dio;
   final TokenStorage _stockage;
+  late final _AuthInterceptor _auth;
 
   TokenStorage get stockage => _stockage;
 
@@ -132,6 +134,23 @@ class ApiClient {
     } catch (_) {
       return e;
     }
+  }
+
+  /// Jeton d'accès pour ouvrir un websocket (`CanalTempsReel`), ou `null`
+  /// sans session.
+  ///
+  /// Un socket ne passe pas par l'intercepteur : un jeton qui expire dans la
+  /// minute — ou que le serveur vient de refuser (`forcer`) — est d'abord
+  /// renouvelé. Un renouvellement refusé perd la session, comme pour une
+  /// requête ; sans réseau, le jeton courant est rendu tel quel.
+  Future<String?> jetonAcces({bool forcer = false}) async {
+    final jetons = await _stockage.lire(espace);
+    if (jetons == null) return null;
+    final maintenant = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+    final fin = jetons.accesExpireLe;
+    final bientotExpire = fin != null && fin - 60 <= maintenant;
+    if (forcer || bientotExpire) await _auth.renouveler();
+    return (await _stockage.lire(espace))?.acces;
   }
 
   Options? _opts(bool public) =>
@@ -238,6 +257,20 @@ class _AuthInterceptor extends QueuedInterceptor {
     } on DioException catch (e) {
       if (e.response?.statusCode == 401) await _perdreSession();
       handler.next(e);
+    }
+  }
+
+  /// Renouvelle le jeton d'accès hors de toute requête (ouverture d'un
+  /// websocket). Un refus du serveur perd la session ; une erreur réseau ne
+  /// change rien.
+  Future<void> renouveler() async {
+    final actuels = await stockage.lire(espace);
+    if (actuels == null) return;
+    if (actuels.rafraichissementExpire) return _perdreSession();
+    try {
+      await _rafraichir(actuels);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) await _perdreSession();
     }
   }
 

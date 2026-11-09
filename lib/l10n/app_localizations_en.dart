@@ -316,6 +316,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationSupprimee => 'Notification deleted.';
 
   @override
+  String get notificationVoir => 'View';
+
+  @override
   String get ouvrir => 'Open';
 
   @override
@@ -995,6 +998,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get serviceHorsLigne => 'No agent online';
+
+  @override
+  String get scolariteEcrit => 'The registrar\'s office is typing…';
+
+  @override
+  String get quelquUnEcrit => 'Someone is typing…';
 
   @override
   String get filVide =>

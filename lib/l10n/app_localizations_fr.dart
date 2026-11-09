@@ -318,6 +318,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get notificationSupprimee => 'Notification supprimée.';
 
   @override
+  String get notificationVoir => 'Voir';
+
+  @override
   String get ouvrir => 'Ouvrir';
 
   @override
@@ -1011,6 +1014,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get serviceHorsLigne => 'Aucun agent en ligne';
+
+  @override
+  String get scolariteEcrit => 'La scolarité écrit…';
+
+  @override
+  String get quelquUnEcrit => 'Quelqu\'un écrit…';
 
   @override
   String get filVide =>
