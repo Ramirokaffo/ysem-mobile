@@ -4,6 +4,8 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 
+import '../../../core/models/devoirs.dart';
+import '../../../core/models/json.dart';
 import '../../../core/models/discussions.dart';
 import '../../../core/models/examens.dart';
 import '../../../core/models/messagerie.dart';
@@ -177,6 +179,114 @@ class EnseignantRepository implements DepotEspace, DepotDiscussions {
   Future<File> exporterClasse(String cle) => _client.telecharger(
       RoutesEnseignant.classeExporter(cle),
       nomParDefaut: 'classe_$cle.xlsx');
+
+  // --- Devoirs et groupes de travail -----------------------------------
+
+  Future<DevoirsEnseignant> devoirs({String? classe}) async =>
+      DevoirsEnseignant.depuisJson(await _client.get<Map<String, dynamic>>(
+        RoutesEnseignant.devoirs,
+        query: classe == null ? null : {'classe': classe},
+      ));
+
+  /// Date limite proposée (début de la prochaine séance), prochaines séances
+  /// et groupements de la classe.
+  Future<PreparationDevoir> preparationDevoir(String classe) async =>
+      PreparationDevoir.depuisJson(await _client.get<Map<String, dynamic>>(
+        RoutesEnseignant.devoirsProchainesSeances,
+        query: {'classe': classe},
+      ));
+
+  Object _corpsDevoir(Map<String, dynamic> corps, List<PieceAJoindre> pieces) {
+    if (pieces.isEmpty) return corps;
+    final donnees = FormData();
+    for (final MapEntry(key: cle, value: valeur) in corps.entries) {
+      if (valeur == null) continue;
+      if (cle == 'groupes' && valeur is List) {
+        for (final groupe in valeur) {
+          donnees.fields.add(MapEntry('groupes', '$groupe'));
+        }
+      } else if (cle == 'sujets' && valeur is Map) {
+        for (final MapEntry(key: groupe, value: sujet) in valeur.entries) {
+          donnees.fields.add(MapEntry('sujet_$groupe', '$sujet'));
+        }
+      } else {
+        donnees.fields.add(MapEntry(cle, '$valeur'));
+      }
+    }
+    for (final piece in pieces) {
+      donnees.files.add(MapEntry('fichiers', piece.versMultipart()));
+    }
+    return donnees;
+  }
+
+  Future<DevoirComplet> creerDevoir(Map<String, dynamic> corps,
+          {List<PieceAJoindre> pieces = const []}) async =>
+      DevoirComplet.depuisJson((await _client.post<Map<String, dynamic>>(
+          RoutesEnseignant.devoirs,
+          donnees: _corpsDevoir(corps, pieces))));
+
+  Future<DevoirComplet> devoir(int id) async => DevoirComplet.depuisJson(
+      await _client.get<Map<String, dynamic>>(RoutesEnseignant.devoir(id)));
+
+  Future<DevoirComplet> modifierDevoir(int id, Map<String, dynamic> corps,
+          {List<PieceAJoindre> pieces = const []}) async =>
+      DevoirComplet.depuisJson((await _client.post<Map<String, dynamic>>(
+          RoutesEnseignant.devoir(id),
+          donnees: _corpsDevoir(corps, pieces))));
+
+  Future<void> supprimerDevoir(int id) =>
+      _client.delete<dynamic>(RoutesEnseignant.devoir(id));
+
+  /// `publier`, `fermer`, `rouvrir`, `publier-corrections`, `verser`.
+  Future<Map<String, dynamic>> gesteDevoir(int id, String geste,
+          {Map<String, dynamic>? donnees}) async =>
+      (await _client.post<Map<String, dynamic>>(
+          RoutesEnseignant.devoirGeste(id, geste),
+          donnees: donnees ?? const <String, dynamic>{}));
+
+  Future<DevoirComplet> corrigerDevoir(int id, List<Map<String, dynamic>> lignes) async =>
+      DevoirComplet.depuisJson((await _client.post<Map<String, dynamic>>(
+          RoutesEnseignant.devoirCorrections(id),
+          donnees: {'corrections': lignes})));
+
+  Future<void> retirerPieceDevoir(int id) =>
+      _client.delete<dynamic>(RoutesEnseignant.devoirPiece(id));
+
+  Future<File> pieceDevoir(PieceDevoir piece) => _client.telecharger(
+      RoutesEnseignant.devoirPiece(piece.id),
+      query: {'telecharger': '1'},
+      nomParDefaut: piece.nom.isEmpty ? 'piece_${piece.id}' : piece.nom);
+
+  Future<File> pieceRendu(PieceDevoir piece) => _client.telecharger(
+      RoutesEnseignant.devoirRenduPiece(piece.id),
+      query: {'telecharger': '1'},
+      nomParDefaut: piece.nom.isEmpty ? 'piece_${piece.id}' : piece.nom);
+
+  Future<List<Groupement>> groupements(String classe) async {
+    final json = await _client.get<Map<String, dynamic>>(
+        RoutesEnseignant.groupements,
+        query: {'classe': classe});
+    return json.liste('groupements', Groupement.depuisJson);
+  }
+
+  Future<Groupement> creerGroupement(
+          {required String classe, required String nom, String tirage = '', int? valeur}) async =>
+      Groupement.depuisJson((await _client.post<Map<String, dynamic>>(
+          RoutesEnseignant.groupements,
+          donnees: {'classe': classe, 'nom': nom, 'tirage': tirage, 'valeur': valeur})));
+
+  Future<Groupement> groupement(int id) async => Groupement.depuisJson(
+      await _client.get<Map<String, dynamic>>(RoutesEnseignant.groupement(id)));
+
+  /// `renommer`, `ajouter_groupe`, `renommer_groupe`, `supprimer_groupe`,
+  /// `composer` (`affectations`), `tirer` (`tirage`, `valeur`).
+  Future<Groupement> gesteGroupement(int id, Map<String, dynamic> donnees) async =>
+      Groupement.depuisJson((await _client.post<Map<String, dynamic>>(
+          RoutesEnseignant.groupement(id),
+          donnees: donnees)));
+
+  Future<void> supprimerGroupement(int id) =>
+      _client.delete<dynamic>(RoutesEnseignant.groupement(id));
 
   Future<FichesASigner> fichesASigner() async => FichesASigner.depuisJson(
       await _client.get<Map<String, dynamic>>(RoutesEnseignant.fichesASigner));

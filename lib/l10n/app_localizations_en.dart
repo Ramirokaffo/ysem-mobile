@@ -492,6 +492,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ouvertureImpossible => 'No app can open this document.';
 
   @override
+  String get ouvertureImpossibleTitre => 'Cannot open this document';
+
+  @override
+  String ouvertureImpossibleEnregistrer(String nom) {
+    return 'No app on this phone can open “$nom”. Save it to the phone (in Downloads, for example) to keep it or open it later with another app.';
+  }
+
+  @override
+  String get enregistrerDansTelephone => 'Save to phone';
+
+  @override
+  String get documentEnregistre => 'Document saved to the phone.';
+
+  @override
+  String get enregistrementImpossible => 'The document could not be saved.';
+
+  @override
   String get aucuneSituation => 'No financial statement for this year.';
 
   @override
@@ -3403,4 +3420,389 @@ class AppLocalizationsEn extends AppLocalizations {
   String annulerPaiementConfirmation(String reference) {
     return 'Give up payment $reference? Nothing will be charged.';
   }
+
+  @override
+  String get modifierMonProfil => 'Update my profile';
+
+  @override
+  String get profilModifiableExplication =>
+      'The registrar\'s office lets you update this information. It is informed each time you save.';
+
+  @override
+  String get emailNonModifiable =>
+      'Your email address cannot be changed here: it receives your sign-in codes. Contact the registrar\'s office to change it.';
+
+  @override
+  String get identite => 'Identity';
+
+  @override
+  String get prenom => 'First name';
+
+  @override
+  String get nomDeFamille => 'Last name';
+
+  @override
+  String get contactEtResidence => 'Contact and residence';
+
+  @override
+  String get villeResidence => 'City of residence';
+
+  @override
+  String get quartierResidence => 'Neighbourhood';
+
+  @override
+  String get pereOuTuteur => 'Father or guardian';
+
+  @override
+  String get mereOuTutrice => 'Mother or guardian';
+
+  @override
+  String get parentsEtTuteurs => 'Parents and guardians';
+
+  @override
+  String get nomComplet => 'Full name';
+
+  @override
+  String get profession => 'Occupation';
+
+  @override
+  String get profilMisAJour =>
+      'Your profile has been updated. The registrar\'s office has been informed.';
+
+  @override
+  String get retirerLaPhoto => 'Remove photo';
+
+  @override
+  String get retirerLaPhotoTexte =>
+      'Your initials will be shown instead of the photo.';
+
+  @override
+  String get photoMiseAJour => 'Your profile photo has been updated.';
+
+  @override
+  String get photoRetiree => 'Your profile photo has been removed.';
+
+  @override
+  String get photoProfilAide =>
+      'Recent photo, JPG or PNG, 5 MB at most. It will be cropped to a square.';
+
+  @override
+  String get sectionDevoirs => 'My assignments';
+
+  @override
+  String devoirARendreAvant(String date) {
+    return 'Due before $date';
+  }
+
+  @override
+  String get devoirConsignes => 'Instructions';
+
+  @override
+  String get devoirPieces => 'Attachments';
+
+  @override
+  String get devoirMonGroupe => 'My group';
+
+  @override
+  String get devoirSujetGroupe => 'Group\'s topic';
+
+  @override
+  String get devoirMonRendu => 'My submission';
+
+  @override
+  String get devoirRenduGroupe => 'The group\'s submission';
+
+  @override
+  String devoirRenduLe(String date) {
+    return 'Submitted on $date';
+  }
+
+  @override
+  String devoirParAuteur(String nom) {
+    return 'by $nom';
+  }
+
+  @override
+  String get devoirEnRetard => 'Late';
+
+  @override
+  String get devoirRienRendu => 'You have not submitted anything yet.';
+
+  @override
+  String get devoirCorrection => 'Marking';
+
+  @override
+  String get devoirRendre => 'Submit the assignment';
+
+  @override
+  String get devoirMettreAJour => 'Update my submission';
+
+  @override
+  String get devoirVotreReponse => 'Your answer';
+
+  @override
+  String get devoirReponseAide =>
+      'Write your answer here, or attach your files.';
+
+  @override
+  String get devoirFichiers => 'Files';
+
+  @override
+  String get devoirRenduEnregistre => 'Your submission is saved.';
+
+  @override
+  String get devoirFerme => 'This assignment no longer accepts submissions.';
+
+  @override
+  String get devoirCorrigeNonPublie =>
+      'Your submission has been marked: the marking will be visible as soon as the lecturer publishes it.';
+
+  @override
+  String get devoirSansGroupe =>
+      'You are in no group for this assignment: contact your lecturer.';
+
+  @override
+  String get devoirReponseRequise =>
+      'Write your answer or attach at least one file.';
+
+  @override
+  String devoirNoteSur(String sur) {
+    return 'Graded out of $sur';
+  }
+
+  @override
+  String get devoirNonNote => 'Not graded';
+
+  @override
+  String get devoirAucun => 'No assignment yet.';
+
+  @override
+  String get devoirsDonner => 'Give an assignment';
+
+  @override
+  String get devoirsGroupesDeTravail => 'Work groups';
+
+  @override
+  String get devoirsChoisirClasse => 'Choose the class';
+
+  @override
+  String get devoirsAucuneClasse =>
+      'No class: your courses appear in no published timetable.';
+
+  @override
+  String get devoirTitre => 'Title';
+
+  @override
+  String get devoirTitreRequis => 'Give the assignment a title.';
+
+  @override
+  String get devoirConsignesFacultatives => 'Instructions (optional)';
+
+  @override
+  String get devoirDateLimite => 'Due before';
+
+  @override
+  String get devoirProchainesSeances => 'Next sessions';
+
+  @override
+  String get devoirAucuneSeance =>
+      'No session of this course is scheduled in the next two months: one week is suggested.';
+
+  @override
+  String get devoirRattrapage => 'make-up';
+
+  @override
+  String get devoirModeIndividuel => 'Individual';
+
+  @override
+  String get devoirModeGroupe => 'In groups';
+
+  @override
+  String get devoirGroupement => 'Grouping';
+
+  @override
+  String get devoirGroupesConcernes => 'Groups concerned (none ticked: all)';
+
+  @override
+  String get devoirSujetFacultatif => 'Group\'s topic (optional)';
+
+  @override
+  String get devoirAucunGroupement => 'This class has no work group yet.';
+
+  @override
+  String get devoirFige =>
+      'Submissions have arrived: the mode and groups can no longer change.';
+
+  @override
+  String get devoirNoter => 'Graded assignment';
+
+  @override
+  String get devoirNoteSurChamp => 'Graded out of';
+
+  @override
+  String get devoirPublier => 'Publish to the class';
+
+  @override
+  String get devoirBrouillon => 'Save as draft';
+
+  @override
+  String get devoirBrouillonInfo =>
+      'Draft: the class cannot see this assignment yet.';
+
+  @override
+  String get devoirFermer => 'Close submissions';
+
+  @override
+  String get devoirFermerConfirmer =>
+      'Close the assignment? No more submissions will be accepted.';
+
+  @override
+  String get devoirRouvrir => 'Reopen submissions';
+
+  @override
+  String get devoirSupprimerConfirmer => 'Permanently delete this assignment?';
+
+  @override
+  String devoirRendusSur(String rendus, String attendus) {
+    return '$rendus / $attendus submitted';
+  }
+
+  @override
+  String devoirACorriger(String n) {
+    return '$n to mark';
+  }
+
+  @override
+  String get devoirPublierCorrections => 'Publish the marks';
+
+  @override
+  String get devoirPublierCorrectionsConfirmer =>
+      'Publish the marks? The class will read them, and the assignment will be closed to submissions.';
+
+  @override
+  String get devoirCorrectionsAide =>
+      'Mark as you go: the class sees nothing before the marks are published.';
+
+  @override
+  String get devoirCorriger => 'Mark';
+
+  @override
+  String get devoirStatutACorriger => 'To mark';
+
+  @override
+  String get devoirStatutCorrige => 'Marked';
+
+  @override
+  String get devoirStatutNonRendu => 'Not submitted';
+
+  @override
+  String get devoirStatutDispense => 'Exempted';
+
+  @override
+  String get devoirCommentaire => 'Comment';
+
+  @override
+  String get devoirNote => 'Mark';
+
+  @override
+  String get devoirRienDeRendu => 'Nothing submitted';
+
+  @override
+  String get devoirVerser => 'Transfer to continuous assessment';
+
+  @override
+  String get devoirVerserAide =>
+      'The marks, converted to a score out of 20, become an assessment on your grade sheet. “Not submitted” counts as an unexcused absence (zero).';
+
+  @override
+  String get devoirFeuille => 'Grade sheet';
+
+  @override
+  String get devoirTypeControle => 'Assessment type';
+
+  @override
+  String get devoirVerserBouton => 'Transfer the marks';
+
+  @override
+  String devoirDejaVerse(String controle) {
+    return 'Already transferred: “$controle”. Transferring again updates this assessment.';
+  }
+
+  @override
+  String get devoirAucuneFeuille =>
+      'No grade sheet is open in your name for this course.';
+
+  @override
+  String devoirNotesVersees(String n) {
+    return 'Marks transferred: $n mark(s) carried over.';
+  }
+
+  @override
+  String get devoirInscritsSansGroupe =>
+      'Enrolled students without a group for this assignment';
+
+  @override
+  String get groupementNouveau => 'New grouping';
+
+  @override
+  String get groupementNom => 'Grouping name';
+
+  @override
+  String get groupementTirageAucun => 'By hand';
+
+  @override
+  String get groupementTirageNombre => 'Random draw: number of groups';
+
+  @override
+  String get groupementTirageTaille => 'Random draw: students per group';
+
+  @override
+  String get groupementNombre => 'Number';
+
+  @override
+  String get groupementCreer => 'Create the grouping';
+
+  @override
+  String get groupementAucun => 'No grouping for this class.';
+
+  @override
+  String groupementNbGroupes(String n) {
+    return '$n group(s)';
+  }
+
+  @override
+  String get groupementAjouterGroupe => 'Add a group';
+
+  @override
+  String get groupementTirer => 'Draw at random';
+
+  @override
+  String get groupementTirerAide =>
+      'Rebuilds the whole grouping from the enrolled students. Impossible once a group has submitted an assignment.';
+
+  @override
+  String get groupementComposition => 'Composition';
+
+  @override
+  String get groupementAucunGroupe => '— None —';
+
+  @override
+  String get groupementEnregistrerComposition => 'Save the composition';
+
+  @override
+  String get groupementSupprimerConfirmer =>
+      'Delete this grouping and its groups?';
+
+  @override
+  String get groupementRenommer => 'Rename';
+
+  @override
+  String get groupementCompositionFigee =>
+      'You no longer teach this course: the composition is frozen.';
+
+  @override
+  String get groupeNom => 'Group name';
+
+  @override
+  String get groupeAucunMembre => 'No member';
 }

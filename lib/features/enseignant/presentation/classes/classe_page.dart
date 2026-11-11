@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/charte/charte.dart';
+import '../../../../core/models/devoirs.dart';
 import '../../../../core/providers.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../commun/fil/fil.dart';
@@ -9,6 +10,15 @@ import '../../../commun/fil/fil_page.dart';
 import '../../../commun/telechargement.dart';
 import '../../application/lectures.dart';
 import '../../domain/cours.dart';
+import '../devoirs/formulaire_devoir_page.dart';
+import '../devoirs/groupements_page.dart';
+
+ClasseDevoir _classeDevoir(DetailClasse detail) => ClasseDevoir(
+      cle: detail.cleDiscussion,
+      coursIntitule: detail.classe.coursIntitule,
+      cohorte: detail.classe.cohorte,
+      effectif: detail.effectif,
+    );
 
 /// La liste d'une classe : effectif, délégués et leurs coordonnées — le point
 /// de contact de la classe —, puis les inscrits et leurs manquements sur ce
@@ -76,6 +86,30 @@ class _ClassePageState extends ConsumerState<ClassePage> {
                   icon: const Icon(Icons.forum_outlined),
                   label: Text(t.discussionDeLaClasse),
                 ),
+                const SizedBox(height: 8),
+                // Même clé que la discussion : celle de la classe pour les
+                // devoirs et les groupes de travail.
+                Row(children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () => Navigator.of(context).push(MaterialPageRoute<int>(
+                        builder: (_) => FormulaireDevoirPage(classe: _classeDevoir(detail)),
+                      )),
+                      icon: const Icon(Icons.add_task_rounded),
+                      label: Text(t.devoirsDonner),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => GroupementsPage(classe: _classeDevoir(detail)),
+                      )),
+                      icon: const Icon(Icons.groups_outlined),
+                      label: Text(t.devoirsGroupesDeTravail),
+                    ),
+                  ),
+                ]),
                 const SizedBox(height: 16),
               ],
               _Delegues(delegues: detail.classe.delegues),

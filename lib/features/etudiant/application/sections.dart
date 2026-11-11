@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/models/devoirs.dart';
 import '../../../core/providers.dart';
 import '../domain/discipline.dart';
 import '../domain/documents.dart';
@@ -55,6 +56,14 @@ final permissionsProvider =
     FutureProvider.autoDispose.family<Permissions, String?>(
   (ref, semaine) =>
       ref.watch(etudiantRepositoryProvider).permissions(semaine: semaine),
+);
+
+final devoirsProvider = FutureProvider.autoDispose<DevoirsEtudiant>(
+  (ref) => ref.watch(etudiantRepositoryProvider).devoirs(),
+);
+
+final devoirProvider = FutureProvider.autoDispose.family<EntreeDevoir, int>(
+  (ref, id) => ref.watch(etudiantRepositoryProvider).devoir(id),
 );
 
 final suggestionsProvider = FutureProvider.autoDispose<Suggestions>(

@@ -8,6 +8,7 @@ import '../../../../core/format/formats.dart';
 import '../../../../core/navigation/icones_sections.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../commun/avatar_etudiant.dart';
+import '../../../commun/espace/bouton_discussions.dart';
 import '../../../commun/langue.dart';
 import '../../application/lectures.dart';
 import '../../domain/modeles.dart';
@@ -38,7 +39,7 @@ class TableauDeBordPage extends ConsumerWidget {
         constructeur: (donnees) => ListView(
           padding: EdgeInsets.zero,
           children: [
-            _Bandeau(donnees: donnees),
+            _Bandeau(donnees: donnees, navigation: navigation),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
               child: Column(
@@ -69,9 +70,10 @@ class TableauDeBordPage extends ConsumerWidget {
 }
 
 class _Bandeau extends StatelessWidget {
-  const _Bandeau({required this.donnees});
+  const _Bandeau({required this.donnees, required this.navigation});
 
   final TableauDeBord donnees;
+  final Navigation? navigation;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +110,11 @@ class _Bandeau extends StatelessWidget {
                     ),
                   ),
                 ),
+              const SizedBox(width: 8),
+              BoutonDiscussions(
+                navigation: navigation,
+                ouvrir: () => ouvrirSection(context, codeSectionDiscussions),
+              ),
             ],
           ),
           const SizedBox(height: 20),

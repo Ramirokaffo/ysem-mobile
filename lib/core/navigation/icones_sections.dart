@@ -8,6 +8,7 @@ const Map<String, IconData> _icones = {
   'fa-graduation-cap': Icons.school_rounded,
   'fa-calendar-check': Icons.event_available_rounded,
   'fa-clipboard-check': Icons.fact_check_rounded,
+  'fa-tasks': Icons.assignment_rounded,
   'fa-chart-line': Icons.insights_rounded,
   'fa-book-open': Icons.menu_book_rounded,
   'fa-archive': Icons.inventory_2_rounded,

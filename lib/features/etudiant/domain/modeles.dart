@@ -225,6 +225,9 @@ class Profil {
     this.quartierResidence = '',
     this.paysOrigine = '',
     this.regionOrigine = '',
+    this.pere = const ParentDossier(),
+    this.mere = const ParentDossier(),
+    this.modification = const ModificationProfil(),
     this.inscriptionCourante,
     this.connexionsRecentes = const [],
   });
@@ -234,8 +237,25 @@ class Profil {
   final String quartierResidence;
   final String paysOrigine;
   final String regionOrigine;
+  final ParentDossier pere;
+  final ParentDossier mere;
+
+  /// Ce que la scolarité permet à l'étudiant de mettre à jour lui-même.
+  final ModificationProfil modification;
   final Inscription? inscriptionCourante;
   final List<ConnexionRecente> connexionsRecentes;
+
+  /// Les valeurs du dossier sous les noms de champ de `profil/modifier/`
+  /// (`student_portal.profil`) : le point de départ du formulaire.
+  Map<String, String> get valeursFormulaire => {
+        'firstname': etudiant.prenom,
+        'lastname': etudiant.nom,
+        'phone_number': etudiant.telephone,
+        'residence_city': villeResidence,
+        'residence_quarter': quartierResidence,
+        ...pere.valeursFormulaire('father'),
+        ...mere.valeursFormulaire('mother'),
+      };
 
   factory Profil.depuisJson(Json json) {
     final profil = json.objet('profil') ?? const {};
@@ -246,10 +266,80 @@ class Profil {
       quartierResidence: etatCivil.texte('quartier_residence'),
       paysOrigine: etatCivil.texte('pays_origine'),
       regionOrigine: etatCivil.texte('region_origine'),
+      pere: ParentDossier.depuisJson(etatCivil.objet('pere')),
+      mere: ParentDossier.depuisJson(etatCivil.objet('mere')),
+      modification:
+          ModificationProfil.depuisJson(json.objet('modification')),
       inscriptionCourante:
           Inscription.depuisJson(json.objet('inscription_courante')),
       connexionsRecentes:
           json.liste('connexions_recentes', ConnexionRecente.depuisJson),
+    );
+  }
+}
+
+/// Le père ou la mère, tels que le dossier les connaît.
+class ParentDossier {
+  const ParentDossier({
+    this.nom = '',
+    this.telephone = '',
+    this.email = '',
+    this.profession = '',
+    this.villeResidence = '',
+  });
+
+  final String nom;
+  final String telephone;
+  final String email;
+  final String profession;
+  final String villeResidence;
+
+  bool get estVide => [nom, telephone, email, profession, villeResidence]
+      .every((s) => s.isEmpty);
+
+  /// `father` / `mother` : préfixe des champs de `StudentMetaData`.
+  Map<String, String> valeursFormulaire(String prefixe) => {
+        '${prefixe}_full_name': nom,
+        '${prefixe}_phone_number': telephone,
+        '${prefixe}_email': email,
+        '${prefixe}_occupation': profession,
+        '${prefixe}_live_city': villeResidence,
+      };
+
+  static ParentDossier depuisJson(Json? json) => json == null
+      ? const ParentDossier()
+      : ParentDossier(
+          nom: json.texte('nom'),
+          telephone: json.texte('telephone'),
+          email: json.texte('email'),
+          profession: json.texte('profession'),
+          villeResidence: json.texte('ville_residence'),
+        );
+}
+
+/// Deux décisions distinctes de la scolarité : les informations de base
+/// s'ouvrent étudiant par étudiant, la photo pour tous à la fois. L'adresse
+/// e-mail n'est jamais modifiable.
+class ModificationProfil {
+  const ModificationProfil({
+    this.profilAutorise = false,
+    this.photoAutorisee = false,
+    this.champs = const {},
+  });
+
+  final bool profilAutorise;
+  final bool photoAutorisee;
+
+  /// Les champs que le serveur accepte — vide quand le profil est fermé.
+  final Set<String> champs;
+
+  static ModificationProfil depuisJson(Json? json) {
+    if (json == null) return const ModificationProfil();
+    final champs = json['champs'];
+    return ModificationProfil(
+      profilAutorise: json.booleen('profil_autorise'),
+      photoAutorisee: json.booleen('photo_autorisee'),
+      champs: champs is List ? {for (final c in champs) '$c'} : const {},
     );
   }
 }

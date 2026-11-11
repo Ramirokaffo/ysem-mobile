@@ -32,6 +32,7 @@ const _cheminsDuPortail = {
   '/enseignants/mes-examens/': 'examens',
   '/enseignants/mes-rattrapages/': 'rattrapages',
   '/enseignants/mes-classes/': 'classes',
+  '/enseignants/mes-devoirs/': 'devoirs',
   '/enseignants/fiches-a-signer/': 'fiches_a_signer',
   '/enseignants/mes-enseignements/': 'enseignements',
   '/enseignants/mes-documents-de-cours/': 'documents',

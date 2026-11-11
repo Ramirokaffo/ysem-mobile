@@ -7,6 +7,7 @@ import '../../commun/fil/discussions_page.dart';
 import '../../shell/presentation/a_implementer_page.dart';
 import '../application/lectures.dart';
 import 'classes/classes_page.dart';
+import 'devoirs/devoirs_enseignant_page.dart';
 import 'disponibilites/disponibilites_page.dart';
 import 'dossier/dossier_page.dart';
 import 'emploi_du_temps/emploi_du_temps_page.dart';
@@ -40,6 +41,7 @@ class SectionEnseignantPage extends ConsumerWidget {
       'examens' => ExamensEnseignantPage(titre: titre),
       'rattrapages' => RattrapagesPage(titre: titre),
       'classes' => ClassesPage(titre: titre),
+      'devoirs' => DevoirsEnseignantPage(titre: titre),
       'fiches_a_signer' => FichesASignerPage(titre: titre),
       'ponctualite' => PonctualitePage(titre: titre),
       'vacations' => VacationsPage(titre: titre),

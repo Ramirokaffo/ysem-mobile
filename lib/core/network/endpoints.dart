@@ -73,6 +73,13 @@ class RoutesEtudiant {
   static String associationHistoriqueListe(int id) =>
       'association/historique/$id/';
   static const suggestions = 'suggestions/';
+  static const devoirs = 'devoirs/';
+  static String devoir(int id) => 'devoirs/$id/';
+  static String devoirRendu(int id) => 'devoirs/$id/rendu/';
+  static String devoirRenduPieceRetirer(int devoir, int piece) =>
+      'devoirs/$devoir/rendu/pieces/$piece/';
+  static String devoirPiece(int id) => 'devoirs/pieces/$id/';
+  static String devoirRenduPiece(int id) => 'devoirs/rendus/pieces/$id/';
   static const bibliotheque = 'bibliotheque/';
   static String bibliothequeDocument(int id) => 'bibliotheque/documents/$id/';
   static const archives = 'archives/';
@@ -124,6 +131,15 @@ class RoutesEnseignant {
   static const classes = 'classes/';
   static String classe(String cle) => 'classes/$cle/';
   static String classeExporter(String cle) => 'classes/$cle/exporter/';
+  static const devoirs = 'devoirs/';
+  static const devoirsProchainesSeances = 'devoirs/prochaines-seances/';
+  static String devoir(int id) => 'devoirs/$id/';
+  static String devoirCorrections(int id) => 'devoirs/$id/corrections/';
+  static String devoirGeste(int id, String geste) => 'devoirs/$id/$geste/';
+  static String devoirPiece(int id) => 'devoirs/pieces/$id/';
+  static String devoirRenduPiece(int id) => 'devoirs/rendus/pieces/$id/';
+  static const groupements = 'devoirs/groupements/';
+  static String groupement(int id) => 'devoirs/groupements/$id/';
   static const fichesASigner = 'fiches-a-signer/';
   static const fichesSignerTout = 'fiches-a-signer/signer-tout/';
   static String ficheSigner(String genre, int id) =>

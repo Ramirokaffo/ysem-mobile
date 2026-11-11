@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/espace.dart';
+import '../../../core/models/devoirs.dart';
 import '../../../core/models/examens.dart';
 import '../../../core/providers.dart';
 import '../../commun/espace/menu.dart';
@@ -48,6 +49,22 @@ final classesProvider = FutureProvider.autoDispose<MesClasses>(
 );
 
 /// La liste d'une classe, par sa clé.
+final devoirsEnseignantProvider = FutureProvider.autoDispose<DevoirsEnseignant>(
+  (ref) => ref.watch(enseignantRepositoryProvider).devoirs(),
+);
+
+final devoirEnseignantProvider = FutureProvider.autoDispose.family<DevoirComplet, int>(
+  (ref, id) => ref.watch(enseignantRepositoryProvider).devoir(id),
+);
+
+final groupementsProvider = FutureProvider.autoDispose.family<List<Groupement>, String>(
+  (ref, cle) => ref.watch(enseignantRepositoryProvider).groupements(cle),
+);
+
+final groupementProvider = FutureProvider.autoDispose.family<Groupement, int>(
+  (ref, id) => ref.watch(enseignantRepositoryProvider).groupement(id),
+);
+
 final detailClasseProvider =
     FutureProvider.autoDispose.family<DetailClasse, String>(
   (ref, cle) => ref.watch(enseignantRepositoryProvider).classe(cle),

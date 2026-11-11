@@ -932,6 +932,36 @@ abstract class AppLocalizations {
   /// **'Aucune application ne permet d\'ouvrir ce document.'**
   String get ouvertureImpossible;
 
+  /// No description provided for @ouvertureImpossibleTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir ce document'**
+  String get ouvertureImpossibleTitre;
+
+  /// No description provided for @ouvertureImpossibleEnregistrer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune application de ce téléphone ne sait ouvrir « {nom} ». Enregistrez-le dans le téléphone (dossier Téléchargements, par exemple) pour le garder ou l\'ouvrir plus tard avec une autre application.'**
+  String ouvertureImpossibleEnregistrer(String nom);
+
+  /// No description provided for @enregistrerDansTelephone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer dans le téléphone'**
+  String get enregistrerDansTelephone;
+
+  /// No description provided for @documentEnregistre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Document enregistré dans le téléphone.'**
+  String get documentEnregistre;
+
+  /// No description provided for @enregistrementImpossible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le document n\'a pas pu être enregistré.'**
+  String get enregistrementImpossible;
+
   /// No description provided for @aucuneSituation.
   ///
   /// In fr, this message translates to:
@@ -5455,6 +5485,696 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Renoncer au paiement {reference} ? Rien ne sera débité.'**
   String annulerPaiementConfirmation(String reference);
+
+  /// No description provided for @modifierMonProfil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre à jour mon profil'**
+  String get modifierMonProfil;
+
+  /// No description provided for @profilModifiableExplication.
+  ///
+  /// In fr, this message translates to:
+  /// **'La scolarité vous permet de mettre à jour ces informations. Elle est prévenue de chaque enregistrement.'**
+  String get profilModifiableExplication;
+
+  /// No description provided for @emailNonModifiable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre adresse e-mail ne se modifie pas ici : elle reçoit vos codes de connexion. Adressez-vous à la scolarité pour la changer.'**
+  String get emailNonModifiable;
+
+  /// No description provided for @identite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Identité'**
+  String get identite;
+
+  /// No description provided for @prenom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prénom'**
+  String get prenom;
+
+  /// No description provided for @nomDeFamille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom de famille'**
+  String get nomDeFamille;
+
+  /// No description provided for @contactEtResidence.
+  ///
+  /// In fr, this message translates to:
+  /// **'Contact et résidence'**
+  String get contactEtResidence;
+
+  /// No description provided for @villeResidence.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ville de résidence'**
+  String get villeResidence;
+
+  /// No description provided for @quartierResidence.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quartier de résidence'**
+  String get quartierResidence;
+
+  /// No description provided for @pereOuTuteur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Père ou tuteur'**
+  String get pereOuTuteur;
+
+  /// No description provided for @mereOuTutrice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mère ou tutrice'**
+  String get mereOuTutrice;
+
+  /// No description provided for @parentsEtTuteurs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parents et tuteurs'**
+  String get parentsEtTuteurs;
+
+  /// No description provided for @nomComplet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom complet'**
+  String get nomComplet;
+
+  /// No description provided for @profession.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profession'**
+  String get profession;
+
+  /// No description provided for @profilMisAJour.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre profil est mis à jour. La scolarité en est informée.'**
+  String get profilMisAJour;
+
+  /// No description provided for @retirerLaPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer la photo'**
+  String get retirerLaPhoto;
+
+  /// No description provided for @retirerLaPhotoTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos initiales s\'afficheront à la place de la photo.'**
+  String get retirerLaPhotoTexte;
+
+  /// No description provided for @photoMiseAJour.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre photo de profil est mise à jour.'**
+  String get photoMiseAJour;
+
+  /// No description provided for @photoRetiree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre photo de profil est retirée.'**
+  String get photoRetiree;
+
+  /// No description provided for @photoProfilAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Photo récente, au format JPG ou PNG, 5 Mo au plus. Elle sera recadrée au carré.'**
+  String get photoProfilAide;
+
+  /// No description provided for @sectionDevoirs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes devoirs'**
+  String get sectionDevoirs;
+
+  /// No description provided for @devoirARendreAvant.
+  ///
+  /// In fr, this message translates to:
+  /// **'À rendre avant le {date}'**
+  String devoirARendreAvant(String date);
+
+  /// No description provided for @devoirConsignes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consignes'**
+  String get devoirConsignes;
+
+  /// No description provided for @devoirPieces.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pièces jointes'**
+  String get devoirPieces;
+
+  /// No description provided for @devoirMonGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon groupe'**
+  String get devoirMonGroupe;
+
+  /// No description provided for @devoirSujetGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet du groupe'**
+  String get devoirSujetGroupe;
+
+  /// No description provided for @devoirMonRendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon rendu'**
+  String get devoirMonRendu;
+
+  /// No description provided for @devoirRenduGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le rendu du groupe'**
+  String get devoirRenduGroupe;
+
+  /// No description provided for @devoirRenduLe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendu le {date}'**
+  String devoirRenduLe(String date);
+
+  /// No description provided for @devoirParAuteur.
+  ///
+  /// In fr, this message translates to:
+  /// **'par {nom}'**
+  String devoirParAuteur(String nom);
+
+  /// No description provided for @devoirEnRetard.
+  ///
+  /// In fr, this message translates to:
+  /// **'En retard'**
+  String get devoirEnRetard;
+
+  /// No description provided for @devoirRienRendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous n\'avez encore rien rendu.'**
+  String get devoirRienRendu;
+
+  /// No description provided for @devoirCorrection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Correction'**
+  String get devoirCorrection;
+
+  /// No description provided for @devoirRendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendre le devoir'**
+  String get devoirRendre;
+
+  /// No description provided for @devoirMettreAJour.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre à jour mon rendu'**
+  String get devoirMettreAJour;
+
+  /// No description provided for @devoirVotreReponse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre réponse'**
+  String get devoirVotreReponse;
+
+  /// No description provided for @devoirReponseAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écrivez ici votre réponse, ou joignez vos fichiers.'**
+  String get devoirReponseAide;
+
+  /// No description provided for @devoirFichiers.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers'**
+  String get devoirFichiers;
+
+  /// No description provided for @devoirRenduEnregistre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre rendu est enregistré.'**
+  String get devoirRenduEnregistre;
+
+  /// No description provided for @devoirFerme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce devoir ne reçoit plus de rendus.'**
+  String get devoirFerme;
+
+  /// No description provided for @devoirCorrigeNonPublie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre rendu a été corrigé : la correction sera visible dès que l\'enseignant la publiera.'**
+  String get devoirCorrigeNonPublie;
+
+  /// No description provided for @devoirSansGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous n\'êtes dans aucun groupe de ce devoir : rapprochez-vous de votre enseignant.'**
+  String get devoirSansGroupe;
+
+  /// No description provided for @devoirReponseRequise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écrivez votre réponse ou joignez au moins un fichier.'**
+  String get devoirReponseRequise;
+
+  /// No description provided for @devoirNoteSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Noté sur {sur}'**
+  String devoirNoteSur(String sur);
+
+  /// No description provided for @devoirNonNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non noté'**
+  String get devoirNonNote;
+
+  /// No description provided for @devoirAucun.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun devoir pour l\'instant.'**
+  String get devoirAucun;
+
+  /// No description provided for @devoirsDonner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Donner un devoir'**
+  String get devoirsDonner;
+
+  /// No description provided for @devoirsGroupesDeTravail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Groupes de travail'**
+  String get devoirsGroupesDeTravail;
+
+  /// No description provided for @devoirsChoisirClasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez la classe'**
+  String get devoirsChoisirClasse;
+
+  /// No description provided for @devoirsAucuneClasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune classe : vos cours n\'apparaissent dans aucun emploi du temps publié.'**
+  String get devoirsAucuneClasse;
+
+  /// No description provided for @devoirTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get devoirTitre;
+
+  /// No description provided for @devoirTitreRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Donnez un titre au devoir.'**
+  String get devoirTitreRequis;
+
+  /// No description provided for @devoirConsignesFacultatives.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consignes (facultatif)'**
+  String get devoirConsignesFacultatives;
+
+  /// No description provided for @devoirDateLimite.
+  ///
+  /// In fr, this message translates to:
+  /// **'À rendre avant le'**
+  String get devoirDateLimite;
+
+  /// No description provided for @devoirProchainesSeances.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prochaines séances'**
+  String get devoirProchainesSeances;
+
+  /// No description provided for @devoirAucuneSeance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune séance de ce cours n\'est programmée dans les deux prochains mois : une semaine est proposée.'**
+  String get devoirAucuneSeance;
+
+  /// No description provided for @devoirRattrapage.
+  ///
+  /// In fr, this message translates to:
+  /// **'rattrapage'**
+  String get devoirRattrapage;
+
+  /// No description provided for @devoirModeIndividuel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Individuel'**
+  String get devoirModeIndividuel;
+
+  /// No description provided for @devoirModeGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'En groupe'**
+  String get devoirModeGroupe;
+
+  /// No description provided for @devoirGroupement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Groupement'**
+  String get devoirGroupement;
+
+  /// No description provided for @devoirGroupesConcernes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Groupes concernés (aucun coché : tous)'**
+  String get devoirGroupesConcernes;
+
+  /// No description provided for @devoirSujetFacultatif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sujet du groupe (facultatif)'**
+  String get devoirSujetFacultatif;
+
+  /// No description provided for @devoirAucunGroupement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette classe n\'a encore aucun groupe de travail.'**
+  String get devoirAucunGroupement;
+
+  /// No description provided for @devoirFige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Des rendus sont arrivés : le mode et les groupes ne changent plus.'**
+  String get devoirFige;
+
+  /// No description provided for @devoirNoter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Devoir noté'**
+  String get devoirNoter;
+
+  /// No description provided for @devoirNoteSurChamp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Noté sur'**
+  String get devoirNoteSurChamp;
+
+  /// No description provided for @devoirPublier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier à la classe'**
+  String get devoirPublier;
+
+  /// No description provided for @devoirBrouillon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer en brouillon'**
+  String get devoirBrouillon;
+
+  /// No description provided for @devoirBrouillonInfo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon : la classe ne voit pas encore ce devoir.'**
+  String get devoirBrouillonInfo;
+
+  /// No description provided for @devoirFermer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fermer les rendus'**
+  String get devoirFermer;
+
+  /// No description provided for @devoirFermerConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fermer le devoir ? Plus aucun rendu ne sera reçu.'**
+  String get devoirFermerConfirmer;
+
+  /// No description provided for @devoirRouvrir.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rouvrir les rendus'**
+  String get devoirRouvrir;
+
+  /// No description provided for @devoirSupprimerConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer définitivement ce devoir ?'**
+  String get devoirSupprimerConfirmer;
+
+  /// No description provided for @devoirRendusSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'{rendus} / {attendus} rendus'**
+  String devoirRendusSur(String rendus, String attendus);
+
+  /// No description provided for @devoirACorriger.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n} à corriger'**
+  String devoirACorriger(String n);
+
+  /// No description provided for @devoirPublierCorrections.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier les corrections'**
+  String get devoirPublierCorrections;
+
+  /// No description provided for @devoirPublierCorrectionsConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier les corrections ? La classe les lira, et le devoir sera fermé aux rendus.'**
+  String get devoirPublierCorrectionsConfirmer;
+
+  /// No description provided for @devoirCorrectionsAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notez au fil de l\'eau : la classe ne voit rien avant la publication des corrections.'**
+  String get devoirCorrectionsAide;
+
+  /// No description provided for @devoirCorriger.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corriger'**
+  String get devoirCorriger;
+
+  /// No description provided for @devoirStatutACorriger.
+  ///
+  /// In fr, this message translates to:
+  /// **'À corriger'**
+  String get devoirStatutACorriger;
+
+  /// No description provided for @devoirStatutCorrige.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrigé'**
+  String get devoirStatutCorrige;
+
+  /// No description provided for @devoirStatutNonRendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non rendu'**
+  String get devoirStatutNonRendu;
+
+  /// No description provided for @devoirStatutDispense.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dispensé'**
+  String get devoirStatutDispense;
+
+  /// No description provided for @devoirCommentaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commentaire'**
+  String get devoirCommentaire;
+
+  /// No description provided for @devoirNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note'**
+  String get devoirNote;
+
+  /// No description provided for @devoirRienDeRendu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rien de rendu'**
+  String get devoirRienDeRendu;
+
+  /// No description provided for @devoirVerser.
+  ///
+  /// In fr, this message translates to:
+  /// **'Verser au contrôle continu'**
+  String get devoirVerser;
+
+  /// No description provided for @devoirVerserAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les notes, ramenées sur 20, deviennent un contrôle de votre feuille de notes. « Non rendu » vaut absence non justifiée (zéro).'**
+  String get devoirVerserAide;
+
+  /// No description provided for @devoirFeuille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Feuille de notes'**
+  String get devoirFeuille;
+
+  /// No description provided for @devoirTypeControle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de contrôle'**
+  String get devoirTypeControle;
+
+  /// No description provided for @devoirVerserBouton.
+  ///
+  /// In fr, this message translates to:
+  /// **'Verser les notes'**
+  String get devoirVerserBouton;
+
+  /// No description provided for @devoirDejaVerse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déjà versé : « {controle} ». Verser à nouveau met ce contrôle à jour.'**
+  String devoirDejaVerse(String controle);
+
+  /// No description provided for @devoirAucuneFeuille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune feuille de notes ouverte pour ce cours à votre nom.'**
+  String get devoirAucuneFeuille;
+
+  /// No description provided for @devoirNotesVersees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes versées : {n} note(s) reportée(s).'**
+  String devoirNotesVersees(String n);
+
+  /// No description provided for @devoirInscritsSansGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inscrits sans groupe pour ce devoir'**
+  String get devoirInscritsSansGroupe;
+
+  /// No description provided for @groupementNouveau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau groupement'**
+  String get groupementNouveau;
+
+  /// No description provided for @groupementNom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du groupement'**
+  String get groupementNom;
+
+  /// No description provided for @groupementTirageAucun.
+  ///
+  /// In fr, this message translates to:
+  /// **'À la main'**
+  String get groupementTirageAucun;
+
+  /// No description provided for @groupementTirageNombre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tirage au sort : nombre de groupes'**
+  String get groupementTirageNombre;
+
+  /// No description provided for @groupementTirageTaille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tirage au sort : étudiants par groupe'**
+  String get groupementTirageTaille;
+
+  /// No description provided for @groupementNombre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre'**
+  String get groupementNombre;
+
+  /// No description provided for @groupementCreer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer le groupement'**
+  String get groupementCreer;
+
+  /// No description provided for @groupementAucun.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun groupement pour cette classe.'**
+  String get groupementAucun;
+
+  /// No description provided for @groupementNbGroupes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n} groupe(s)'**
+  String groupementNbGroupes(String n);
+
+  /// No description provided for @groupementAjouterGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un groupe'**
+  String get groupementAjouterGroupe;
+
+  /// No description provided for @groupementTirer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tirer au sort'**
+  String get groupementTirer;
+
+  /// No description provided for @groupementTirerAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recompose tout le groupement parmi les inscrits de la classe. Impossible dès qu\'un groupe a rendu un devoir.'**
+  String get groupementTirerAide;
+
+  /// No description provided for @groupementComposition.
+  ///
+  /// In fr, this message translates to:
+  /// **'Composition'**
+  String get groupementComposition;
+
+  /// No description provided for @groupementAucunGroupe.
+  ///
+  /// In fr, this message translates to:
+  /// **'— Aucun —'**
+  String get groupementAucunGroupe;
+
+  /// No description provided for @groupementEnregistrerComposition.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer la composition'**
+  String get groupementEnregistrerComposition;
+
+  /// No description provided for @groupementSupprimerConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer ce groupement et ses groupes ?'**
+  String get groupementSupprimerConfirmer;
+
+  /// No description provided for @groupementRenommer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Renommer'**
+  String get groupementRenommer;
+
+  /// No description provided for @groupementCompositionFigee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous ne tenez plus ce cours : la composition est figée.'**
+  String get groupementCompositionFigee;
+
+  /// No description provided for @groupeNom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du groupe'**
+  String get groupeNom;
+
+  /// No description provided for @groupeAucunMembre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun membre'**
+  String get groupeAucunMembre;
 }
 
 class _AppLocalizationsDelegate

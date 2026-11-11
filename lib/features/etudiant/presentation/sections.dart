@@ -31,6 +31,7 @@ const _cheminsDuPortail = {
   '/portail-etudiant/ma-scolarite/': 'academics',
   '/portail-etudiant/planning-des-examens/': 'examens',
   '/portail-etudiant/mes-notes/': 'notes',
+  '/portail-etudiant/mes-devoirs/': 'devoirs',
   '/portail-etudiant/ma-promotion/': 'promotion',
   '/portail-etudiant/mes-supports-de-cours/': 'supports',
   '/portail-etudiant/archives/': 'archives',

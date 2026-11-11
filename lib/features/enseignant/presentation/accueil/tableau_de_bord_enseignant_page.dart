@@ -6,6 +6,7 @@ import '../../../../app/charte/charte.dart';
 import '../../../../app/router.dart';
 import '../../../../core/format/formats.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../commun/espace/bouton_discussions.dart';
 import '../../../commun/langue.dart';
 import '../../../commun/tuile_seance.dart';
 import '../../application/lectures.dart';
@@ -22,6 +23,7 @@ class TableauDeBordEnseignantPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tableau = ref.watch(tableauDeBordEnseignantProvider);
+    final navigation = ref.watch(menuEnseignantProvider).valueOrNull;
 
     Future<void> rafraichir() async {
       await Future.wait([
@@ -39,7 +41,7 @@ class TableauDeBordEnseignantPage extends ConsumerWidget {
           return ListView(
             padding: EdgeInsets.zero,
             children: [
-              _Bandeau(donnees: donnees),
+              _Bandeau(donnees: donnees, navigation: navigation),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
                 child: Column(
@@ -71,9 +73,10 @@ class TableauDeBordEnseignantPage extends ConsumerWidget {
 }
 
 class _Bandeau extends StatelessWidget {
-  const _Bandeau({required this.donnees});
+  const _Bandeau({required this.donnees, required this.navigation});
 
   final TableauDeBordEnseignant donnees;
+  final Navigation? navigation;
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +114,11 @@ class _Bandeau extends StatelessWidget {
                     ),
                   ),
                 ),
+              const SizedBox(width: 8),
+              BoutonDiscussions(
+                navigation: navigation,
+                ouvrir: () => ouvrirSectionEnseignant(context, codeSectionDiscussions),
+              ),
             ],
           ),
           const SizedBox(height: 20),

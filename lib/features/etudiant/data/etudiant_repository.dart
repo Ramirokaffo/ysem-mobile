@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import '../../../core/format/formats.dart';
+import '../../../core/models/devoirs.dart';
 import '../../../core/models/json.dart';
 import '../../../core/network/api_client.dart';
 import '../../../core/network/endpoints.dart';
@@ -53,6 +54,26 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
 
   Future<Profil> profil() async => Profil.depuisJson(
       await _client.get<Map<String, dynamic>>(RoutesEtudiant.profil));
+
+  /// Mise à jour du profil, quand la scolarité l'a ouverte. L'envoi peut
+  /// être partiel : le serveur garde la valeur au dossier de chaque champ
+  /// absent. Rend `false` quand rien n'a changé.
+  Future<bool> modifierProfil(Map<String, String> champs) async {
+    final json = await _client.post<Map<String, dynamic>>(
+      RoutesEtudiant.profilModifier,
+      donnees: champs,
+    );
+    return json['modifie'] == true;
+  }
+
+  /// Remplace la photo de profil (recadrée au carré par le serveur).
+  Future<void> changerPhoto(PieceAJoindre photo) => _client.post<dynamic>(
+        RoutesEtudiant.profilPhoto,
+        donnees: FormData()..files.add(MapEntry('photo', photo.versMultipart())),
+      );
+
+  Future<void> retirerPhoto() =>
+      _client.delete<dynamic>(RoutesEtudiant.profilPhoto);
 
   // --- Sections --------------------------------------------------------
 
@@ -526,6 +547,45 @@ class EtudiantRepository implements DepotEspace, DepotDiscussions {
     }
     return donnees;
   }
+
+  // --- Mes devoirs ------------------------------------------------------
+
+  Future<DevoirsEtudiant> devoirs() async => DevoirsEtudiant.depuisJson(
+      await _client.get<Map<String, dynamic>>(RoutesEtudiant.devoirs));
+
+  Future<EntreeDevoir> devoir(int id) async => EntreeDevoir.depuisJson(
+      await _client.get<Map<String, dynamic>>(RoutesEtudiant.devoir(id)));
+
+  /// Rend (ou complète) le devoir : le texte remplace le précédent, les
+  /// pièces s'ajoutent à celles déjà jointes.
+  Future<EntreeDevoir> rendreDevoir(
+    int id, {
+    required String texte,
+    List<PieceAJoindre> pieces = const [],
+    String champ = 'fichiers',
+  }) async {
+    final donnees = FormData()..fields.add(MapEntry('texte', texte));
+    for (final piece in pieces) {
+      donnees.files.add(MapEntry(champ, piece.versMultipart()));
+    }
+    return EntreeDevoir.depuisJson((await _client.post<Map<String, dynamic>>(
+        RoutesEtudiant.devoirRendu(id),
+        donnees: donnees)));
+  }
+
+  Future<EntreeDevoir> retirerPieceRendu(int devoir, int piece) async =>
+      EntreeDevoir.depuisJson((await _client.delete<Map<String, dynamic>>(
+          RoutesEtudiant.devoirRenduPieceRetirer(devoir, piece))));
+
+  Future<File> pieceDevoir(PieceDevoir piece) => _client.telecharger(
+      RoutesEtudiant.devoirPiece(piece.id),
+      query: {'telecharger': '1'},
+      nomParDefaut: piece.nom.isEmpty ? 'piece_${piece.id}' : piece.nom);
+
+  Future<File> pieceRendu(PieceDevoir piece) => _client.telecharger(
+      RoutesEtudiant.devoirRenduPiece(piece.id),
+      query: {'telecharger': '1'},
+      nomParDefaut: piece.nom.isEmpty ? 'piece_${piece.id}' : piece.nom);
 
   // --- Boîte à suggestions ---------------------------------------------
 

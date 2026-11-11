@@ -11,6 +11,7 @@ import 'association/association_historique_page.dart';
 import 'association/association_page.dart';
 import 'bibliotheque/bibliotheque_page.dart';
 import 'delegation/delegation_page.dart';
+import 'devoirs/devoirs_page.dart';
 import 'discipline/discipline_page.dart';
 import 'documents/documents_page.dart';
 import 'examens/examens_page.dart';
@@ -40,6 +41,7 @@ class SectionPage extends ConsumerWidget {
     return switch (code) {
       'academics' => ScolaritePage(titre: titre),
       'notes' => NotesPage(titre: titre),
+      'devoirs' => DevoirsPage(titre: titre),
       'finances' => FinancesPage(titre: titre),
       'examens' => ExamensPage(titre: titre),
       'supports' => SupportsPage(titre: titre),
