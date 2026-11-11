@@ -47,4 +47,5 @@ app.*.map.json
 # Signature de publication Google Play (ne jamais versionner)
 /android/key.properties
 /android/upload-keystore.jks
+/android/app/google-services.json
 *.jks
