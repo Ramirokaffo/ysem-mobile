@@ -3119,7 +3119,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sujetAccepteFige =>
-      'Paper accepted by the office: it can no longer be changed.';
+      'Paper accepted by the office: it can no longer be changed or downloaded.';
 
   @override
   String get depotClos => 'Submissions are closed for this campaign.';
@@ -3805,4 +3805,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get groupeAucunMembre => 'No member';
+
+  @override
+  String get devoirPiecesDejaJointes => 'Files already attached';
+
+  @override
+  String devoirPieceRetirerConfirmer(String nom) {
+    return '“$nom” will be removed from the instructions. Students will no longer be able to download it.';
+  }
+
+  @override
+  String devoirAbsentsDeLaFeuille(String noms) {
+    return 'Not on the mark sheet, not transferred: $noms';
+  }
+
+  @override
+  String get devoirsDeLaClasse => 'Class assignments';
+
+  @override
+  String get devoirsAucunDeLaClasse => 'No assignment given to this class yet.';
 }

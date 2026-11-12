@@ -1857,7 +1857,7 @@
   "corrige": "Corrigé",
   "manquantExige": "Manquant, exigé",
   "facultatifPourCetteCampagne": "Facultatif pour cette campagne",
-  "sujetAccepteFige": "Sujet accepté par le service : il ne peut plus être modifié.",
+  "sujetAccepteFige": "Sujet accepté par le service : il ne peut plus être modifié ni téléchargé.",
   "depotClos": "Le dépôt est clos pour cette campagne.",
   "ajouterOuModifier": "Ajouter des pièces ou modifier",
   "deposerCeSujet": "Déposer ce sujet",
@@ -2124,5 +2124,12 @@
   "groupementRenommer": "Renommer",
   "groupementCompositionFigee": "Vous ne tenez plus ce cours : la composition est figée.",
   "groupeNom": "Nom du groupe",
-  "groupeAucunMembre": "Aucun membre"
+  "groupeAucunMembre": "Aucun membre",
+  "devoirPiecesDejaJointes": "Pièces déjà jointes",
+  "devoirPieceRetirerConfirmer": "« {nom} » sera retiré des consignes. Les étudiants ne pourront plus le télécharger.",
+  "@devoirPieceRetirerConfirmer": {"placeholders": {"nom": {"type": "String"}}},
+  "devoirAbsentsDeLaFeuille": "Absents de la feuille de notes, non reportés : {noms}",
+  "@devoirAbsentsDeLaFeuille": {"placeholders": {"noms": {"type": "String"}}},
+  "devoirsDeLaClasse": "Devoirs de la classe",
+  "devoirsAucunDeLaClasse": "Aucun devoir donné à cette classe."
 }

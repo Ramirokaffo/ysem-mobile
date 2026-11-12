@@ -3164,7 +3164,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sujetAccepteFige =>
-      'Sujet accepté par le service : il ne peut plus être modifié.';
+      'Sujet accepté par le service : il ne peut plus être modifié ni téléchargé.';
 
   @override
   String get depotClos => 'Le dépôt est clos pour cette campagne.';
@@ -3851,4 +3851,23 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get groupeAucunMembre => 'Aucun membre';
+
+  @override
+  String get devoirPiecesDejaJointes => 'Pièces déjà jointes';
+
+  @override
+  String devoirPieceRetirerConfirmer(String nom) {
+    return '« $nom » sera retiré des consignes. Les étudiants ne pourront plus le télécharger.';
+  }
+
+  @override
+  String devoirAbsentsDeLaFeuille(String noms) {
+    return 'Absents de la feuille de notes, non reportés : $noms';
+  }
+
+  @override
+  String get devoirsDeLaClasse => 'Devoirs de la classe';
+
+  @override
+  String get devoirsAucunDeLaClasse => 'Aucun devoir donné à cette classe.';
 }

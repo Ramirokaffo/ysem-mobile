@@ -110,8 +110,16 @@ class _Contenu extends ConsumerWidget {
           .read(enseignantRepositoryProvider)
           .gesteDevoir(etat.devoir.id, geste, donnees: donnees);
       if (geste == 'verser' && context.mounted) {
-        _message(context,
-            AppLocalizations.of(context).devoirNotesVersees('${reponse['reportes'] ?? 0}'));
+        final t = AppLocalizations.of(context);
+        // Un étudiant absent de la feuille est signalé, jamais créé : le dire.
+        final absents = [
+          for (final p in (reponse['absents_de_la_feuille'] as List? ?? const []))
+            if (p is Map<String, dynamic>) PersonneDevoir.depuisJson(p).nomComplet,
+        ];
+        _message(context, [
+          t.devoirNotesVersees('${reponse['reportes'] ?? 0}'),
+          if (absents.isNotEmpty) t.devoirAbsentsDeLaFeuille(absents.join(', ')),
+        ].join('\n'));
       }
     } on ApiException catch (e) {
       if (context.mounted) _message(context, e.message);

@@ -11,6 +11,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../commun/formulaire.dart';
 import '../../../commun/langue.dart';
 import '../../../commun/piece_jointe.dart';
+import '../../../commun/telechargement.dart';
 
 final _preparationProvider =
     FutureProvider.autoDispose.family<PreparationDevoir, String>(
@@ -57,6 +58,11 @@ class _FormulaireDevoirPageState extends ConsumerState<FormulaireDevoirPage> {
   };
   late bool _noter = widget.devoir?.devoir.estNote ?? false;
   List<PieceAJoindre> _pieces = const [];
+
+  /// Pièces des consignes déjà enregistrées (modification) : chacune se
+  /// retire à part, sans attendre « Enregistrer ».
+  late List<PieceDevoir> _jointes = [...?widget.devoir?.devoir.pieces];
+  bool _retrait = false;
   bool _envoi = false;
   ApiException? _erreur;
 
@@ -97,6 +103,28 @@ class _FormulaireDevoirPageState extends ConsumerState<FormulaireDevoirPage> {
     final heure = await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(depart));
     if (heure == null) return;
     setState(() => _dateLimite = DateTime(jour.year, jour.month, jour.day, heure.hour, heure.minute));
+  }
+
+  Future<void> _retirerJointe(PieceDevoir piece) async {
+    final t = AppLocalizations.of(context);
+    final messager = ScaffoldMessenger.of(context);
+    final ok = await confirmer(
+      context,
+      titre: t.retirer,
+      texte: t.devoirPieceRetirerConfirmer(piece.nom),
+      action: t.retirer,
+    );
+    if (!ok) return;
+    setState(() => _retrait = true);
+    try {
+      await ref.read(enseignantRepositoryProvider).retirerPieceDevoir(piece.id);
+      if (!mounted) return;
+      setState(() => _jointes = [for (final p in _jointes) if (p.id != piece.id) p]);
+    } on ApiException catch (e) {
+      messager.showSnackBar(SnackBar(content: Text(e.message)));
+    } finally {
+      if (mounted) setState(() => _retrait = false);
+    }
   }
 
   Map<String, dynamic> _corps({required bool publier}) => {
@@ -158,7 +186,7 @@ class _FormulaireDevoirPageState extends ConsumerState<FormulaireDevoirPage> {
     final groupements = etat?.groupements ?? const <Groupement>[];
     final groupement = groupements.where((g) => g.id == _groupement).firstOrNull;
     final erreur = _erreur;
-    final dejaJointes = widget.devoir?.devoir.pieces.length ?? 0;
+    final dejaJointes = _jointes.length;
     final restant = (widget.limites.maximum - dejaJointes).clamp(0, widget.limites.maximum);
 
     return Scaffold(
@@ -317,6 +345,25 @@ class _FormulaireDevoirPageState extends ConsumerState<FormulaireDevoirPage> {
                 validator: (v) => _erreur?.erreurDuChamp('note_sur'),
               ),
             const SizedBox(height: 16),
+            if (_jointes.isNotEmpty) ...[
+              Text(t.devoirPiecesDejaJointes, style: Theme.of(context).textTheme.labelLarge),
+              for (final piece in _jointes)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  leading: Icon(iconeDeFichier(piece.nom)),
+                  title: Text(piece.nom, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  subtitle: piece.tailleLisible.isEmpty ? null : Text(piece.tailleLisible),
+                  onTap: () => telechargerEtOuvrir(
+                      context, () => ref.read(enseignantRepositoryProvider).pieceDevoir(piece)),
+                  trailing: IconButton(
+                    tooltip: t.retirer,
+                    icon: const Icon(Icons.close_rounded),
+                    onPressed: _envoi || _retrait ? null : () => _retirerJointe(piece),
+                  ),
+                ),
+              const SizedBox(height: 8),
+            ],
             ChampPiecesJointes(
               libelle: t.devoirPieces,
               pieces: _pieces,

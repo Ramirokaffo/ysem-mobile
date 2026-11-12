@@ -26,9 +26,17 @@ import 'vacations/vacations_page.dart';
 /// l'application affichent un écran d'attente, avec le libellé et l'icône
 /// du registre du portail.
 class SectionEnseignantPage extends ConsumerWidget {
-  const SectionEnseignantPage({super.key, required this.code});
+  const SectionEnseignantPage({
+    super.key,
+    required this.code,
+    this.parametres = const {},
+  });
 
   final String code;
+
+  /// Paramètres de l'adresse : l'objet de la section à ouvrir d'emblée
+  /// (`devoir` — voir la lecture des adresses de notification).
+  final Map<String, String> parametres;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +49,10 @@ class SectionEnseignantPage extends ConsumerWidget {
       'examens' => ExamensEnseignantPage(titre: titre),
       'rattrapages' => RattrapagesPage(titre: titre),
       'classes' => ClassesPage(titre: titre),
-      'devoirs' => DevoirsEnseignantPage(titre: titre),
+      'devoirs' => DevoirsEnseignantPage(
+          titre: titre,
+          devoirInitial: int.tryParse(parametres['devoir'] ?? ''),
+        ),
       'fiches_a_signer' => FichesASignerPage(titre: titre),
       'ponctualite' => PonctualitePage(titre: titre),
       'vacations' => VacationsPage(titre: titre),

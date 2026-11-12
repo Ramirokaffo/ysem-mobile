@@ -48,9 +48,14 @@ final classesProvider = FutureProvider.autoDispose<MesClasses>(
   (ref) => ref.watch(enseignantRepositoryProvider).classes(),
 );
 
-/// La liste d'une classe, par sa clé.
 final devoirsEnseignantProvider = FutureProvider.autoDispose<DevoirsEnseignant>(
   (ref) => ref.watch(enseignantRepositoryProvider).devoirs(),
+);
+
+/// Les devoirs d'une seule classe (`?classe=`), pour sa fiche.
+final devoirsDeClasseProvider =
+    FutureProvider.autoDispose.family<DevoirsEnseignant, String>(
+  (ref, cle) => ref.watch(enseignantRepositoryProvider).devoirs(classe: cle),
 );
 
 final devoirEnseignantProvider = FutureProvider.autoDispose.family<DevoirComplet, int>(
@@ -65,6 +70,7 @@ final groupementProvider = FutureProvider.autoDispose.family<Groupement, int>(
   (ref, id) => ref.watch(enseignantRepositoryProvider).groupement(id),
 );
 
+/// La liste d'une classe, par sa clé.
 final detailClasseProvider =
     FutureProvider.autoDispose.family<DetailClasse, String>(
   (ref, cle) => ref.watch(enseignantRepositoryProvider).classe(cle),

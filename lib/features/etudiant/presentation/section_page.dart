@@ -30,9 +30,17 @@ import 'supports/supports_page.dart';
 /// pas encore livrées dans l'application affichent un écran d'attente, avec
 /// le libellé et l'icône du registre du portail.
 class SectionPage extends ConsumerWidget {
-  const SectionPage({super.key, required this.code});
+  const SectionPage({
+    super.key,
+    required this.code,
+    this.parametres = const {},
+  });
 
   final String code;
+
+  /// Paramètres de l'adresse : l'objet de la section à ouvrir d'emblée
+  /// (`devoir` — voir la lecture des adresses de notification).
+  final Map<String, String> parametres;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +49,10 @@ class SectionPage extends ConsumerWidget {
     return switch (code) {
       'academics' => ScolaritePage(titre: titre),
       'notes' => NotesPage(titre: titre),
-      'devoirs' => DevoirsPage(titre: titre),
+      'devoirs' => DevoirsPage(
+          titre: titre,
+          devoirInitial: int.tryParse(parametres['devoir'] ?? ''),
+        ),
       'finances' => FinancesPage(titre: titre),
       'examens' => ExamensPage(titre: titre),
       'supports' => SupportsPage(titre: titre),

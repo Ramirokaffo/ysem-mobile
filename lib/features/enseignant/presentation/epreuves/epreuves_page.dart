@@ -16,7 +16,9 @@ import '../../domain/epreuves.dart';
 
 /// Ce que dit une épreuve de son état : le délai, puis l'arbitrage du service.
 List<(String, TonPastille)> etatDeLaDemande(
-    AppLocalizations t, DepotEpreuve d) {
+  AppLocalizations t,
+  DepotEpreuve d,
+) {
   return [
     if (d.complet)
       (d.statutDelaiLibelle, TonPastille.succes)
@@ -61,8 +63,9 @@ class EpreuvesPage extends ConsumerWidget {
             else ...[
               Text(
                 t.epreuvesBilan(m.depots.length, m.completes, m.enRetard),
-                style: theme.textTheme.bodySmall
-                    ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: 10),
               OutlinedButton.icon(
@@ -80,21 +83,29 @@ class EpreuvesPage extends ConsumerWidget {
             for (final d in m.depots) ...[
               CarteYsem(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-                onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                  builder: (_) => DepotEpreuvePage(
-                      depot: d.id, titre: d.cours.libelle(langue)),
-                )),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => DepotEpreuvePage(
+                      depot: d.id,
+                      titre: d.cours.libelle(langue),
+                    ),
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(d.cours.libelle(langue),
-                        style: theme.textTheme.titleSmall),
                     Text(
-                      [d.cohorte, d.campagne.intitule]
-                          .where((s) => s.isNotEmpty)
-                          .join(' · '),
+                      d.cours.libelle(langue),
+                      style: theme.textTheme.titleSmall,
+                    ),
+                    Text(
+                      [
+                        d.cohorte,
+                        d.campagne.intitule,
+                      ].where((s) => s.isNotEmpty).join(' · '),
                       style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant),
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Wrap(
@@ -109,13 +120,17 @@ class EpreuvesPage extends ConsumerWidget {
                     Text(
                       [
                         t.sujetsCompletsSur(
-                            d.sujetsComplets, d.campagne.nbSujetsRequis),
+                          d.sujetsComplets,
+                          d.campagne.nbSujetsRequis,
+                        ),
                         if (d.echeance != null)
                           t.aDeposerAvant(
-                              Formats.dateLongue(d.echeance, langue)),
+                            Formats.dateLongue(d.echeance, langue),
+                          ),
                       ].join(' · '),
                       style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant),
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ],
                 ),
@@ -173,7 +188,10 @@ class _DepotEpreuvePageState extends ConsumerState<DepotEpreuvePage> {
   }
 
   Future<void> _deposer(
-      MesEpreuves m, DepotEpreuve depot, SujetEpreuve sujet) async {
+    MesEpreuves m,
+    DepotEpreuve depot,
+    SujetEpreuve sujet,
+  ) async {
     final message = await showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
@@ -190,8 +208,9 @@ class _DepotEpreuvePageState extends ConsumerState<DepotEpreuvePage> {
     );
     if (message == null || !mounted) return;
     _relire();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -219,15 +238,17 @@ class _DepotEpreuvePageState extends ConsumerState<DepotEpreuvePage> {
               ],
             );
           }
-          final secondaire = theme.textTheme.bodySmall
-              ?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+          final secondaire = theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          );
           return ListView(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
             children: [
               Text(
-                [d.cohorte, d.campagne.intitule]
-                    .where((s) => s.isNotEmpty)
-                    .join(' · '),
+                [
+                  d.cohorte,
+                  d.campagne.intitule,
+                ].where((s) => s.isNotEmpty).join(' · '),
                 style: secondaire,
               ),
               const SizedBox(height: 8),
@@ -246,7 +267,9 @@ class _DepotEpreuvePageState extends ConsumerState<DepotEpreuvePage> {
                     t.aDeposerAvant(Formats.dateLongue(d.echeance, langue)),
                   if (d.moratoire) t.moratoireAccorde,
                   t.sujetsCompletsSur(
-                      d.sujetsComplets, d.campagne.nbSujetsRequis),
+                    d.sujetsComplets,
+                    d.campagne.nbSujetsRequis,
+                  ),
                 ].join(' · '),
                 style: secondaire,
               ),
@@ -316,23 +339,25 @@ class _CarteSujet extends ConsumerWidget {
     final s = sujet;
     final ouverte = depot.campagne.ouverte;
     final retirable = ouverte && s.modifiable && actif;
-    final secondaire = theme.textTheme.bodySmall
-        ?.copyWith(color: theme.colorScheme.onSurfaceVariant);
+    final secondaire = theme.textTheme.bodySmall?.copyWith(
+      color: theme.colorScheme.onSurfaceVariant,
+    );
     final modeles = depot.modelesDu(s.numero);
 
     return CarteYsem(
       titre: t.sujetNumero(s.numero),
       icone: Icons.article_outlined,
-      action: s.acceptee
-          ? Pastille(t.accepte, ton: TonPastille.succes)
-          : null,
+      action: s.acceptee ? Pastille(t.accepte, ton: TonPastille.succes) : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (s.intitule.isNotEmpty)
-            Text(s.intitule,
-                style: theme.textTheme.bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.w700)),
+            Text(
+              s.intitule,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           if (s.dureeMinutes != null || s.commentaire.isNotEmpty)
             Text(
               [
@@ -352,13 +377,17 @@ class _CarteSujet extends ConsumerWidget {
                   ActionChip(
                     avatar: const Icon(Icons.description_outlined, size: 18),
                     label: Text(
-                        m.langue == 'en' ? t.anglaisWord : t.francaisWord),
+                      m.langue == 'en' ? t.anglaisWord : t.francaisWord,
+                    ),
                     onPressed: () => telechargerEtOuvrir(
                       context,
                       () => ref
                           .read(enseignantRepositoryProvider)
                           .telechargerModeleEpreuve(
-                              depot.id, m.numero, m.langue),
+                            depot.id,
+                            m.numero,
+                            m.langue,
+                          ),
                     ),
                   ),
               ],
@@ -373,6 +402,7 @@ class _CarteSujet extends ConsumerWidget {
                 manqueEnAlerte: v.exigee,
                 pieces: v.pieces,
                 retirable: retirable,
+                telechargeable: s.modifiable,
                 surRetrait: surRetrait,
               )
           else
@@ -382,6 +412,7 @@ class _CarteSujet extends ConsumerWidget {
               manqueEnAlerte: true,
               pieces: s.piecesSujet,
               retirable: retirable,
+              telechargeable: s.modifiable,
               surRetrait: surRetrait,
             ),
           _BlocPieces(
@@ -392,6 +423,7 @@ class _CarteSujet extends ConsumerWidget {
             manqueEnAlerte: depot.campagne.corrigeObligatoire,
             pieces: s.piecesCorrige,
             retirable: retirable,
+            telechargeable: s.modifiable,
             surRetrait: surRetrait,
           ),
           const SizedBox(height: 8),
@@ -421,13 +453,19 @@ class _Fermeture extends StatelessWidget {
     final theme = Theme.of(context);
     return Row(
       children: [
-        Icon(Icons.lock_outline_rounded,
-            size: 18, color: theme.colorScheme.onSurfaceVariant),
+        Icon(
+          Icons.lock_outline_rounded,
+          size: 18,
+          color: theme.colorScheme.onSurfaceVariant,
+        ),
         const SizedBox(width: 8),
         Expanded(
-          child: Text(texte,
-              style: theme.textTheme.bodySmall
-                  ?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+          child: Text(
+            texte,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
         ),
       ],
     );
@@ -435,6 +473,9 @@ class _Fermeture extends StatelessWidget {
 }
 
 /// Les pièces d'une nature : ouvrir, retirer, et ce que dit leur absence.
+///
+/// Un sujet validé par le service ne se télécharge plus (le serveur refuse,
+/// `sujet_valide`) : le nom reste, cadenas à la place de l'ouverture.
 class _BlocPieces extends ConsumerWidget {
   const _BlocPieces({
     required this.titre,
@@ -442,6 +483,7 @@ class _BlocPieces extends ConsumerWidget {
     required this.manqueEnAlerte,
     required this.pieces,
     required this.retirable,
+    required this.telechargeable,
     required this.surRetrait,
   });
 
@@ -450,6 +492,7 @@ class _BlocPieces extends ConsumerWidget {
   final bool manqueEnAlerte;
   final List<PieceDeDepot> pieces;
   final bool retirable;
+  final bool telechargeable;
   final ValueChanged<PieceDeDepot> surRetrait;
 
   @override
@@ -484,16 +527,23 @@ class _BlocPieces extends ConsumerWidget {
               dense: true,
               contentPadding: EdgeInsets.zero,
               leading: Icon(iconeDeFichier(piece.nom)),
-              title: Text(piece.nom,
-                  maxLines: 2, overflow: TextOverflow.ellipsis),
-              subtitle: Text(tailleLisible(piece.taille, langue)),
-              onTap: () => telechargerEtOuvrir(
-                context,
-                () => ref
-                    .read(enseignantRepositoryProvider)
-                    .telechargerPieceEpreuve(piece),
+              title: Text(
+                piece.nom,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              trailing: retirable
+              subtitle: Text(tailleLisible(piece.taille, langue)),
+              onTap: telechargeable
+                  ? () => telechargerEtOuvrir(
+                      context,
+                      () => ref
+                          .read(enseignantRepositoryProvider)
+                          .telechargerPieceEpreuve(piece),
+                    )
+                  : null,
+              trailing: !telechargeable
+                  ? const Icon(Icons.lock_outline_rounded, size: 18)
+                  : retirable
                   ? IconButton(
                       tooltip: t.retirer,
                       onPressed: () => surRetrait(piece),
@@ -532,9 +582,11 @@ class _DepotSujetState extends ConsumerState<_DepotSujet> {
 
   late final _intitule = TextEditingController(text: widget.sujet.intitule);
   late final _duree = TextEditingController(
-      text: widget.sujet.dureeMinutes?.toString() ?? '');
-  late final _commentaire =
-      TextEditingController(text: widget.sujet.commentaire);
+    text: widget.sujet.dureeMinutes?.toString() ?? '',
+  );
+  late final _commentaire = TextEditingController(
+    text: widget.sujet.commentaire,
+  );
   List<PieceAJoindre> _sujet = const [];
   List<PieceAJoindre> _sujetEn = const [];
   List<PieceAJoindre> _corrige = const [];
@@ -555,16 +607,17 @@ class _DepotSujetState extends ConsumerState<_DepotSujet> {
       _erreur = null;
     });
     try {
-      final message =
-          await ref.read(enseignantRepositoryProvider).deposerSujet(
-                widget.sujet.id,
-                fichiersSujet: _sujet,
-                fichiersSujetEn: _sujetEn,
-                fichiersCorrige: _corrige,
-                intitule: _intitule.text.trim(),
-                dureeMinutes: _duree.text.trim(),
-                commentaire: _commentaire.text.trim(),
-              );
+      final message = await ref
+          .read(enseignantRepositoryProvider)
+          .deposerSujet(
+            widget.sujet.id,
+            fichiersSujet: _sujet,
+            fichiersSujetEn: _sujetEn,
+            fichiersCorrige: _corrige,
+            intitule: _intitule.text.trim(),
+            dureeMinutes: _duree.text.trim(),
+            commentaire: _commentaire.text.trim(),
+          );
       if (mounted) Navigator.of(context).pop(message);
     } on ApiException catch (e) {
       if (mounted) setState(() => _erreur = e);
@@ -575,9 +628,8 @@ class _DepotSujetState extends ConsumerState<_DepotSujet> {
 
   /// Ce que le sujet peut encore recevoir, au regard des dix pièces permises.
   /// Ses deux versions comptent ensemble, comme au serveur.
-  int get _restantSujet =>
-      (piecesParSujetMax - widget.sujet.piecesSujet.length)
-          .clamp(0, piecesParSujetMax);
+  int get _restantSujet => (piecesParSujetMax - widget.sujet.piecesSujet.length)
+      .clamp(0, piecesParSujetMax);
 
   @override
   Widget build(BuildContext context) {
@@ -589,23 +641,32 @@ class _DepotSujetState extends ConsumerState<_DepotSujet> {
         ? t.piecesSajoutent
         : '${t.piecesSajoutent} ${t.formatsAcceptes(widget.formats)}';
     final restantCorrige =
-        (piecesParSujetMax - widget.sujet.piecesCorrige.length)
-            .clamp(0, piecesParSujetMax);
+        (piecesParSujetMax - widget.sujet.piecesCorrige.length).clamp(
+          0,
+          piecesParSujetMax,
+        );
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          20, 0, 20, 20 + MediaQuery.viewInsetsOf(context).bottom),
+        20,
+        0,
+        20,
+        20 + MediaQuery.viewInsetsOf(context).bottom,
+      ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(t.sujetNumero(widget.sujet.numero),
-                style: theme.textTheme.titleLarge),
+            Text(
+              t.sujetNumero(widget.sujet.numero),
+              style: theme.textTheme.titleLarge,
+            ),
             if (erreur != null) ...[
               const SizedBox(height: 16),
               BandeauErreurs(
-                  messages: erreursGlobales(erreur, _champsAffiches)),
+                messages: erreursGlobales(erreur, _champsAffiches),
+              ),
             ],
             const SizedBox(height: 16),
             TextField(
@@ -618,8 +679,7 @@ class _DepotSujetState extends ConsumerState<_DepotSujet> {
             ),
             const SizedBox(height: 16),
             ChampPiecesJointes(
-              libelle:
-                  bilingue ? t.fichiersSujetFrancais : t.fichiersDuSujet,
+              libelle: bilingue ? t.fichiersSujetFrancais : t.fichiersDuSujet,
               aide: aide,
               pieces: _sujet,
               maximum: _restantSujet,
@@ -633,8 +693,10 @@ class _DepotSujetState extends ConsumerState<_DepotSujet> {
                 libelle: t.fichiersSujetAnglais,
                 aide: t.memeSujetTraduit,
                 pieces: _sujetEn,
-                maximum: (_restantSujet - _sujet.length)
-                    .clamp(0, piecesParSujetMax),
+                maximum: (_restantSujet - _sujet.length).clamp(
+                  0,
+                  piecesParSujetMax,
+                ),
                 extensions: widget.extensions,
                 actif: !_enCours,
                 surChangement: (p) => setState(() => _sujetEn = p),

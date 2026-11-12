@@ -107,7 +107,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/etudiant/section/:code',
         parentNavigatorKey: _cleRacine,
-        builder: (_, etat) => SectionPage(code: etat.pathParameters['code']!),
+        builder: (_, etat) => SectionPage(
+          code: etat.pathParameters['code']!,
+          parametres: etat.uri.queryParameters,
+        ),
       ),
       StatefulShellRoute.indexedStack(
         builder: (_, _, coque) => ShellEtudiant(coque: coque),
@@ -146,8 +149,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/enseignant/section/:code',
         parentNavigatorKey: _cleRacine,
-        builder: (_, etat) =>
-            SectionEnseignantPage(code: etat.pathParameters['code']!),
+        builder: (_, etat) => SectionEnseignantPage(
+          code: etat.pathParameters['code']!,
+          parametres: etat.uri.queryParameters,
+        ),
       ),
       StatefulShellRoute.indexedStack(
         builder: (_, _, coque) => ShellEnseignant(coque: coque),

@@ -10,6 +10,8 @@ import '../../../commun/fil/fil_page.dart';
 import '../../../commun/telechargement.dart';
 import '../../application/lectures.dart';
 import '../../domain/cours.dart';
+import '../devoirs/devoir_enseignant_page.dart';
+import '../devoirs/devoirs_enseignant_page.dart';
 import '../devoirs/formulaire_devoir_page.dart';
 import '../devoirs/groupements_page.dart';
 
@@ -42,6 +44,24 @@ class _ClassePageState extends ConsumerState<ClassePage> {
     if (q.isEmpty) return true;
     return e.nomComplet.toLowerCase().contains(q) ||
         e.matricule.toLowerCase().contains(q);
+  }
+
+  /// Donner un devoir à la classe, puis ouvrir sa fiche — comme depuis
+  /// « Devoirs ».
+  Future<void> _donnerUnDevoir(DetailClasse detail) async {
+    final limites = ref.read(devoirsDeClasseProvider(detail.cleDiscussion)).valueOrNull?.limites;
+    final id = await Navigator.of(context).push<int>(MaterialPageRoute(
+      builder: (_) => FormulaireDevoirPage(
+        classe: _classeDevoir(detail),
+        limites: limites ?? const LimitesPieces(),
+      ),
+    ));
+    ref.invalidate(devoirsDeClasseProvider(detail.cleDiscussion));
+    if (id == null || !mounted) return;
+    await Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => DevoirEnseignantPage(id: id),
+    ));
+    ref.invalidate(devoirsDeClasseProvider(detail.cleDiscussion));
   }
 
   @override
@@ -92,9 +112,7 @@ class _ClassePageState extends ConsumerState<ClassePage> {
                 Row(children: [
                   Expanded(
                     child: OutlinedButton.icon(
-                      onPressed: () => Navigator.of(context).push(MaterialPageRoute<int>(
-                        builder: (_) => FormulaireDevoirPage(classe: _classeDevoir(detail)),
-                      )),
+                      onPressed: () => _donnerUnDevoir(detail),
                       icon: const Icon(Icons.add_task_rounded),
                       label: Text(t.devoirsDonner),
                     ),
@@ -110,6 +128,8 @@ class _ClassePageState extends ConsumerState<ClassePage> {
                     ),
                   ),
                 ]),
+                const SizedBox(height: 16),
+                _DevoirsDeLaClasse(cle: detail.cleDiscussion),
                 const SizedBox(height: 16),
               ],
               _Delegues(delegues: detail.classe.delegues),
@@ -152,6 +172,56 @@ class _ClassePageState extends ConsumerState<ClassePage> {
           );
         },
       ),
+    );
+  }
+}
+
+/// Les devoirs déjà donnés à la classe, du plus récent au plus ancien
+/// (l'ordre du serveur). Une erreur de lecture ne masque pas la fiche.
+class _DevoirsDeLaClasse extends ConsumerWidget {
+  const _DevoirsDeLaClasse({required this.cle});
+
+  final String cle;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final devoirs = ref.watch(devoirsDeClasseProvider(cle)).valueOrNull?.devoirs;
+    if (devoirs == null) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(t.devoirsDeLaClasse, style: theme.textTheme.titleMedium),
+        const SizedBox(height: 8),
+        if (devoirs.isEmpty)
+          Text(t.devoirsAucunDeLaClasse,
+              style: theme.textTheme.bodySmall
+                  ?.copyWith(color: theme.colorScheme.onSurfaceVariant))
+        else
+          Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(children: [
+              for (final (i, resume) in devoirs.indexed) ...[
+                if (i > 0) const Divider(indent: 16, endIndent: 16),
+                ListTile(
+                  title: Text(resume.devoir.titre, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  subtitle: Text(t.devoirRendusSur('${resume.rendus}', '${resume.attendus}')),
+                  trailing: resume.aCorriger > 0
+                      ? Pastille(t.devoirACorriger('${resume.aCorriger}'), ton: TonPastille.alerte)
+                      : Pastille(resume.devoir.statutLibelle,
+                          ton: tonDuStatutDevoir(resume.devoir.statut)),
+                  onTap: () async {
+                    await Navigator.of(context).push(MaterialPageRoute<void>(
+                      builder: (_) => DevoirEnseignantPage(id: resume.devoir.id, titre: resume.devoir.titre),
+                    ));
+                    ref.invalidate(devoirsDeClasseProvider(cle));
+                  },
+                ),
+              ],
+            ]),
+          ),
+      ],
     );
   }
 }

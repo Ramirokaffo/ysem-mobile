@@ -52,8 +52,15 @@ const _cheminsDuPortail = {
   '/messagerie/': 'messages',
 };
 
+/// Fiche d'un devoir (`student_portal:devoir_detail`) : la notification
+/// d'un devoir ouvre ce devoir, pas la liste.
+final _ficheDevoir = RegExp(r'^/portail-etudiant/mes-devoirs/(\d+)/$');
+
 /// Section de l'application que désigne l'adresse web d'une notification
 /// (`/portail-etudiant/mes-notes/?…#…`, ou absolue), `null` si aucune.
+///
+/// Une adresse qui désigne un objet de la section le porte en paramètre :
+/// `devoirs?devoir=12` — la route des sections lit ces paramètres.
 String? sectionDeLAdresse(String adresse) {
   if (adresse.trim().isEmpty) return null;
   final uri = Uri.tryParse(adresse.trim());
@@ -68,5 +75,7 @@ String? sectionDeLAdresse(String adresse) {
       longueur = prefixe.length;
     }
   }
+  final devoir = _ficheDevoir.firstMatch(chemin)?.group(1);
+  if (trouvee == 'devoirs' && devoir != null) return 'devoirs?devoir=$devoir';
   return trouvee;
 }

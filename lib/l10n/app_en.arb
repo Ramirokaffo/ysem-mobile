@@ -813,7 +813,7 @@
   "corrige": "Answer key",
   "manquantExige": "Missing, required",
   "facultatifPourCetteCampagne": "Optional for this campaign",
-  "sujetAccepteFige": "Paper accepted by the office: it can no longer be changed.",
+  "sujetAccepteFige": "Paper accepted by the office: it can no longer be changed or downloaded.",
   "depotClos": "Submissions are closed for this campaign.",
   "ajouterOuModifier": "Add files or edit",
   "deposerCeSujet": "Submit this paper",
@@ -1012,5 +1012,10 @@
   "groupementRenommer": "Rename",
   "groupementCompositionFigee": "You no longer teach this course: the composition is frozen.",
   "groupeNom": "Group name",
-  "groupeAucunMembre": "No member"
+  "groupeAucunMembre": "No member",
+  "devoirPiecesDejaJointes": "Files already attached",
+  "devoirPieceRetirerConfirmer": "“{nom}” will be removed from the instructions. Students will no longer be able to download it.",
+  "devoirAbsentsDeLaFeuille": "Not on the mark sheet, not transferred: {noms}",
+  "devoirsDeLaClasse": "Class assignments",
+  "devoirsAucunDeLaClasse": "No assignment given to this class yet."
 }

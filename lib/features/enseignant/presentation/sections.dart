@@ -46,8 +46,13 @@ const _cheminsDuPortail = {
   '/chat-cours/enseignant/': 'discussions',
 };
 
+/// Fiche d'un devoir (`lecturers:mes_devoirs_detail`) : la notification d'un
+/// devoir ouvre ce devoir, pas la liste.
+final _ficheDevoir = RegExp(r'^/enseignants/mes-devoirs/(\d+)/$');
+
 /// Section de l'application que désigne l'adresse web d'une notification
-/// de l'espace `lecturer`, `null` si aucune.
+/// de l'espace `lecturer`, `null` si aucune. Une adresse qui désigne un
+/// objet de la section le porte en paramètre (`devoirs?devoir=12`).
 String? sectionEnseignantDeLAdresse(String adresse) {
   if (adresse.trim().isEmpty) return null;
   final uri = Uri.tryParse(adresse.trim());
@@ -62,5 +67,7 @@ String? sectionEnseignantDeLAdresse(String adresse) {
       longueur = prefixe.length;
     }
   }
+  final devoir = _ficheDevoir.firstMatch(chemin)?.group(1);
+  if (trouvee == 'devoirs' && devoir != null) return 'devoirs?devoir=$devoir';
   return trouvee;
 }

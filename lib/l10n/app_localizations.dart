@@ -4979,7 +4979,7 @@ abstract class AppLocalizations {
   /// No description provided for @sujetAccepteFige.
   ///
   /// In fr, this message translates to:
-  /// **'Sujet accepté par le service : il ne peut plus être modifié.'**
+  /// **'Sujet accepté par le service : il ne peut plus être modifié ni téléchargé.'**
   String get sujetAccepteFige;
 
   /// No description provided for @depotClos.
@@ -6175,6 +6175,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Aucun membre'**
   String get groupeAucunMembre;
+
+  /// No description provided for @devoirPiecesDejaJointes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pièces déjà jointes'**
+  String get devoirPiecesDejaJointes;
+
+  /// No description provided for @devoirPieceRetirerConfirmer.
+  ///
+  /// In fr, this message translates to:
+  /// **'« {nom} » sera retiré des consignes. Les étudiants ne pourront plus le télécharger.'**
+  String devoirPieceRetirerConfirmer(String nom);
+
+  /// No description provided for @devoirAbsentsDeLaFeuille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Absents de la feuille de notes, non reportés : {noms}'**
+  String devoirAbsentsDeLaFeuille(String noms);
+
+  /// No description provided for @devoirsDeLaClasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Devoirs de la classe'**
+  String get devoirsDeLaClasse;
+
+  /// No description provided for @devoirsAucunDeLaClasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun devoir donné à cette classe.'**
+  String get devoirsAucunDeLaClasse;
 }
 
 class _AppLocalizationsDelegate
