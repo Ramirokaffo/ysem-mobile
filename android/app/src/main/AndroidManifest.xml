@@ -38,6 +38,58 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!-- Liens d'application (App Links) : une page du portail web touchée
+                 hors de l'application s'ouvre dans l'application. Android vérifie
+                 que le site la reconnaît (/.well-known/assetlinks.json). L'hôte
+                 suit API_BASE_URL (build.gradle.kts) ; les chemins sont ceux de
+                 lib/features/commun/liens/liens_entrants.dart, et eux seuls
+                 (garde : test/liens_entrants_test.dart). -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="true"/>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"/>
+                <data android:host="${hoteLiens}"/>
+                <data android:pathPrefix="/portail-etudiant/tableau-de-bord/"/>
+                <data android:pathPrefix="/portail-etudiant/ma-scolarite/"/>
+                <data android:pathPrefix="/portail-etudiant/planning-des-examens/"/>
+                <data android:pathPrefix="/portail-etudiant/mes-notes/"/>
+                <data android:pathPrefix="/portail-etudiant/mes-devoirs/"/>
+                <data android:pathPrefix="/portail-etudiant/ma-promotion/"/>
+                <data android:pathPrefix="/portail-etudiant/mes-supports-de-cours/"/>
+                <data android:pathPrefix="/portail-etudiant/archives/"/>
+                <data android:pathPrefix="/portail-etudiant/bibliotheque/"/>
+                <data android:pathPrefix="/portail-etudiant/ma-reinscription/"/>
+                <data android:pathPrefix="/portail-etudiant/mes-documents/"/>
+                <data android:pathPrefix="/portail-etudiant/ma-situation-financiere/"/>
+                <data android:pathPrefix="/portail-etudiant/ma-discipline/"/>
+                <data android:pathPrefix="/portail-etudiant/mes-permissions/"/>
+                <data android:pathPrefix="/portail-etudiant/ma-delegation/"/>
+                <data android:pathPrefix="/portail-etudiant/evaluations/"/>
+                <data android:pathPrefix="/portail-etudiant/association/"/>
+                <data android:pathPrefix="/portail-etudiant/boite-a-suggestions/"/>
+                <data android:pathPrefix="/portail-etudiant/mon-profil/"/>
+                <data android:pathPrefix="/chat-cours/etudiant/"/>
+                <data android:pathPrefix="/messagerie/mes-messages/"/>
+                <data android:pathPrefix="/enseignants/tableau-de-bord/"/>
+                <data android:pathPrefix="/enseignants/mon-emploi-du-temps/"/>
+                <data android:pathPrefix="/enseignants/mes-disponibilites/"/>
+                <data android:pathPrefix="/enseignants/mes-examens/"/>
+                <data android:pathPrefix="/enseignants/mes-rattrapages/"/>
+                <data android:pathPrefix="/enseignants/mes-classes/"/>
+                <data android:pathPrefix="/enseignants/mes-devoirs/"/>
+                <data android:pathPrefix="/enseignants/fiches-a-signer/"/>
+                <data android:pathPrefix="/enseignants/mes-enseignements/"/>
+                <data android:pathPrefix="/enseignants/mes-documents-de-cours/"/>
+                <data android:pathPrefix="/enseignants/mes-plans-de-cours/"/>
+                <data android:pathPrefix="/enseignants/mes-epreuves/"/>
+                <data android:pathPrefix="/enseignants/mes-feuilles-de-notes/"/>
+                <data android:pathPrefix="/enseignants/ma-ponctualite/"/>
+                <data android:pathPrefix="/enseignants/mes-vacations/"/>
+                <data android:pathPrefix="/enseignants/mon-dossier/"/>
+                <data android:pathPrefix="/chat-cours/enseignant/"/>
+            </intent-filter>
         </activity>
         <!-- Inscription par identifiant d'installation : FCM a déprécié les jetons
              d'enregistrement, et le serveur écrit à ce `fid`. -->

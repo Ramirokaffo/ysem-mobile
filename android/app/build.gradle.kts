@@ -1,5 +1,7 @@
 import java.util.Properties
 import java.io.FileInputStream
+import java.net.URI
+import java.util.Base64
 
 plugins {
     id("com.android.application")
@@ -19,6 +21,29 @@ val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
+// Hôte des liens d'application (App Links) : celui du serveur que vise la
+// compilation — --dart-define=API_BASE_URL (Flutter le transmet encodé en
+// base64 dans la propriété « dart-defines »), à défaut la valeur par défaut de
+// lib/core/config/env.dart, relue ici pour n'avoir qu'une source. Une
+// application compilée pour la pile de test n'intercepte donc pas les liens de
+// la production, ni l'inverse.
+val hoteLiens: String = run {
+    val defines = (project.findProperty("dart-defines") as String?)
+        ?.split(",")
+        ?.mapNotNull { runCatching { String(Base64.getDecoder().decode(it)) }.getOrNull() }
+        .orEmpty()
+    val adresseCompilee = defines.firstOrNull { it.startsWith("API_BASE_URL=") }?.substringAfter("=")
+    val adresseParDefaut = rootProject.file("../lib/core/config/env.dart")
+        .takeIf { it.exists() }
+        ?.readLines()
+        ?.map { it.trim() }
+        ?.dropWhile { !it.contains("'API_BASE_URL'") }
+        ?.filterNot { it.startsWith("//") }
+        ?.firstNotNullOfOrNull { Regex("defaultValue:\\s*'([^']+)'").find(it)?.groupValues?.get(1) }
+    val adresse = adresseCompilee ?: adresseParDefaut ?: "https://si.ysem.education"
+    runCatching { URI(adresse).host }.getOrNull() ?: "si.ysem.education"
 }
 
 android {
@@ -44,6 +69,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        manifestPlaceholders["hoteLiens"] = hoteLiens
     }
 
     signingConfigs {

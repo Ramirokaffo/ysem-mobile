@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/auth/espace.dart';
 import '../../../core/providers.dart';
 import '../../../l10n/app_localizations.dart';
+import '../liens/liens_entrants.dart';
 import '../push/canal_push.dart';
 import '../push/push.dart';
 import '../temps_reel.dart';
@@ -22,8 +23,9 @@ import 'menu.dart';
 /// l'acteur « en ligne » côté serveur tant que l'application est au premier
 /// plan. Socket tombé, le compteur est relu périodiquement : le repli du web.
 ///
-/// Elle reçoit enfin les push : elle n'existe qu'une fois la session
-/// restaurée, si bien qu'une notification touchée à froid l'attend ici.
+/// Elle reçoit enfin les push et les liens du portail web touchés hors de
+/// l'application : elle n'existe qu'une fois la session restaurée, si bien
+/// qu'une notification ou un lien touchés à froid l'attendent ici.
 class CoqueEspace extends ConsumerStatefulWidget {
   const CoqueEspace({
     super.key,
@@ -58,6 +60,7 @@ class _CoqueEspaceState extends ConsumerState<CoqueEspace> {
   late final StreamSubscription<Map<String, dynamic>> _evenements;
   late final StreamSubscription<MessagePush> _recus;
   late final StreamSubscription<void> _ouvertures;
+  late final StreamSubscription<void> _liens;
   final Map<int, DateTime> _bandeauxRecents = {};
 
   @override
@@ -75,6 +78,11 @@ class _CoqueEspaceState extends ConsumerState<CoqueEspace> {
     final push = ref.read(pushProvider);
     _recus = push.recus.listen(_surPush);
     _ouvertures = push.ouvertures.listen((_) => _suivreDestination());
+    // Le routeur retient le lien pendant qu'il mène à l'accueil : la section
+    // s'ouvre par-dessus une fois cette navigation rendue.
+    _liens = ref.read(liensEntrantsProvider).arrivees.listen((_) =>
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => _suivreDestination()));
     WidgetsBinding.instance.addPostFrameCallback((_) => _suivreDestination());
   }
 
@@ -85,6 +93,7 @@ class _CoqueEspaceState extends ConsumerState<CoqueEspace> {
     _cloche.dispose();
     _recus.cancel();
     _ouvertures.cancel();
+    _liens.cancel();
     super.dispose();
   }
 
@@ -181,7 +190,19 @@ class _CoqueEspaceState extends ConsumerState<CoqueEspace> {
     if (!mounted) return;
     final destination =
         ref.read(pushProvider).prendreDestination(widget.espace);
-    if (destination != null) _ouvrir(destination);
+    // Pris dans tous les cas : un lien laissé en attente s'ouvrirait plus
+    // tard, sans que personne ne l'ait demandé à ce moment-là.
+    final lien = ref.read(liensEntrantsProvider).prendre(widget.espace);
+    if (destination != null) {
+      _ouvrir(destination);
+    } else if (lien != null) {
+      // Un lien n'est pas une notification : rien à marquer comme lu.
+      _ouvrir(DestinationPush(
+        espace: widget.espace,
+        notificationId: null,
+        url: lien.chemin,
+      ));
+    }
   }
 
   /// Ouvre ce que désigne la notification, comme un toucher dans le centre.

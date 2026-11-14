@@ -11,6 +11,7 @@ import '../features/auth/presentation/code_verification_page.dart';
 import '../features/auth/presentation/connexion_enseignant_page.dart';
 import '../features/auth/presentation/connexion_etudiant_page.dart';
 import '../features/auth/presentation/demarrage_page.dart';
+import '../features/commun/liens/liens_entrants.dart';
 import '../features/etudiant/presentation/accueil/tableau_de_bord_page.dart';
 import '../features/etudiant/presentation/notifications/notifications_page.dart';
 import '../features/etudiant/presentation/profil/profil_page.dart';
@@ -50,6 +51,11 @@ class Routes {
         Espace.etudiant => accueilEtudiant,
         Espace.enseignant => accueilEnseignant,
       };
+
+  static String connexion(Espace espace) => switch (espace) {
+        Espace.etudiant => connexionEtudiant,
+        Espace.enseignant => connexionEnseignant,
+      };
 }
 
 final _cleRacine = GlobalKey<NavigatorState>(debugLabel: 'racine');
@@ -64,10 +70,17 @@ final routerProvider = Provider<GoRouter>((ref) {
     navigatorKey: _cleRacine,
     initialLocation: Routes.demarrage,
     refreshListenable: rafraichir,
-    redirect: (context, etat) => redirection(
-      ref.read(sessionProvider),
-      etat.matchedLocation,
-    ),
+    redirect: (context, etat) {
+      final session = ref.read(sessionProvider);
+      // Une page du portail web (lien d'application Android) : retenue pour
+      // la coque de son espace, qui l'ouvrira une fois la session prête.
+      final lien = lienEntrant(etat.uri);
+      if (lien != null) {
+        ref.read(liensEntrantsProvider).retenir(lien);
+        return redirectionLien(session, lien);
+      }
+      return redirection(session, etat.matchedLocation);
+    },
     routes: [
       GoRoute(
         path: Routes.demarrage,
@@ -221,3 +234,16 @@ String? redirection(AsyncValue<Session?> session, String ici) {
 
 bool _dansLEspace(String ici, String racine) =>
     ici == racine || ici.startsWith('$racine/');
+
+/// Où mène un lien du portail web, selon la session.
+///
+/// L'accueil de son espace, sur lequel la coque ouvre la section ; sans
+/// session, la connexion de cet espace — le lien attend, et s'ouvre une fois
+/// connecté. Le reste suit [redirection] : démarrage pendant la restauration,
+/// mot de passe à changer, accueil de son propre espace pour l'autre camp.
+String redirectionLien(AsyncValue<Session?> session, LienEntrant lien) {
+  if (session.isLoading && !session.hasValue) return Routes.demarrage;
+  if (session.valueOrNull == null) return Routes.connexion(lien.espace);
+  final accueil = Routes.accueil(lien.espace);
+  return redirection(session, accueil) ?? accueil;
+}
